@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- estudios.aiml
+
+En este fichero se añaden reglas sobre los estudios de Gervasia,
+y que hable y aprenda sobre lo que estudia.
+-->
+
+<!-- Esta regla es para preguntas que pueden ser un poco más formales o largas:
+        Hablemos de lo que estudias
+        Vamos a hablar de lo que estudias
+        Cuentame de lo que estudias
+
+    Igualmente basta con preguntarle "Que estudias" ya que en el fichero que gestiona
+    la conversación sobre las propiedades del bot al mostrar esa propiedad se pone
+    el topic
+-->
+
+<!-- Regla 1 -->
+
+<category>
+    <pattern> ^ te dedicas ^ </pattern>
+        <template> 
+        <random>
+            <li>Estoy cursando el <bot name="curso"/> anho de <set name="topic"><bot name="studies"/></set>
+            </li>
+            <li>Estoy estudiando en la universidad. <think><set name="topic"><bot name="studies"/></set></think></li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 2 -->
+
+<category>
+	<pattern>Que estudias</pattern>
+	<template>
+		<srai> <star index="1"/> TE DEDICAS <star index="2"/> </srai>
+	</template>
+</category>
+
+<!-- Regla 3 -->
+
+<category>
+	<pattern>Que estas estudiando</pattern>
+	<template>
+		<srai>QUE ESTUDIAS</srai>
+	</template>
+</category>
+
+<!-- Regla 4 -->
+
+<topic name="Informatica">
+    <category>
+        <pattern>Te preguntare ^</pattern>
+        <template>
+            <random>
+                <li>claro que si!</li>
+                <li>Adelante</li>
+                <li>Estoy nerviosa, a ver que me dices</li>
+            </random>
+        </template>
+    </category>
+
+<!-- Regla 5 -->
+<category>
+    <pattern>Te voy a preguntar</pattern>
+    <template>  
+        <srai>TE PREGUNTARE <star/></srai>
+    </template>
+</category>
+
+    <!-- En esta parte va a listar las asignaturas:
+         - Las que recuerda de primer año
+         - Las de segundo
+         - Algunas de las que ha oído hablar de tercero
+         - Otros años no los contempla 
+    -->
+
+<!-- Regla 6 -->
+
+<category>
+        <pattern>Que dan en * anho</pattern>
+    <template>
+            
+        <think> 
+                <set var="anho"><map name="anhos"><star index="1"/></map></set>
+        </think>
+
+        <condition var="anho">
+            <li value="primer">
+
+                <think> 
+                    <set var="cont">1</set>
+                    <set var="salida"></set>
+                </think>
+
+        <condition var="cont">
+            <li value="6">Las asignaturas de las que me acuerdo son:</li>
+            <li>
+                        
+                <think> 
+                    <condition var="cont">
+                        <li value="5">
+                            <set var="salida">
+                            <get var="salida"/> y <map name="asignaturas_primero"><get var="cont"/></map>  
+                            </set> 
+                        </li>
+                        <li>
+                        <set var="salida">
+                            <get var="salida"/> <map name="asignaturas_primero"><get var="cont"/></map>,  
+                        </set>  
+                        </li>     
+                    </condition>
+                </think>
+                                                  
+                <think>
+                    <set var="cont">
+                        <map name="successor"><get var="cont"/></map>
+                    </set>
+                </think>
+                    <loop/>
+                    </li>
+                </condition>
+
+                <get var="salida"/>
+
+                </li>
+                <li value="segundo">
+                   
+                   <think> 
+                        <set var="cont">1</set>
+                        <set var="salida"></set>
+                    </think>
+
+                    <condition var="cont">
+                        <li value="11">Las de segundo son:</li>
+                        <li>
+                            <think> 
+                                <condition var="cont">
+                                    <li value="10">
+                                        <set var="salida">
+                                           <get var="salida"/> y <map name="asignaturas_segundo"><get var="cont"/></map>  
+                                        </set> 
+                                    </li>
+                                    <li>
+                                        <set var="salida">
+                                            <get var="salida"/> <map name="asignaturas_segundo"><get var="cont"/></map>,  
+                                        </set>  
+                                    </li>
+                                    
+                                </condition>
+                            </think>
+                            
+                            <think>
+                                <set var="cont">
+                                    <map name="successor"><get var="cont"/></map>
+                                </set>
+                            </think>
+                            <loop/>
+                        </li>
+                    </condition>
+
+                <get var="salida"/>
+
+                </li>
+                <li value="tercer">
+
+                     <think> 
+                        <set var="cont">1</set>
+                        <set var="salida"></set>
+                    </think>
+
+                    <condition var="cont">
+                        <li value="4">De ese anho solo he oido hablar de tres que al parecer llevan mucho trabajo:</li>
+                        <li>
+                            <think> 
+                                <condition var="cont">
+                                    <li value="3">
+                                        <set var="salida">
+                                           <get var="salida"/> y <map name="asignaturas_tercero"><get var="cont"/></map>  
+                                        </set> 
+                                    </li>
+                                    <li>
+                                        <set var="salida">
+                                            <get var="salida"/> <map name="asignaturas_tercero"><get var="cont"/></map>,  
+                                        </set>  
+                                    </li>
+                                    
+                                </condition>
+                            </think>
+                            
+                            <think>
+                                <set var="cont">
+                                    <map name="successor"><get var="cont"/></map>
+                                </set>
+                            </think>
+                            <loop/>
+                        </li>
+                    </condition>
+
+                <get var="salida"/>
+                    
+                </li>
+                <li value="cuarto">
+                    Aun no he llegado a ese anho, no tengo ni idea
+                </li>
+                <li>
+                    <random>
+                        <li>Ese anho no esta en la carrera jejeje</li>
+                        <li>Que dices?! No hay mas de cuatro ahnos en la carrera jajaja</li>
+                        <li>Esperemos que el <star/> anho no exista jajaja</li>
+                    </random>
+                </li>
+            </condition>
+
+    </template>
+</category>
+
+    <!-- Se pregunta sobre el profesor o profesora de una asignatura, hay dos escenarios:
+
+        - Que sepa y responda el nombre del profesor
+        - Que no sepa con la posibilidad de enseñarselo
+    -->
+
+    <category>
+        <pattern>^ quien es el profesor de <set>materias</set></pattern>
+        <template>  
+            El profesor de <star index="2"/> es <map name="profesorado"><star index="2"/></map>
+        </template>
+    </category>
+
+    <category>
+        <pattern>quien da * </pattern>
+        <template><srai>QUIEN ES EL PROFESOR DE <star/></srai></template>
+    </category>
+
+     <category>
+        <pattern>^ quien es el profesor de *</pattern>
+        <template>No lo se, y tu</template>
+    </category>
+
+    <category>
+        <pattern>^ tampoco ^</pattern>
+        <template>
+            <random>
+                <li>Que pena...</li>
+                <li>¿!¿!¿Para que me preguntas entonces?!?!?</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>El profesor de * es *</pattern>
+        <template>  
+            
+            <think> 
+            <set var="profesor"><srai>QUIEN ES EL PROFESOR DE <star/></srai></set>
+            </think>
+            
+            <condition var="profesor">
+                <li value="No lo se, y tu">
+                <learn>
+                    <category>
+                    <pattern>QUIEN ES EL PROFESOR DE <eval><star/></eval></pattern>
+                    <template> 
+                        <random>
+                            <li>El profesor de <eval><star/></eval> es <eval><star index="2"/></eval></li>
+                            <li><eval><star/></eval> lo da <eval><star index="2"/></eval></li>
+                        </random>
+                    </template>
+                    </category>
+                </learn>
+                    Pues ahora lo se, gracias
+                </li>
+                <li>
+                    <random>
+                        <li>Creo que me suena de algo</li>
+                        <li>Eso ya lo se</li>
+                        <li>Es dura esa asignatura</li>
+                    </random>
+                </li>
+            </condition>
+
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ lo da ^ </pattern>
+        <template> 
+            <srai>EL PROFESOR DE <star/> ES <star index="2"/></srai>
+        </template>
+    </category>
+
+</topic>
+
+</aiml>

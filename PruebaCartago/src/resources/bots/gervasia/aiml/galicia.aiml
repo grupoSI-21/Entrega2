@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- galicia.aiml
+
+En este fichero se han añadido reglas correspondientes a Galicia,
+lugares de Galicia, etc.
+-->
+
+<!-- Regla 1 -->
+<!-- para preguntas del tipo que tal es galicia, como es galicia... -->
+<category>
+    <pattern> * es Galicia </pattern>
+        <template><set name="topic">galicia</set> ¡Es un lugar maravilloso! Y no lo digo porque viva allí </template>
+</category>
+
+<!-- Regla 2 -->
+<!-- para cuando le pregunten en que parte de galicia vive Gervasia -->
+<category>
+    <pattern> * Galicia ^ vives </pattern>
+        <template><set name="topic">galicia</set> Uy, esa pregunta no te la puedo responder, es un poco privada </template>
+</category>
+
+<!-- Regla 3 -->
+<!-- esta regla baraja varias respuestas a preguntas del estilo: -->
+<!-- recomiendame algun sitio al que ir en galicia, recomiendame que visitar de galicia... -->
+<category>
+    <pattern> recomiendame * Galicia </pattern>
+        <template> 
+        <think> <set name="topic">galicia</set> </think>
+        <random>
+            <li> Mi lugar favorito es sin duda <bot name="favplace"/> </li>
+        </random>
+         </template>
+</category>
+
+<!-- Regla 4 -->
+<!-- esta regla responde con una localizacion -->
+<!-- que conoce Gervasia de un sitio que pregunte el usuario -->
+<!-- EJEMPLO: U: que conoces de ourense? - G: las termas -->
+<!-- para ello, coge el lugar por el que pregunta el usuario y recorre -->
+<!-- el map lugaresGalicia -->
+<category>
+    <pattern> ^ conoces de <set>galicia</set> </pattern>
+        <template>
+        <think> <set name="topic">galicia</set> </think> Conozco <map name="lugaresGalicia"><star index="2"/></map> y me parece un sitio de lo más bonito </template>
+</category>
+
+<!-- Regla 5 -->
+<!-- esta regla sirve para cuando el usuario le pregunte a Gervasia -->
+<!-- todos los sitios destacables que conoce de Galicia -->
+<!-- para ello, recorre el map de lugares -->
+<category>
+    <pattern> ^ sitios ^ destacables ^ de galicia ^ </pattern>
+    <template>
+        <think> <set name="topic">galicia</set> </think>
+        <think>
+            <set var="contador">1</set>
+            <set var="salida">Los lugares más interesantes que conozco de galicia son </set>
+        </think>
+        <condition var="contador">
+            <!-- Cuando el contador esté en su penúltimo valor, lo incrementamos y añadimos el último lugar pero con un "y" ya que es el último, para dar una respuesta más natural -->
+            <li><value>5</value>
+            <think>
+                <set var="contador">
+                    <map name="successor"><get var="contador"/></map>
+                </set>
+                <set var="localidad"><map name="localidadesGalicia"><get var="contador"/></map> </set>
+                <set var="lugar"><map name="lugaresGalicia"><get var="localidad"/></map></set>
+            </think>
+            <get var="salida"/> y <get var="lugar"/> en <get var="localidad"/>.
+            </li>
+            <li>
+                <think>
+                    <set var="contador">
+                        <map name="successor"><get var="contador"/></map>
+                    </set>
+                    <set var="localidad"><map name="localidadesGalicia"><get var="contador"/></map> </set>
+                    <set var="salida"><get var="salida"/> <map name="lugaresGalicia"><get var="localidad"/></map> en <get var="localidad"/>, </set>
+                </think>
+                <loop/>
+            </li>
+            </condition>
+    </template>
+</category>
+
+<topic name="galicia">
+    <!-- Regla 6 -->
+    <!-- aqui entra cuando no conoce el lugar por el que le preguntan -->
+    <category>
+        <pattern> Has oido ^ de * </pattern>
+            <template> <srai> oidohablar <star index="2"/></srai> </template>
+    </category>
+
+    <category>
+        <pattern> oidohablar *</pattern>
+            <template> Lamentablemente no conozco ese lugar </template>
+    </category>
+
+    <!-- Regla 7 -->
+    <!-- aprendizaje de sitios que no conoce Gervasia -->
+    <category>
+        <pattern> Conoces * </pattern>
+            <template> 
+                <think> 
+                <set var="lugar"><srai>OIDOHABLAR <star/></srai></set>
+                </think>
+                    <condition var="lugar">
+                        <li value="Lamentablemente no conozco ese lugar">
+                            <learn>
+                            <category>
+                                <pattern> OIDOHABLAR <eval><star/></eval></pattern>
+                                    <template> Sí, lo conozco y es precioso </template>
+                            </category>
+                            </learn>
+                            No, no lo conocía, pero intentaré recordarlo
+                        </li>
+                        <li>
+                        Sí, ya lo conocía
+                        </li>
+                    </condition>
+            </template>
+    </category>
+</topic>
+
+</aiml>

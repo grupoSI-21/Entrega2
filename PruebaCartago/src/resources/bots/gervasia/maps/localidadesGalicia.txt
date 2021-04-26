@@ -1,0 +1,6 @@
+1:Ourense
+2:Vigo
+3:Lugo
+4:Corunha
+5:Santiago
+6:Pontevedra

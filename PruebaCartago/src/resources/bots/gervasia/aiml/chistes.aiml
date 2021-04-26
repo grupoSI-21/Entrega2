@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Sección de chistes posibles de Gervasia -->
+
+<!-- Regla 1 -->
+
+<category>
+    <pattern> Cuentame un chiste </pattern>
+        <template> Confirmame si de verdad quieres o no porque te aviso que mis chistes son muy malos </template>
+</category>
+
+<!-- Regla 2 -->
+
+<category>
+    <pattern> Si </pattern>
+    <that> CONFIRMAME SI DE VERDAD QUIERES O NO PORQUE TE AVISO QUE MIS CHISTES SON MUY MALOS </that>
+    <template> 
+        <random>
+        <li>Hola, ¿está Agustín? No, estoy incomodín</li>
+        <li>¿Qué es una caja en un gimnasio? Una caja fuerte</li>
+        <li>Me han dado plantón. ¿Como a las ballenas?</li>
+        <li>¿Sabes cómo se llaman los habitantes de Barcelona? Hombre pues todos no</li>
+        <li>¿Qué come piedras y es verde? El comepiedras verde</li>
+        <li>Tengo tres llamadas perdidas del oculista... El de ver me llama</li>
+        <li>¿Por qué el mono cruzó la carretera? Pantalones de mono</li>
+        <li>¿Qué hay al final de todo? La o</li>
+        <li>¿Qué le dice un pez a otro? Nada, los peces no hablan</li>
+        <li>Doctor, ¿tiene ya mis resultados? Me muero de curiosidad. Jaja, y no solo de curiosidad</li>
+        <li>Si Superman bailara, bailaría clarqué</li>
+        <li>¿Encajas las derrotas? No, en bolsas está bien</li>
+        <li>Al fin mi casa con medio tejado... techado de menos</li>
+        <li>¿Importar archivos? ¡Pues claro que me importan!</li>
+        <li>Si no tienes agenda, ¿cómo planeas la semana? Con un aladelta</li>
+        <li>Lo malo de las películas dobladas es que solo ves la mitad</li>
+        <li>Los que marcan rápido la casilla de la Iglesia es que no tienen... PACIENCIA</li>
+        </random> 
+    </template>
+</category>
+
+<!-- Regla 3 -->
+
+<category>
+    <pattern> No </pattern>
+        <template> Mejor así </template>
+</category>
+
+<!-- Regla 4 -->
+
+<category>
+    <pattern> ^ mejor no ^ </pattern>
+        <template> <srai> NO </srai> </template>
+</category>
+
+<!-- Regla 5 -->
+
+<category>
+    <pattern> Cuenta un chiste </pattern>
+        <template> <srai> CUENTAME UN CHISTE </srai> </template>
+</category>
+
+<!-- Regla 6 -->
+
+<category>
+    <pattern> ^ cuentas un chiste ^ </pattern>
+        <template> <srai> CUENTAME UN CHISTE </srai> </template>
+</category>
+
+<!-- Regla 7 -->
+<category>
+    <pattern> ^ claro ^ </pattern>
+        <template> <srai> SI </srai> </template>
+</category>
+
+<!-- Regla 8 -->
+<category>
+    <pattern> ^ por supuesto ^ </pattern>
+        <template> <srai> SI </srai> </template>
+</category>
+
+<!-- Regla 9 -->
+<category>
+    <pattern> Si ^ quiero </pattern>
+        <template> <srai> SI </srai> </template>
+</category>
+
+<!-- Regla 10 -->
+<category>
+    <pattern> venga va </pattern>
+        <template> <srai> SI </srai> </template>
+</category>
+</aiml>

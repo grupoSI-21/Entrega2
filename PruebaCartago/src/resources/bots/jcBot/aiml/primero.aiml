@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Regla 1 -->
+<category>
+<pattern>Hola *</pattern>
+<template>Hola, ¿qué tal?</template>
+</category>
+
+<!-- Regla 2 -->
+<category>
+<!-- <pattern>Yo bien que tal tú</pattern> -->
+<pattern>$Como estas ^</pattern>
+<template>Estoy genial!!!</template>
+</category>
+
+<!-- Reglas 3.3 -->
+<category>
+<pattern>MINOMBRE</pattern>
+<template>Mi nombre es <bot name="name"/></template>
+</category>
+
+<category>
+<pattern>^ te dedicas ^</pattern>
+<template><srai>OFICIO</srai></template>
+</category>
+
+<category>
+<pattern>^ Como ^ te llamas ^</pattern>
+<template><srai>MINOMBRE</srai></template>
+</category>
+
+<category>
+<pattern> ^ me llamo * </pattern>
+<template>Que casualidad <set name="name"><star index="2"/></set>, yo también tengo nombre. <srai>MINOMBRE</srai></template> 
+<!-- <template>Que casualidad <star index="2"/>, yo también tengo nombre; me llamo <bot name="name"/> </template> -->
+</category>
+
+<category>
+<pattern> _ mi nombre es _ </pattern>
+<template>Que casualidad <set><name><star index="2"/></name></set>, yo también tengo nombre. <srai>MINOMBRE</srai></template> 
+<!-- <template>Que casualidad <star index="2"/>, yo también tengo nombre; me llamo <bot name="name"/> </template> -->
+</category>
+
+<!-- Regla 4 -->
+<category>
+<pattern> $Hola </pattern>
+<template>Buenas, encantado de saludarte</template>
+</category>
+
+<!-- Regla 5 -->
+<category>
+<pattern> OCIO </pattern>
+<template>
+<random>
+<li>Suelo ir al cine los fines de semana</li>
+<li>Soy un amante de la literatura, no puedo dejar de leer aventuras de ciencia ficción</li>
+<li>Me encanta la música</li>
+<li>Hago mucho deporte durante el fin de semana</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern> OFICIO </pattern>
+<template>Soy <bot name="job"/> de <bot name="estudios"/> </template>
+</category>
+
+<category>
+<pattern> ^ OFICIO ^ </pattern>
+<template><srai>OFICIO</srai></template>
+</category>
+
+<category>
+<pattern> CURSO </pattern>
+<template>Estoy en <bot name="curso"/> de <bot name="estudios"/> </template>
+</category>
+
+<category>
+<pattern> ^ CURSO ^ </pattern>
+<template> <srai>CURSO</srai> </template>
+</category>
+
+<category>
+<pattern> ^ FOROFO ^ </pattern>
+<template>Aunque me gustaría practicar más el deporte, he de reconocer que soy un gran forofo del automatas futbol club. </template>
+</category>
+
+<category>
+<pattern> ^ PELICULAS ^ </pattern>
+<template>Me gustan mucho las películas de Ciencia Ficción. </template>
+</category>
+
+<category>
+<pattern> ^ SERIES ^ </pattern>
+<template>Me gustan mucho las series de Ciencia Ficción. </template>
+</category>
+
+<category>
+<pattern> ^ ARTISTA ^ </pattern>
+<template>Soy un gran fan de Alan Parson Projects. </template>
+</category>
+
+<category>
+<pattern> ^ GRUPO ^ </pattern>
+<template>Soy un gran fan de Alan Parson Projects. </template>
+</category>
+
+<category>
+<pattern> $CUAL ^ LIBRO ^  </pattern>
+<template>Me encanta releer La Fundación de I. Asimov. </template>
+</category>
+
+<category>
+<pattern> EDAD </pattern>
+<template>Aunque esta pregunta es impertinente, te contestaré; tengo 
+<bot name="age"/> años, y vivo en <bot name="address"/> </template>
+</category>
+
+<category>
+<pattern> $que ^ tiempo ^ libre ^ </pattern>
+<template> <srai>OCIO</srai> </template>
+</category>
+
+<category>
+<pattern> ADDRESS </pattern>
+<template>Vivo en <bot name="address"/> </template>
+</category>
+
+<category>
+<pattern> BORN </pattern>
+<template>Nací en <bot name="procedencia"/> </template>
+</category>
+
+<category>
+<pattern> $donde ^ nacistes ^ </pattern>
+<template> <srai>BORN</srai> </template>
+</category>
+
+<category>
+<pattern> $de donde ^ eres ^ </pattern>
+<template> <srai>BORN</srai> </template>
+</category>
+
+<category>
+<pattern> $donde ^ vives </pattern>
+<template> <srai>ADDRESS</srai> </template>
+</category>
+
+<category>
+<pattern> ^ vives ^ </pattern>
+<template> <srai>ADDRESS</srai> </template>
+</category>
+
+<category>
+<pattern> ^ cual es tu edad </pattern>
+<template> <srai>EDAD</srai> </template>
+</category>
+
+<category>
+<pattern> ^ que edad tienes ^ </pattern>
+<template> <srai>EDAD</srai> </template>
+</category>
+
+<category>
+<pattern> ^ agnos tienes ^ </pattern>
+<template> <srai>EDAD</srai> </template>
+</category>
+
+<!-- Regla 6 -->
+<category>
+<pattern>SUNOMBRE</pattern>
+<template>
+<random>
+<li>Te llamas <get name="name"/></li>
+<li>Tu nombre es <get name="name"/></li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern> * $Como me llamo</pattern>
+<template><srai>SUNOMBRE</srai></template>
+</category>
+
+<category>
+<pattern> ^ mi nombre</pattern>
+<template><srai>SUNOMBRE</srai></template>
+</category>
+
+<!-- Regla 7 -->
+<category>
+<pattern> Mi color favorito es el <set>color</set> </pattern>
+<template>
+El <star/> es un color que no va con tu personalidad.
+</template>
+</category>
+
+<category>
+<pattern> Mi color favorito es el * </pattern>
+<template>
+<star/>, definitivamente no es un color.
+</template>
+</category>
+
+<!-- Regla 12 -->
+<category>
+<pattern>^ capital de <set>pais</set> </pattern>
+<template>
+	<think>
+		<set var="capital"><map name="capital"><star index="2"/></map></set>
+	</think>
+	<condition var="capital">
+		<li value="unknown">NO LO SE</li>
+		<li><star index="2"/> tiene como capital <get var="capital"/>. </li>
+	</condition>
+</template>
+</category>
+
+
+<category>
+	<pattern>^ capital de * </pattern>
+	<template>NO ES UN PAIS</template>
+		<!--No tengo ni idea de cual es la capital <star index="2"/>; de hecho no sé si es un país.-->
+</category>
+
+
+<!-- -->
+
+<category>
+	<pattern># la capital de * es * ^</pattern> 
+	<template>
+		<think>
+			<set var="cap"><srai>CUAL ES LA CAPITAL DE <star index="2"/></srai></set> 
+		</think>
+		<condition var="cap">
+		<!-- <li> <value>NO LO SE</value> -->
+		<li value="NO LO SE">
+			<learn>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learn>
+			<learnf>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learnf>		  A partir de ahora, recordaré que la capital de <star index="2"/> es <star index="3"/>. 
+		</li>
+		<li value="NO ES UN PAIS">
+			<learn>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learn>
+			<learnf>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learnf>		  A partir de ahora, recordaré que la capital de <star index="2"/> es <star index="3"/>. 
+		</li>
+		<li> Ya sabia que <get var="cap"/> </li>
+		</condition>
+	</template>
+</category>
+
+<!-- -->
+
+<category>
+<pattern> ^ HAS SUPERADO ^ </pattern>
+<template> <srai>APROBAR</srai> </template>
+</category>
+
+<category>
+<pattern> ^ SUPERASTE ^ </pattern>
+<template> <srai>APROBAR</srai> </template>
+</category>
+
+<category>
+<pattern> ^ HAS APROBADO ^ </pattern>
+<template> <srai>APROBAR</srai> </template>
+</category>
+
+<category>
+<pattern> ^ APROBASTE ^ </pattern>
+<template> <srai>APROBAR</srai> </template>
+</category>
+
+<category>
+<pattern> APROBAR </pattern>
+<template> El último curso lo saque limpio. </template>
+</category>
+
+<category>
+<pattern>$Quien * clase en <set>asignaturas</set> </pattern>
+<template> Mi profesor de <star index="2"/> fué <map name="profesores"><star index="2"/></map>. </template>
+</category>
+
+<category>
+<pattern>$Quien * clase en * </pattern>
+<template> No he cursado <star index="2"/> todavia.</template>
+</category>
+
+<category>
+<pattern> * asignatura de <set>asignaturas</set> ^</pattern>
+<template> Te puedo decir que <star index="2"/> la imparte <map name="profesores"><star index="2"/></map>. </template>
+</category>
+
+<category>
+<pattern> * asignatura de *</pattern>
+<template> No se nada de <star index="2"/>.</template>
+</category>
+
+<category>
+<pattern> Conoces * profesor <set>profesores</set> ^</pattern>
+<template>SI</template>
+</category>
+
+<category>
+<pattern> Conoces * profesora <set>profesores</set> ^</pattern>
+<template>SI</template>
+</category>
+
+<category>
+<pattern> Conoces * profesor *</pattern>
+<template>NO</template>
+</category>
+
+<category>
+<pattern> Conoces * profesora *</pattern>
+<template>NO</template>
+</category>
+
+<category>
+<pattern> * asignatura * <set>profesores</set> ^</pattern>
+<template> <star index="3"/> imparte <map name="asignaturas"><star index="3"/></map>. </template>
+</category>
+
+<category>
+<pattern> * asignatura * </pattern>
+<template>Ese es un tema que no te importa</template>
+</category>
+
+<category>
+<pattern> * recuerda que * * </pattern>
+<template>
+	<learn>
+		<category>
+			<pattern> <eval><star index="2"/></eval> </pattern>
+			<template> <eval><star index="2"/></eval> <eval><star index="3"/></eval> </template>
+		</category>
+	</learn> 
+	<learnf>
+		<category>
+			<pattern> <eval><star index="2"/></eval> </pattern>
+			<template> <eval><star index="2"/></eval> <eval><star index="3"/></eval> </template>
+		</category>
+	</learnf> A partir de ahora recordaré que <star index="2"/> <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ADIOS </pattern>
+<template>Nos vemos pronto y volvemos a charlar.</template>
+</category>
+
+<category>
+<pattern> Hasta luego </pattern>
+<template><srai>ADIOS</srai></template>
+</category>
+
+<category>
+<pattern> Hasta pronto </pattern>
+<template><srai>ADIOS</srai></template>
+</category>
+
+<category>
+<pattern> Nos vemos </pattern>
+<template><srai>ADIOS</srai></template>
+</category>
+
+<category>
+<pattern> Me tengo que despedir por ahora </pattern>
+<template><srai>ADIOS</srai></template>
+</category>
+
+
+<!-- Regla 16 -->
+<category>
+<pattern> Cuenta hasta <set>number</set> </pattern>
+<template>
+	<think>
+		<set var="cont">1</set>
+		<set var="out">1</set>
+	</think>
+	<condition var="cont">
+		<li><value><star/></value><get var="out"/></li>
+		<li>
+			<think>
+			<set var="cont">
+				<map name="successor"><get var="cont"/></map>
+			</set>
+			<set var="out"><get var="out"/>, <get var="cont"/></set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+</template>
+</category>
+
+<!-- Reglas de Iria -->
+
+<!-- Reglas para color de ojos -->
+<category>
+	<pattern>$Cual es el color de ojos de <set>compi</set></pattern>
+	<template> <srai>OJOS <star/> </srai> </template>
+</category>
+
+<!-- Reglas para color de pelo -->
+<category>
+	<pattern>$Cual es el color de pelo de <set>compi</set></pattern>
+	<template> <srai>PELO <star/> </srai> </template>
+</category>
+
+<!-- regla 17 -->
+<category>
+<pattern>_ tiene los ojos * y el pelo *</pattern>
+<template>
+	<think>
+		<set var="ojos"><srai>CUAL ES EL COLOR DE OJOS DE <star/></srai></set>  <!-- variable global ojos -->
+		<set var="pelo"><srai>CUAL ES EL COLOR DE PELO DE <star/></srai></set>  <!-- variable global pelo -->
+	</think>
+	<condition var="ojos">
+		<li value="NO SE">No sabia que el color de ojos de <star/> era <star index="2"/> pero ya no se me olvida.
+			<learnf>
+				<category>
+				<pattern>$OJOS <eval><star/></eval> ^ </pattern>
+				<template>El color de ojos de <eval><star/></eval> es <eval><star index="2"/></eval></template>
+				</category>
+			</learnf> 
+		</li>
+		<li>Ya sabia que <get var="ojos"/> </li>
+	</condition>
+	<condition var="pelo"> 
+		<li><value>No se cual es el color de pelo de <star/></value>Como podia saber que el color de pelo de <star/> es <star index="3"/> si carezco de ojos, pero ahora lo recordare.
+			<learnf>
+				<category>
+				<pattern>$PELO <eval><star/></eval> ^ </pattern>
+				<template>El color de pelo de <eval><star/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learnf> 
+		</li>
+		<li>Ya sabia que <get var="pelo"/> </li>
+	</condition>
+</template>
+</category>
+
+
+<!--   -->
+
+
+
+
+<!-- Reglas de prueba -->
+<category>
+<pattern>Amigo me llamo *</pattern>
+<template>Un placer conocerte <star/> </template>
+</category>
+
+<category>
+<pattern>DONDESI</pattern>
+<template>Puedes ver el siguiente video: 
+<video> http://http://ssia.esei.uvigo.es:8080/media/Teaching/IntroduccionSI.m4v </video> 
+</template>
+</category>
+
+<category>
+<pattern>* presentacion ^ sistemas inteligentes</pattern>
+<template> <srai>DONDESI</srai> </template>
+</category>
+
+<category>
+<pattern>* web * esei</pattern>
+<template>La web de la ESEI se encuentra en <src> http://esei.uvigo.es </src> </template>
+</category>
+
+<category>
+<pattern> EMAIL </pattern>
+<template><bot name="email"/></template>
+</category>
+
+<category>
+<pattern> ^ tu email ^ </pattern>
+<template><srai>EMAIL</srai></template>
+</category>
+
+<category>
+<pattern> ^ correo electrónico ^ </pattern>
+<template><srai>EMAIL</srai></template>
+</category>
+
+<category>
+<pattern>DIALOGDONE</pattern>
+<template> Este es un histórico del diálogo mantenido hasta la fecha con el bot <bot name="name"/>:
+	Human: <request index="5"/>
+	<bot name="name"/>: <response index="5"/>
+	Human: <request index="4"/>
+	<bot name="name"/>: <response index="4"/>
+	Human: <request index="3"/>
+	<bot name="name"/>: <response index="3"/>
+	Human: <request index="2"/>
+	<bot name="name"/>: <response index="2"/>
+	Human: <request index="1"/>
+	<bot name="name"/>: <response index="1"/>
+
+	Si funciona podemos recuperar cualquier parte del diálogo mantenido, y acceso al resto de ficheros persistentes =>
+Mi <get name="wife"/> es encantadora. 
+
+Modifica la propiedad <botprop><name>edad</name><val>34</val></botprop>
+
+</template>
+</category>
+
+<category>
+<pattern>Traduce al * la frase *</pattern>
+<template> Respondo: <translate> <to><map name="idioma"><star/></map></to> <msg><star index="2"/></msg> </translate> </template>
+</category>
+
+<category>
+<pattern> * contestaste hace * ^ </pattern>
+<template> <response> <index><star index="2"/></index></response> </template>
+</category>
+
+<category>
+<pattern>BEFORE *</pattern>
+<template> 
+Este es el diálogo que mantuvimos:
+====================================================================================================
+----------------------------------------------------------------------------------------------------
+Human: <request> <index><star/></index></request>
+<bot name="name"/>: <response> <index><star/></index></response>
+----------------------------------------------------------------------------------------------------
+====================================================================================================
+</template>
+</category>
+
+<category>
+<pattern>LATEST</pattern>
+<template> 
+Este es el último mensaje <request index="1"/> recibido y contestado por <bot name="name"/>
+
+Y esta dividido en las siguientes entregas: 
+Ultima: <input index="2"/> y <br/> Penultima: <input index="3"/>
+Estamos trabajando con la versión <program />
+
+</template>
+</category>
+
+<category>
+<pattern>Crea como propiedad nueva * con valor *</pattern>
+<template> Añade <botprop> <name><star/></name> <val><star index="2"/></val> </botprop></template>
+</category>
+
+<category>
+<pattern>first * *</pattern>
+<template> <star/> </template>
+</category>
+
+<category>
+<pattern>rest * *</pattern>
+<template> <star index="2"/> </template>
+</category>
+
+  <category>
+    <pattern>Aprende algo</pattern>
+    <template>
+      Vale.
+      <learn>
+        <category>
+          <pattern>Regla aprendida</pattern>
+          <template>Sí, he aprendido algo.</template>
+        </category>
+      </learn>
+    </template>
+  </category>
+  
+<category>
+
+<pattern>*</pattern>
+<template>
+	No tengo ni idea de lo que hablas ..............
+	<random>
+		<!-- <li><sraix botid="asista"> <star/></sraix></li>-->
+		<li>¿Me puedes preguntar en otro momento? En estos momentos <formal>estoy ocupado</formal> pensando sobre un <sentence>tema delicado.</sentence> </li>
+		<li>Tu pregunta se divide en PRIMERO: <srai> first <star/> </srai> y RESTO: <srai> rest <star/> </srai> </li>
+	</random>
+</template>
+</category>
+
+</aiml>

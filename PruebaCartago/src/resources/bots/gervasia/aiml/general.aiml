@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+<!-- general.aiml
+
+En este fichero se encuentran reglas que no encajan en ningún ámbito específico
+o reglas que son muy generales y que en cierta medida sirven para definir
+el comportamiento de Gervasia ante casos genéricos.
+-->
+<!-- Regla 5: Listar Temas de conversacion que el bot maneja -->
+<category>
+    <pattern> ^ de que sabes hablar ^ </pattern>
+        <template> 
+            <think> 
+                <set var="salida">x</set>
+                <set var="indice">1</set>
+                <set var="topic"><map name="temas"><get var="indice"/></map></set>
+            </think>                
+            <condition var="topic">
+                <li value="0">
+                    <think> 
+                        <set var="salida"><get var="salida"/>. De otras cosas ya no controlo tanto</set>
+                    </think>
+                    <get var="salida"/>
+                </li>
+                <li>
+                    <think>
+                        <condition var="indice">
+                            <li value="1">
+                                <set var="salida">Pues me gusta hablar sobre <get var="topic"/> </set> 
+                            </li>
+                            <li>
+                                <set var="salida"><get var="salida"/>, <get var="topic"/></set>
+                            </li>
+                        </condition>
+                        <set var="indice"><map name="successor"><get var="indice"/></map></set>
+                        <set var="topic"><map name="temas"><get var="indice"/></map></set>
+                    </think>
+                <loop/>
+                </li>
+            </condition>
+        </template>
+</category>
+
+<category>
+  <pattern> ^ de que sabes ^</pattern>
+    <template> <srai> <star/> DE QUE SABES HABLAR <star index="2"/> </srai>  </template>
+</category>
+
+<category>
+  <pattern> ^ sobre que controlas ^ </pattern>
+    <template>  <srai> <star/> DE QUE SABES HABLAR <star index="2"/> </srai> </template>
+</category>
+
+<!-- Para que Gervasia inicie un tema de conversación -->
+<category>
+    <pattern>hablemos de *</pattern>
+    <template>
+        <random>
+            <li>Deberías preguntarme sobre que sé, porque igual no controlo de lo que me dices</li>
+            <li>Como no sé nada sobre ese tema prefiero no hablar</li>
+            <li>La verdad no me apetece hablar de eso</li>
+        </random>
+    </template>
+</category>
+
+<category>
+  <pattern>hablame de * </pattern>
+  <template><srai>HABLEMOS DE <star/></srai></template>
+</category>
+
+<category>
+  <pattern> ^ que te apetece hablar ^ </pattern>
+  <that>LA VERDAD NO ME APETECE HABLAR DE ESO</that>
+  <template>
+      <random>
+      <li>Podemos hablar de lo que estudio <think> <set name="topic"><bot name="studies"/></set> </think></li>
+      <li>Podemos hablar de <set name="topic">animales</set></li>
+      <li>Podemos hablar de lo que me gusta <set name="topic">gustos</set></li>
+      </random>
+  </template>
+</category>
+
+<category>
+  <pattern> ^ que hablamos entonces </pattern>
+    <template>  <srai> <star/> QUE TE APETECE HABLAR </srai></template>
+</category>
+
+
+<!-- Para que Gervasia le diga al usuario cuál fue su contestación anterior.
+     Para ello transforma la persona de los pronombres o de los verbos adecuadamente,
+     utilizando <person2>.
+-->
+<category>
+    <pattern> ^ que te dije antes ^ </pattern>
+    <template>
+        <think>
+            <set var="resp"><request index="1"/></set>
+        </think>
+        <condition var="resp">
+            <li value="unknown">No me has dicho nada antes</li>
+            <li>Antes me has dicho que <person2><get var="resp"/></person2></li>
+        </condition>
+    </template>
+</category>
+
+<!-- Regla  -->
+<category>
+  <pattern> ^ que te he dicho antes ^ </pattern>
+    <template> <srai> <star index="1"/> QUE TE DIJE ANTES <star index="2"/> </srai> </template>
+</category>
+
+<!-- Regla por defecto que se activa cuando Gervasia no encuentra ninguna regla adecuada.
+     Contestará que no entiende lo que le estamos diciendo
+-->
+<category>
+  <pattern>*</pattern>
+  <template>
+    <random>
+      <li>¿Perdona?</li>
+      <li>¿Cómo?</li>
+      <li>¿Qué estás diciendo?</li>
+      <li>¿Eh?</li>
+      <li>Emm...</li>
+    </random> <random>
+      <li>No te he entendido</li>
+      <li>Creo que no nos estamos entendiendo...</li>
+      <li>No comprendo lo que me intentas decir</li>
+    </random>
+  </template>
+</category>
+
+</aiml>

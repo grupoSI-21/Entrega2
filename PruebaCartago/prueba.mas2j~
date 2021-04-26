@@ -1,0 +1,22 @@
+/*
+    prueba
+    ---------------------------
+
+    Jason Project File
+
+    This file defines the initial state of the MAS
+
+    Jason 
+    marzo 02, 2020 - 09:55:12
+*/
+
+MAS prueba {
+
+    infrastructure: Centralised
+
+	environment: jaca.CartagoEnvironment
+
+    agents: jcBot agentArchClass jaca.CAgentArch;                                                                                                
+		
+}
+

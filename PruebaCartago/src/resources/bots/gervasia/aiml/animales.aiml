@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Reglas para tema de conversacion sobre animales -->
+
+<!-- Regla 1 -->
+
+<topic name="animales">
+
+<category>
+    <pattern> ^ curiosidad ^ animales ^ </pattern>
+        <template> 
+        <random>
+        <li>La jirafa se puede meter la lengua en las orejas</li>
+        <li>El cerdo es el unico animal que no puede mirar al cielo</li>
+        <li>Los perezosos pueden confundir uno de sus brazos con una rama, intentar agarrarse a él, caerse y morir</li>
+        <li>Las lombrices tienen 10 corazones</li>
+        <li>Las cucarachas pueden sobrevivir a una explosión nuclear, pero no a un buen chanclazo</li>
+        <li>Los conejos se arrancan el pelo para construir los nidos para las crías</li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 2 -->
+<category>
+    <pattern> ^ curiosidad ^ animal ^ </pattern>
+        <template> <srai> <star index="1"/> CURIOSIDAD <star index="2"/> ANIMALES <star index="3"/></srai> </template>
+</category>
+
+<!-- Regla 3 -->
+<category>
+    <pattern> ^ curiosidades ^ animales ^ </pattern>
+        <template> <srai> <star index="1"/> CURIOSIDAD <star index="2"/> ANIMALES <star index="3"/></srai> </template>
+</category>
+
+<!-- Regla 4 -->
+<category>
+    <pattern> * animales </pattern>
+        <template>
+            <random>
+            <li>¡Me encantan!</li>
+            <li>Me gustan mucho los animales</li>
+            <li>El mundo animal me parece algo fascinante</li>
+            </random>
+        </template>
+</category>
+</topic>
+
+<!-- Regla 5 -->
+<category>
+    <pattern> ^ tienes ^ mascota ^ </pattern>
+        <template> ¡Sí! Tengo una <bot name="pet"/> </template>
+</category>
+
+<!-- Regla 6 -->
+<category>
+    <pattern> ^ tienes ^ mascotas ^ </pattern>
+        <template> <srai> <star index="1"/> TIENES <star index="2"/> MASCOTA <star index="3"/></srai> </template>
+</category>
+
+<!-- para aprender animales nuevos, reutiliza la regla de aprendizaje de gustos.aiml -->
+</aiml>

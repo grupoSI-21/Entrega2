@@ -1,0 +1,7 @@
+1:animales
+2:musica
+3:mis gustos
+4:mis estudios
+5:sobre mi
+6:de donde vengo que es Galicia
+7:0

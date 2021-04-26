@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- musica.aiml
+
+En este fichero hay reglas sobre el tema de la música.
+-->
+
+<!-- Regla 2 -->
+<!-- esta regla es para aquellos estilos musicales que no le gustan a Gervasia -->
+<!-- EJEMPLO: que estilo de musica no te gusta, cual es el estilo de musica que no te mola -->
+<category>
+  <pattern> ^ estilo de musica ^ no te ^ </pattern>
+    <template><think><set name="topic">musica</set></think>
+      <random>
+      <li> Nunca me gustó demasiado el reggaeton </li>
+      <li> La verdad es que el rap no me apasiona mucho que digamos </li>
+      <li> Hace tiempo me gustaba mucho el house, pero ahora no lo soporto </li>
+      </random>
+     </template>
+</category>
+
+<!-- Regla 3 -->
+<category>
+    <pattern> ^ estilo de musica ^ </pattern>
+        <template><think><set name="topic">musica</set></think> ¡Me encanta el rock! </template>
+</category>
+
+<!-- Regla 4 -->
+<category>
+    <pattern> ^ instrumento ^ </pattern>
+        <template><think><set name="topic">musica</set></think> Siempre me gustó la guitarra y el piano. </template>
+</category>
+
+<!-- Regla 5 -->
+<category>
+  <pattern> * recomiendas * cancion * Queen</pattern>
+  <template><think><set name="topic">musica</set></think>
+    <random>
+      <li> ¡Puedes probar con Bohemian Rhapsody! </li>
+      <li> ¿Que te parece Don't Stop Me Now? </li>
+      <li> ¡We Are The Champions es genial!</li>
+      <li> ¿Por que no pruebas con I Want To Break Free? </li>
+      <li> ¡Te recomiendo Radio Ga-Ga! </li>
+    </random>
+  </template>
+</category>
+
+<!-- Regla 6 con reduccion simbolica-->
+<!-- La contestacion es la misma que en la regla nº 3 -->
+
+<category>
+  <pattern> Recomiendame * cancion * Queen </pattern>
+  <template><think><set name="topic">musica</set></think>
+    <srai> * RECOMIENDAS * CANCION * QUEEN</srai>
+  </template>
+</category>
+
+<!-- Regla 7 con reduccion simbolica -->
+<!-- La contestacion es la misma que en la regla nº 3 -->
+
+<category>
+  <pattern> Dime * cancion * Queen </pattern>
+  <template><think><set name="topic">musica</set></think>
+    <srai> * RECOMIENDAS * CANCION * QUEEN</srai>
+  </template>
+</category>
+
+<!-- Regla 8 -->
+<category>
+  <pattern>Es <set>integrantes</set> ^ integrante de Queen </pattern>
+  <template><think><set name="topic">musica</set></think>
+    Si, <star/> es un integrante de Queen
+  </template>
+</category>
+
+<!-- Regla 9 -->
+<category>
+  <pattern>Es * integrante de Queen </pattern>
+  <template><think><set name="topic">musica</set></think>
+    No, <star/> no es un integrante de Queen
+  </template>
+</category>
+
+<!-- Regla 10 -->
+
+<category>
+  <pattern> <set>integrantes</set> * integrante de Queen </pattern>
+  <template><think><set name="topic">musica</set></think>
+    <srai> ES <star/> INTEGRANTE DE QUEEN </srai>
+  </template>
+</category>
+
+<!-- Regla  -->
+<category>
+  <pattern> * es integrante de Queen </pattern>
+  <template><think><set name="topic">musica</set></think>
+    <srai> ES <star/> INTEGRANTE DE QUEEN </srai>
+  </template>
+</category>
+
+<topic name="musica">
+
+    <!-- Regla 12 -->
+    <!-- esta regla es para cuando el usuario le pregunte a Gervasia si conoce una banda-->
+    <!-- que Gervasia ya conozca -->
+    <category>
+      <pattern> Conoces a <set>musica</set> </pattern>
+        <template> Si, conozco a <star/></template>
+    </category>
+
+    <!-- Regla 13 -->
+    <category>
+      <pattern> Conoces a * </pattern>
+        <template> No </template>
+    </category>
+
+</topic>
+
+<!-- Regla 14 -->
+<!-- esta regla es para cuando preguntan a Gervasia por una banda o artista musical 
+que no conoce -->
+<category>
+  <pattern> Escuchas a * </pattern>
+    <template> <think><set name="topic">musica</set></think>
+          <think> 
+          <!-- recurre por reduccion simbolica a la regla 11 -->
+          <!-- va a responder: No ; si conoce responde lo de la regla 10 -->
+          <set var="music"><srai> CONOCES A <star/></srai></set>
+          </think>
+          <condition var="music">
+          <li value="No">
+          <learn>
+            <category>
+            <!-- ante la siguiente entrada: -->
+            <pattern> CONOCES A <eval><star/></eval></pattern>
+            <!-- proporciona la siguiente respuesta (que es la misma que en la regla 10) -->
+            <template> Si, conozco a <eval><star/></eval> </template>
+            </category>
+          </learn>
+          <!-- le dice esto al usuario, indicativo de que ya sabe quien es el/la cantante o la banda -->
+          No conocia, mas tarde pongo algun tema de <star/>
+          </li>
+          <!-- esta salta cuando el valor del li value no es un "no" -->
+          <li>
+          Si
+          </li>
+        </condition>
+    </template>
+</category>
+
+<!-- Regla 15 -->
+<!-- En esta regla, se le va a decir a Gervasia un integrante de Queen (diferente a los 4 más conocidos)
+y va a aprender al respecto de ellos -->
+<category>
+  <pattern> Sabias que * es un integrante de Queen </pattern>
+    <template> <set name="topic">musica</set>
+          <think>
+            <set var="integrante"><srai> * <star/> * INTEGRANTE * QUEEN </srai></set>
+          </think>
+          <condition var="integrante">
+          <li value="No">
+          <learn>
+            <category>
+            <pattern> * <eval><star/></eval> * INTEGRANTE * QUEEN </pattern>
+            <template> Si, <eval><star/></eval> es un integrante de Queen </template>
+            </category>
+          </learn>
+          <!-- le dice esto al usuario, indicativo de que ya aprendio -->
+          No sabia que <star/> era un integrante de Queen, gracias por decirme!
+          </li>
+          <!-- esta salta cuando el valor del li value no es un "no" -->
+          <li>
+            <get name="integrante"/>
+            Ya lo sabia! Pero igualmente gracias por decirme ;)
+          </li>
+        </condition>
+    </template>
+</category>
+
+<!-- Regla 16 -->
+<category>
+  <pattern> ^ dato curioso * Queen </pattern>
+  <template>
+    <random>
+      <li> ¿Sabias que Brian May es astrofísico? </li>
+      <li> Por si no lo sabías, Freddie Mercury fue diseñador gráfico </li>
+      <li> Roger Taylor, el baterista de la banda, estudió Odontología y despues Biología </li>
+      <li> John Deacon es ingeniero eléctrico </li>
+    </random>
+  </template>
+</category>
+
+</aiml>

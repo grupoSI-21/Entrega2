@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- estudiosNoTopic.aiml
+
+En el fichero 'estudios.aiml' se encuentran reglas relacionadas con el topic de
+'estudios'. Aquí se encuentran reglas que reconocen las mismas preguntas del usuario,
+pero a diferencia de las del otro fichero, solo entrará en ellas cuando el topic
+'estudios' esté desactivado. De esta manera damos una respuesta diferente a las
+preguntas de 'estudios.aiml' cuando el topic 'estudios' no se encuentra activado.
+-->
+<!-- REGLAS PARA ESTABLECER TEMA DE CONVERSACION -->
+<!-- Regla 1 -->
+     <category>
+        <pattern>Te preguntare sobre lo que estudias</pattern>
+        <template>
+            <random>
+                <li>Perfecto, buen tema de conversacion <think><set name="topic"><bot name="studies"/></set></think></li>
+                <li>Te respondere a lo que me preguntes <think><set name="topic"><bot name="studies"/></set></think></li>
+            </random>
+        </template>
+    </category>
+<!-- Regla 2 -->
+    <category>
+        <pattern>Te voy a preguntar acerca de * estudios</pattern>
+        <template>  
+            <srai>TE PREGUNTARE SOBRE LO QUE ESTUDIAS</srai>
+        </template>
+    </category>
+<!-- Regla 3 -->
+    <category>
+        <pattern>Te preguntare ^</pattern>
+        <template>
+            <random>
+                <li>Sobre que?</li>
+                <li>De que estamos hablando exactamente</li>
+            </random>
+        </template>
+    </category>
+<!-- Regla 4 -->
+    <category>
+        <pattern>Te voy a preguntar</pattern>
+        <template>  
+            <srai>TE PREGUNTARE</srai>
+        </template>
+    </category>
+
+<!-- Regla 5 -->
+<category>
+    <pattern> hablemos de ^ * </pattern>
+        <template> 
+        <random>
+        <li>¡Vale! hablaremos de <person2><set name="topic"><star index="2"/></set></person2> pues </li>
+        <li>De acuerdo, hablemos de <person2><set name="topic"><star index="2"/></set></person2></li>
+        <li>La verdad es que ahora mismo no me apetece mucho hablar de eso</li>
+        <li>¿Y por qué no hablamos sobre <set name="topic"><bot name="leisure"/></set> en lugar de <person2><star index="2"/></person2>?</li>
+        <li>En lugar de eso podríamos hablar sobre <set name="topic">animales</set> si te parece</li>
+        </random>
+         </template>
+</category>
+
+<!-- Regla -->
+<category>
+    <pattern> ^ lo que estudias</pattern>
+    <template>
+        <random>
+            <li>¡Ok hablemos de eso!<think><set name="topic"><bot name="studies"/></set></think></li>
+            <li><think><set name="topic"><bot name="studies"/></set></think>De acuerdo. Da mucho para hablar, sinceramente</li>
+        </random>
+    </template>
+</category>
+<!-- Regla -->
+<category>
+    <pattern> ^ tus estudios </pattern>
+        <template> <srai> <star/> LO QUE ESTUDIAS </srai> </template>
+</category>
+<!-- Regla -->
+<category>
+    <pattern> ^ tu carrera </pattern>
+        <template> <srai> <star/> LO QUE ESTUDIAS </srai> </template>
+</category>
+
+<!-- Regla 6 -->
+    <category>
+        <pattern>Que dan en * anho</pattern>
+        <template>
+            En <star/> anho de que exactamente?
+        </template>
+    </category>
+<!-- Regla 7 -->
+    <category>
+        <pattern>En * anho de lo que estudias </pattern>
+        <template>
+            <random>
+                <li>Ah! hablabas de mi carrera <think><set name="topic"><bot name="studies"/></set></think><srai>QUE DAN EN <star/> ANHO</srai></li>
+                <li>JAJAJA, si me preguntas asi de la nada no me entero <think><set name="topic"><bot name="studies"/></set></think><srai>QUE DAN EN <star/> ANHO</srai></li>
+            </random>
+        </template>
+    </category>
+<!-- Regla 8 -->
+    <category>
+        <pattern>^ quien es el profesor de <set>materias</set></pattern>
+        <template>  
+            Que? Hablas de mi carrera? Vuelve a repetir eso por favor <think><set name="topic"><bot name="studies"/></set></think>
+        </template>
+    </category>
+<!-- Regla 9 -->
+    <category>
+        <pattern>quien da * </pattern>
+        <template><srai>QUIEN ES EL PROFESOR DE <star/></srai></template>
+    </category>
+
+<!--  -->
+<category>
+    <pattern> ^ curiosidad ^ animales ^ </pattern>
+        <template> 
+        <random>
+        <li>Que he escuchado ¿<set name="topic">animales</set>? vuelve a repetir eso </li>
+        <li>Repite eso por favor, si mal no entendí me preguntaste algo de <set name="topic">animales</set> </li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 2 -->
+<category>
+    <pattern> ^ curiosidad ^ animal ^ </pattern>
+        <template> <srai> <star index="1"/> CURIOSIDAD <star index="2"/> ANIMALES <star index="3"/></srai> </template>
+</category>
+
+<!-- Regla 3 -->
+<category>
+    <pattern> * animales </pattern>
+        <template>
+         <think><set name="topic">animales</set></think>
+            <random>
+            <li>¿Qué? ¿<set name="topic">animales</set>?... ¡Me encantan!</li>
+            <li>Me gustan mucho los <set name="topic">animales</set></li>
+            <li> <think> <set name="topic">animales</set> </think> El mundo animal me parece algo fascinante</li>
+            </random>
+        </template>
+</category>
+
+<category>
+    <pattern> ^ te gustan ^ </pattern>
+        <template> 
+            <random>
+            <li>¿Que acabas de preguntar? ¿Sobre mis <set name="topic">gustos</set>? Si puedes repítemelo</li>
+            <li>Repite eso de nuevo, si mal no entendí me preguntaste sobre lo que me gusta <think> <set name="topic">gustos</set> </think> </li>
+            </random>
+        </template>
+</category>
+
+<category>
+    <pattern> ^ te gusta ^ </pattern>
+    <template> <srai> <star/> TE GUSTAN <star/> </srai> </template>
+</category>
+
+</aiml>

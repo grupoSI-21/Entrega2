@@ -1,0 +1,8 @@
+1:primer
+2:segundo
+3:tercer
+4:cuarto
+primer:primer
+segundo:segundo
+tercer:tercer
+cuarto:cuarto

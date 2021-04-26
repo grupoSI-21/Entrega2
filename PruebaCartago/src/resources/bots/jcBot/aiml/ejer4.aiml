@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Regla 1 Amigo -->
+<category>
+<pattern> Es amigo tuyo <set>compi</set> </pattern>
+<template> 
+	Pues la verdad, no conozco a ese <set>compi</set>.
+</template>
+</category>
+
+<!-- Regla 1 Pelo -->
+<category>
+<pattern> PELO <set>compi</set> ^ </pattern>
+<template> 
+	<think>
+		<set var="pelo"><map name="pelo"><star/></map></set>
+	</think>
+	<condition var="pelo">
+		<li value="unknown"> No se cual es el color de pelo de <star/> </li>
+		<li> <star/> tiene el pelo de color <get var="pelo"/>. </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 2 Pelo -->
+<category>
+<pattern> PELO * ^ </pattern>
+<template> 
+	<think>
+		<set var="sufijo"><star index="2"/></set>
+	</think>
+	<condition var="sufijo">
+		<li value="unknown"> Lo siento no conozco a nadie de nombre <star/> </li>
+		<li> <srai> PELO <star index="2"/> </srai> </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 2bis Pelo -->
+<category>
+<pattern> COMO * PELO * ^ </pattern>
+<template> 
+	<think>
+		<set var="sufijo"><star index="3"/></set>
+	</think>
+	<condition var="sufijo">
+		<li value="unknown"> Lo siento no conozco a nadie de nombre <star index="2"/> </li>
+		<li> <srai> PELO <star index="3"/> </srai> </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 3 Pelo -->
+<category>
+<pattern> ^ color * pelo * </pattern>
+<template> 
+	<srai>PELO <star index="3"/></srai>
+</template>
+</category>
+
+
+<!-- Regla 1 Ojos -->
+<category>
+<pattern> OJOS <set>compi</set> ^ </pattern>
+<template> 
+	<think>
+		<set var="ojos"><map name="ojos"><star/></map></set>
+	</think>
+	<condition var="ojos">
+		<li value="unknown"> No se cual es el color de ojos de <star/> </li>
+		<li> <star/> tiene unos ojos <get var="ojos"/> muy bonitos. </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 2 Ojos -->
+<category>
+<pattern> OJOS * ^ </pattern>
+<template> 
+	<think>
+		<set var="sufijo"><star index="2"/></set>
+	</think>
+	<condition var="sufijo">
+		<li value="unknown"> Lo siento no conozco a nadie de nombre <star/> </li>
+		<li> <srai> OJOS <star index="2"/> </srai> </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 2bis Ojos -->
+<category>
+<pattern> COMO * OJOS * ^ </pattern>
+<template> 
+	<think>
+		<set var="sufijo"><star index="3"/></set>
+	</think>
+	<condition var="sufijo">
+		<li value="unknown"> Lo siento no conozco a nadie de nombre <star index="2"/> </li>
+		<li> <srai> OJOS <star index="3"/> </srai> </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 3 Ojos -->
+<category>
+<pattern> ^ color * ojos * </pattern>
+<template> 
+	<srai>OJOS <star index="3"/></srai>
+</template>
+</category>
+
+<!-- Regla 1 Amigos -->
+<category>
+<pattern> * tus amigos </pattern>
+<template> 
+	<think>
+		<set var="prefijo"><star/></set>
+		<set name="amigos"><map name="amigoDe">me</map></set>
+	</think>
+	<srai> <star/> TUSAMIGOS </srai>
+</template>
+</category>
+
+<!-- Regla 2 Amigos -->
+<category>
+<pattern> * amigos * ojos ^ pelo ^ </pattern>
+<template> 
+	<think>
+		<set name="amigos"><map name="amigoDe">me</map></set>
+	</think>
+	Primera regla: OJOSCOLOR <star index="3"/> PELOCOLOR <star index="4"/> 
+	<srai> TUSAMIGOSOJOSCOLOR <star index="3"/> PELOCOLOR <star index="4"/> </srai>
+</template>
+</category>
+
+<category>
+<pattern> TUSAMIGOSOJOSCOLOR <set>colorojos</set> ^ </pattern>
+<template> 
+	<think>
+		<set name="amigosOjos"><map name="amigosOjos"><star/></map></set>
+		<set name="ojosColor"><star/></set>
+	</think>
+	He identificado los amigos (<get name="amigosOjos"/>) con color de ojos: <get name="ojosColor"/>
+	<star index="2"/>
+	<srai> TUSAMIGOSOJOSPELOCOLOR <star index="2"/> </srai>
+</template>
+</category>
+
+<category>
+<pattern> TUSAMIGOSOJOSCOLOR * ^ </pattern>
+<template> 
+	No reconozco <star/> como un color de ojos.
+	<set name="amigosOjos"><map name="amigosOjos"><star/></map></set>
+</template>
+</category>
+
+<category>
+<pattern> TUSAMIGOSOJOSPELOCOLOR ^ <set>colorpelo</set> ^ </pattern>
+<template> 
+	<think>
+		<set name="amigosPelo"><map name="amigosPelo"><star index="2"/></map></set>
+		<set name="peloColor"><star index="2"/></set>
+	</think>
+	He identificado los amigos (<get name="amigosPelo"/>) con color de pelo: <get name="peloColor"/>
+	Llego aqui: <star/> <star index="2"/> <star index="3"/>
+	<srai>FILTROCOLOR <get name="peloColor"/> <get name="amigosOjos"/> </srai>
+</template>
+
+</category>
+<!-- Regla 1 Amigos Pelo -->
+<category>
+<pattern> * pelo * TUSAMIGOS </pattern>
+<template> 
+	Sobre el pelo de mis amigos: <get name="amigos"/> 
+	puedo decirte que: 	
+	<srai> AMIGOSPELO <get name="amigos"/> </srai>
+</template>
+</category>
+
+<!-- Regla 2 Amigos Pelo -->
+<category>
+<pattern> AMIGOSPELO <set>compi</set> ^ </pattern>
+<template> 
+	<think>
+		<set var="pelo"><map name="pelo"><star/></map></set>
+		<set var="resto"><star index="2"/></set>
+	</think>
+	<condition var="pelo">
+		<li value="unknown"> No se cual es el color de pelo de <star/> </li>
+		<li> <star/> tiene un pelo precioso de color <get var="pelo"/>. </li>
+	</condition>
+	<condition var="resto">
+		<li value="unknown"> Y ya no puedo decirte más. </li>
+		<li> <srai> AMIGOSPELO <get var="resto"/> </srai> </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 1 Amigos Ojos -->
+<category>
+<pattern> * ojos * TUSAMIGOS </pattern>
+<template> 
+	Sobre los ojos de mis amigos: <get name="amigos"/>. Puedo decirte que: 	
+	<srai> AMIGOSOJOS <get name="amigos"/> </srai>
+</template>
+</category>
+
+<!-- Regla 2 Amigos Ojos -->
+<category>
+<pattern> AMIGOSOJOS <set>compi</set> ^ </pattern>
+<template> 
+	<think>
+		<set var="ojos"><map name="ojos"><star/></map></set>
+		<set var="resto"><star index="2"/></set>
+	</think>
+	<condition var="ojos">
+		<li value="unknown"> No se cual es el color de ojos de <star/> </li>
+		<li> <star/> tiene los ojos de color <get var="ojos"/>. </li>
+	</condition>
+	<condition var="resto">
+		<li value="unknown"> Y ya no puedo decirte más. </li>
+		<li> <srai> AMIGOSOJOS <get var="resto"/> </srai> </li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla color pelo concreto para lista de amigos 
+<category>
+<pattern> FILTROPELO <star/> <set>compi</set> ^ </pattern>
+<template> 
+	<think>
+		<set var="pelo"><map name="amigosPelo"><star index="2"/></map></set>
+	</think>
+	<condition var="pelo">
+		<li value="unknown"> No se cual es el color de pelo de <star/> </li>
+		<li> <star/> tiene el pelo de color <get var="pelo"/>. </li>
+	</condition>
+</template>
+</category>
+
+-->
+<category>
+<pattern> MISAMIGOSCONPELO <set>colorpelo</set> </pattern>
+<template> 
+	<think>
+		<set var="amigos"><map name="amigosPelo"><star/></map></set>
+	</think>
+	<condition var="amigos">
+		<li value="unknown"> No tengo amigos con el color de pelo <star/> </li>
+		<li> Las siguientes personas que conozco tienen el pelo de color <star/>: <get var="amigos"/>. </li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern> * amigos * pelo <set>colorpelo</set> </pattern>
+<template> 
+	<srai> MISAMIGOSCONPELO <star index="3"/> </srai>
+</template>
+</category>
+
+<category>
+<pattern> * alguien * pelo <set>colorpelo</set> </pattern>
+<template> 
+	<srai> MISAMIGOSCONPELO <star index="3"/> </srai>
+</template>
+</category>
+
+<category>
+<pattern> Quien * pelo <set>colorpelo</set> </pattern>
+<template> 
+	<srai> MISAMIGOSCONPELO <star index="2"/> </srai>
+</template>
+</category>
+
+<category>
+<pattern> Quienes * pelo <set>colorpelo</set> </pattern>
+<template> 
+	<srai> MISAMIGOSCONPELO <star index="2"/> </srai>
+</template>
+</category>
+
+<category>
+<pattern> Quienes * pelo * </pattern>
+<template> 
+	No reconozco el color de pelo <star index="2"/> 
+</template>
+</category>
+
+<category>
+<pattern> Quien * pelo * </pattern>
+<template> 
+	No reconozco el color de pelo <star index="2"/> 
+</template>
+</category>
+
+<category>
+<pattern> * alguien * pelo * </pattern>
+<template> 
+	No reconozco el color de pelo <star index="3"/>.
+</template>
+</category>
+
+<category>
+<pattern> * amigos * pelo * </pattern>
+<template> 
+	No reconozco el color de pelo <star index="3"/>.
+</template>
+</category>
+
+<category>
+<pattern> Que amigos * ojos <set>colorojos</set> </pattern>
+<template> 
+	<think>
+		<set var="amigos"><map name="amigosOjos"><star index="2"/></map></set>
+	</think>
+	<condition var="amigos">
+		<li value="unknown"> No tengo amigos con ojos de color <star index="2"/> </li>
+		<li> Mis amigos que tienen ojos <star index="2"/> son: <get var="amigos"/>. </li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern> Que amigos * ojos * </pattern>
+<template> 
+	No sé como son los ojos <star index="2"/>.
+</template>
+</category>
+
+</aiml>

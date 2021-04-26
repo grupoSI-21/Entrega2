@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- saludos.aiml
+
+Este fichero está hecho para que el bot sea capaz de responder
+a cualquier saludo, como se hizo en clase: saludos como hola,
+hola que tal, buenos/as dias/tardes/noches, buenas, muy buenas,
+saludos, etc.
+-->
+
+<!-- Regla 1 -->
+<category>
+    <pattern> buenos dias </pattern>
+        <template> Buenos días </template>
+</category>
+
+<!-- Regla 2 -->
+<category>
+    <pattern> buenas </pattern>
+        <template> 
+        <random>
+        <li>¡Hola!</li>
+        <li>Muy buenas</li>
+        <li>Oh, ¡hola!</li>
+        <li>Hola caracola</li>
+        </random>
+         </template>
+</category>
+
+<!-- Regla 3 con reduccion simbolica-->
+<!-- La contestacion es la misma que en la regla nº 2 -->
+<category>
+    <pattern> hola ^ </pattern>
+        <template> <srai> BUENAS </srai> </template>
+</category>
+
+<!-- Regla 4 con reduccion simbolica-->
+<!-- La contestacion es la misma que en la regla nº 2 -->
+
+<category>
+    <pattern> buenas tardes </pattern>
+        <template> Buenas tardes </template>
+</category>
+
+<!-- Regla 5 con reduccion simbolica-->
+<!-- La contestacion es la misma que en la regla nº 2 -->
+
+<category>
+    <pattern> buenas noches </pattern>
+        <template> Buenas noches </template>
+</category>
+
+<!-- Regla 6 con reduccion simbolica-->
+<!-- La contestacion es la misma que en la regla nº 2 -->
+<category>
+    <pattern> que tal </pattern>
+    <template> 
+    <random>
+    <li>Bueno, no me puedo quejar</li>
+    <li>Bastante bien, la verdad. Hoy está siendo un buen día</li>
+    <li>Podría estar mejor, no te voy a mentir</li>
+    <li>No muy bien... pero prefiero no hablar de ello</li>
+    </random>
+    </template>
+</category>
+
+<!-- Regla 7 con reduccion simbolica-->
+<!-- La contestacion es la misma que en la regla nº 2 -->
+<category>
+    <pattern> que tal estas ^ </pattern>
+    <template> <srai> QUE TAL </srai> </template>
+</category>
+
+<!-- Regla 8 con reduccion simbolica-->
+<category>
+    <pattern> que tal ^ todo </pattern>
+    <template> 
+    <srai> QUE TAL </srai>
+     </template>
+</category>
+
+<!-- Regla 9 con reduccion simbolica-->
+<!-- La contestacion es la misma que en la regla nº 8 -->
+<category>
+    <pattern> como estas ^ </pattern>
+    <template> <srai> QUE TAL <star/> TODO </srai> </template>
+</category>
+
+<!-- Regla 10 -->
+<category>
+    <pattern> ^ adios ^ </pattern>
+    <template>¡Hasta luego!</template>
+</category>
+
+<!-- Regla 11 -->
+<category>
+    <pattern> ^ chao ^ </pattern>
+        <template> 
+        <srai> 
+        <star index="1"/> ADIOS <star index="2"/>
+         </srai>
+         </template>
+</category>
+
+<!-- Regla 12 -->
+<category>
+    <pattern> ^ hasta luego ^ </pattern>
+        <template> Chao, ¡que tengas un buen día! </template>
+</category>
+
+<!-- Regla 13 -->
+<category>
+    <pattern> que tengas un buen dia </pattern>
+        <template> ¡Gracias! Igualmente </template>
+</category>
+</aiml>

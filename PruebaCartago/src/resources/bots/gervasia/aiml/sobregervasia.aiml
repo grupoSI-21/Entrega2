@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+<!-- sobreGervasia.aiml
+
+En este fichero se encuentran reglas relacionadas con asuntos personales y
+otras caracterísicas relacionadas con los datos personales y preferencias
+de Gervasia o del propio usuario.
+-->
+
+
+<!-- Sobre el nombre de Gervasia o del usuario -->
+<category>
+	<pattern>^ tu nombre ^</pattern>
+	<template>
+		<random>
+		<li>Mi nombre es <bot name="name"/></li>
+		<li>Me llamo <bot name="name"/></li>
+		<li>Me dicen <bot name="name"/></li>
+		<li>Me llaman <bot name="name"/></li>
+		<li>Me puedes llamar <bot name="name"/></li>
+		</random>
+	</template>
+</category>
+
+<category>
+    <pattern> * te llamas ^ </pattern>
+        <template>
+        <srai> <star index="1"/> TU NOMBRE <star index="2"/> </srai>
+        </template>
+</category>
+
+<category>
+	<pattern>^ deberia llamarte</pattern>
+	<template>
+		Me puedes llamar <bot name="name"/>
+	</template>
+</category>
+
+<category>
+    <pattern> ^ me llamo * </pattern>
+    <template>
+        <think>
+            <set name="nombrePers"><star index="2"/></set>
+        </think>
+            ¡Encantada de conocerte, <star index="2"/>!
+    </template>
+</category>
+
+<category>
+    <pattern> ^ como me llamo </pattern>
+    <template>
+        <condition name="nombrePers">
+            <li value="unknown">No me has dicho tu nombre</li>
+            <li> Creo recordar que te llamabas <get name="nombrePers"/> </li>
+        </condition>
+    </template>
+</category>
+
+<!-- Sobre el lugar de nacimiento -->
+<category>
+    <pattern> ^ donde naciste </pattern>
+        <template> Nací en <bot name="birthplace"/> </template>
+</category>
+
+<category>
+	<pattern>^ tu lugar de nacimiento ^</pattern>
+	<template> 
+        Mi lugar de nacimiento es <bot name="birthplace"/>
+	</template>
+</category>
+
+<category>
+	<pattern>* donde eres ^</pattern>
+	<template>  
+		Soy de <bot name="birthplace"/>
+	</template>
+</category>
+
+
+<!-- Sobre el lugar de residencia -->
+<category>
+    <pattern> * vives </pattern>
+        <template> Vivo en <bot name="residence"/> </template>
+</category>
+
+
+<!-- Sobre la edad -->
+<category>
+    <pattern> * edad ^ </pattern>
+        <template> Tengo <bot name="age"/> años</template>
+</category>
+
+<category>
+    <pattern> * anhos tienes ^ </pattern>
+        <template> 
+        <srai> 
+        <star index="1"/> EDAD <star index="2"/>
+        </srai> 
+        </template>
+</category>
+
+
+
+<!-- Sobre el género -->
+<category>
+    <pattern>* genero *</pattern>
+    <template> Soy <bot name="gender"/> </template>
+</category>
+
+<category>
+    <pattern> ^ hombre ^ mujer </pattern>
+        <template> 
+        <srai> 
+            <star/> GENERO <star index="2"/>
+        </srai>
+         </template>
+</category>
+
+<!-- Sobre el cumpleaños -->
+<category>
+    <pattern> * tu cumpleanhos </pattern>
+    <template> Mi cumpleanhos es el <bot name="birthday"/></template>
+</category>
+
+<category>
+    <pattern> ^ cuando naciste </pattern>
+        <template> <srai> <star/> TU CUMPLEANHOS </srai> </template>
+</category>
+</aiml>

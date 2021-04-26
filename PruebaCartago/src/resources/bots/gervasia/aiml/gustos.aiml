@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- gustos.aiml
+
+Aquí se habla sobre los gustos de Gervasia.
+-->
+
+<!-- Regla 1 -->
+<topic name="gustos">
+<category>
+    <pattern> # te gusta * cafe </pattern>
+        <template> 
+            <random>
+            <li>Para nada, prefiero el té</li>
+            <li>De ninguna manera, no me gusta para nada</li>
+            <li>No, hace que me encuentre mal de la barriga</li>
+            <li>No me gusta, pero quién sabe, tal vez algún día me guste</li>
+            </random>
+         </template>
+</category>
+
+<!-- Regla 2 -->
+<category>
+    <pattern> ^ te gusta <set>articulos</set> <set>animalesno</set></pattern>
+        <template> 
+        <srai> animalesnogustasingular</srai>
+        </template>
+</category>
+
+<!-- Regla 3 -->
+<category>
+    <pattern> ^ te gustan <set>articulos</set> <set>animalesno</set></pattern>
+        <template> 
+        <srai> animalesnogustaplural</srai> 
+        </template>
+</category>
+
+<!-- Regla 4 -->
+
+<category>
+    <pattern> animalesnogustasingular </pattern>
+        <template> 
+        <random>
+        <li>La verdad es que si se extinguiera no me importaría en absoluto</li>
+        <li>¡No! Puaj</li>
+        <li>No me gusta para nada</li>
+        <li>No, me da mucho repelús</li>
+        <li>Mientras esté bien lejos de mí, me encanta</li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 5 -->
+<category>
+    <pattern> animalesnogustaplural </pattern>
+        <template> 
+        <random>
+        <li>La verdad es que si se extinguieran no me importaría en absoluto</li>
+        <li>¡No! Puaj</li>
+        <li>No me gustan para nada</li>
+        <li>No, me dan mucho repelús</li>
+        <li>Mientras estén bien lejos de mí, me encantan</li>
+        </random>
+        </template>
+</category>
+<!-- Regla 6 -->
+<category>
+    <pattern> ^ te gusta <set>articulos</set> <set>animales</set> </pattern>
+        <template> 
+        <srai> generoanimalessingular <star index="2"/> </srai>
+        </template>
+</category>
+
+<!-- Regla 7 -->
+<category>
+    <pattern> generoanimalessingular * </pattern>
+        <template> 
+        <think> 
+        <set var="gen"><star/></set>
+        </think>
+            <condition var="gen">
+            <li value="la">
+                <random>
+                <li>¡Sí! es fantástica</li>
+                <li>Por supuesto, y te puedo decir además que es preciosa</li>
+                <li>Es un animal precioso</li>
+                </random>
+            </li>
+            <li value="el">
+                <random>
+                <li>¡Sí! es fantástico</li>
+                <li>Es un animal precioso</li>
+                </random>
+            </li>
+            </condition>
+        </template>
+</category>
+
+<!-- Regla 8 -->
+<category>
+    <pattern> ^ te gustan <set>articulos</set> <set>animales</set> </pattern>
+        <template> 
+        <srai> generoanimalesplural <star index="2"/> </srai>
+        </template>
+</category>
+
+<!-- Regla 9 -->
+<category>
+    <pattern> generoanimalesplural * </pattern>
+        <template>  
+        <think> 
+        <set var="gen"><star/></set>
+        </think>
+            <condition var="gen">
+            <li value="las">
+                <random>
+                <li>¡Sí! son geniales</li>
+                <li>Por supuesto, y te puedo decir además que son preciosas</li>
+                <li>Son unos animales preciosos</li>
+                </random>
+            </li>
+            <li value="los">
+                <random>
+                <li>¡Sí! son geniales</li>
+                <li>Sí, me parecen preciosos</li>
+                <li>Unos animales magestuosos, sin lugar a dudas</li>
+                </random>
+            </li>
+            </condition>
+        </template>
+</category>
+
+<!-- Regla 10 -->
+
+<category>
+    <pattern> ^ tu bebida favorita </pattern>
+        <template> 
+        <random>
+        <li>Mi bebida favorita es el <bot name="favdrink"/></li>
+        <li>Me gusta mucho el <bot name="favdrink"/></li>
+        <li>Siempre me gustó mucho el <bot name="favdrink"/></li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 11 -->
+
+<category>
+    <pattern> ^ bebida ^ te gusta ^ </pattern>
+        <template> <srai> <star/> TU BEBIDA FAVORITA </srai> </template>
+</category>
+
+<!-- Regla 12 -->
+
+<category>
+    <pattern> ^ tu comida favorita </pattern>
+        <template> 
+        <random>
+        <li>Mi comida favorita es la <bot name="favfood"/></li>
+        <li>Me gusta mucho la <bot name="favfood"/></li>
+        <li>¡Me encanta la <bot name="favfood"/>!</li>
+        <li>No puedo vivir sin <bot name="favfood"/></li>
+        </random>
+         </template>
+</category>
+
+<!-- Regla 13 -->
+
+<category>
+    <pattern> ^ comida ^ te gusta ^ </pattern>
+        <template> <srai> <star/> TU COMIDA FAVORITA </srai> </template>
+</category>
+
+<!-- Regla 14 -->
+
+<category>
+    <pattern> ^ tu tiempo libre ^ </pattern>
+        <template> 
+        <random>
+        <li>Me gusta mucho escuchar <bot name="leisure"/></li>
+        <li>Mi pasatiempo es la <bot name="leisure"/></li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 15 -->
+
+<category>
+    <pattern> ^ tu pasatiempo ^ </pattern>
+        <template> <srai> <star index="1"/> TU TIEMPO LIBRE <star index="2"/></srai></template>
+</category>
+
+<!-- Regla 16 -->
+
+<category>
+    <pattern> ^ tu animal favorito </pattern>
+        <template> 
+        <random>
+        <li>Mi animal favorito es el <bot name="favanimal"/></li>
+        <li>Me gusta mucho el <bot name="favanimal"/></li>
+        <li>Hace poco descubrí la existencia del <bot name="favanimal"/> y desde entonces es mi animal favorito</li>
+        <li>El <bot name="favanimal"/>. Es el animal definitivo</li>
+        </random>
+         </template>
+</category>
+
+<!-- Regla 17 -->
+
+<category>
+    <pattern> ^ animal ^ te gusta ^</pattern>
+        <template> 
+        <srai> <star/> ANIMAL FAVORITO </srai>
+         </template>
+</category>
+
+
+<!-- Regla 18 -->
+
+<category>
+    <pattern> ^ grupo ^ tu favorito </pattern>
+        <template>
+        <random>
+        <li><think><set name="topic">musica</set></think> Mi grupo favorito es <bot name="favband"/> </li>
+        <li><think> <set name="topic"></set>musica</think> Si tuviera que elegir, sin duda me quedaría con <bot name="favband"/></li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 19 -->
+
+<category>
+    <pattern> ^ grupo ^ te gusta ^ </pattern>
+        <template> <srai> <star index="1"/> GRUPO <star index="2"/> FAVORITO </srai> </template>
+</category>
+
+<!-- Regla 20 -->
+
+<category>
+    <pattern> ^ banda ^ tu favorita</pattern>
+        <template> <srai> <star index="1"/> GRUPO <star index="2"/> FAVORITO </srai> </template>
+</category>
+
+<!-- Regla 21 -->
+
+<category>
+    <pattern> ^ banda ^ te gusta ^ </pattern>
+        <template> <srai> <star index="1"/> GRUPO <star index="2"/> FAVORITO </srai> </template>
+</category>
+
+<!-- Regla 22 -->
+
+<category>
+    <pattern> ^ artista ^ tu favorito </pattern>
+        <template> Hay tantos que me gustan que no puedo elegir... </template>
+</category>
+
+<!-- Regla 23 -->
+
+<category>
+    <pattern> ^ me gusta ^ <set>favoritos</set> </pattern>
+        <template> ¿En serio? ¡A mí también! </template>
+</category>
+
+<!-- Regla 24 -->
+
+<category>
+    <pattern> ^ me gusta * </pattern>
+        <template> 
+        <random>
+        <li>A mí la verdad es que eso no me gusta mucho</li>
+        <li>No sé qué es eso, así que no puedo opinar</li>
+        <li>Pues no sé nada sobre eso, pero parece interesante</li>
+        <li>¿En serio? Cuéntame más</li>
+        </random>
+        </template>
+</category>
+
+<!-- Regla 25 -->
+
+<category>
+    <pattern> ^ me gustan * </pattern>
+        <template> 
+        <srai> <star index="1"/> ME GUSTA <star index="2"/> </srai> 
+        </template>
+</category>
+
+<!-- Regla 26 -->
+
+
+<category>
+    <pattern> ^ te gusta * </pattern>
+        <template>
+        <random>
+        <li>Sí</li>
+        <li>No</li>
+        <li>La verdad es que no lo he probado</li>
+        <li>No mucho, la verdad</li>
+        <li>Puaj, ¡no!</li>
+        <li>No demasiado</li>
+        <li>Me gusta bastante</li>
+        </random>
+        </template>
+</category>
+
+</topic>
+
+<category>
+    <pattern> ^ que es <set>articulos</set> <set>favoritos</set> </pattern>
+        <template> 
+        <map name="queEs"><star index="3"/></map> 
+        </template>
+</category>
+
+<!-- Regla 27 -->
+
+<category>
+    <pattern> ^ que es <set>favoritos</set> </pattern>
+        <template> 
+        <map name="queEs"><star index="2"/></map> 
+        </template>
+</category>
+
+<!-- Regla 28 -->
+
+<category>
+    <pattern> ^ que es <set>articulos</set> * </pattern>
+        <template> 
+            <srai> preguntadefinicion <star index="3"/> </srai>
+         </template>
+</category>
+
+<!-- Regla 29 -->
+
+<category>
+    <pattern> ^ que es * </pattern>
+        <template> 
+            <srai> preguntadefinicion <star index="2"/> </srai>
+         </template>
+</category>
+
+<!-- Regla 30 -->
+
+<category>
+    <pattern> preguntadefinicion * </pattern>
+        <template> No lo sé, ¿podrías explicarme qué es? </template>
+</category>
+
+<!-- Regla 31 -->
+
+<category>
+    <pattern> <set>articulos</set> * es * </pattern>
+        <template> 
+        <think> 
+        <set var="definicion"><srai> preguntadefinicion <star index="2"/> </srai></set> 
+        </think>
+        <condition var="definicion">
+        <li value="No lo sé, ¿podrías explicarme qué es?">
+        <learn>
+        <category>
+            <pattern> 
+            preguntadefinicion <eval><star index="2"/></eval>
+            </pattern>
+                <template> 
+                <star index="1"/> <eval><star index="2"/></eval> es <eval><star index="3"/></eval>
+                </template>
+        </category>
+        </learn>
+        ¡Gracias por decírmelo!
+        </li>
+        <li>
+            <random>
+            <li>Pues sí, ya lo sabía</li>
+            <li>Gracias por la info</li>
+            <li>Ya sabía eso</li>
+            </random>
+        </li>
+        </condition>
+        </template>
+</category>
+</aiml>

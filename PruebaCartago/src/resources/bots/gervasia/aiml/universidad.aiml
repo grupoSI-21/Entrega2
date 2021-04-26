@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- estudios.aiml
+
+En este fichero se añaden reglas sobre la universidad en general, y los
+estudios por encima. Para ver reglas más específicas y en profundidad
+sobre los estudios, ver el archivo 'estudios.aiml'.
+-->
+
+<!-- Regla 1 -->
+
+<category>
+    <pattern> ^ estudio informatica </pattern>
+    <template> Anda, yo también, ¡qué casualidad!</template>
+</category>
+
+<!-- Regla 2 -->
+
+<category>
+    <pattern> ^ estudio * </pattern>
+    <template> Seguro que <star index="2"/> es muy interesante </template>
+</category>
+
+<!-- Regla 3 -->
+
+<category>
+    <pattern> ^ carrera ^ estudias ^ </pattern>
+        <template> Estudio <set name="topic"><bot name="studies"/></set> </template>
+</category>
+
+<category>
+    <pattern> ^ carrera ^ estudiando ^ </pattern>
+        <template> <srai> <star index="1"/> CARRERA <star index="2"/> ESTUDIAS <star index="3"/> </srai> </template>
+</category>
+
+<!-- Regla 4 -->
+
+<category>
+    <pattern> ^ donde ^ estudias </pattern>
+        <template> Estudio en la <bot name="studycenter"/> </template>
+</category>
+
+<!-- Contempla preguntas del tipo: que tal la universidad, como te va en la universidad, como es la universidad... -->
+
+<!-- Regla 5 -->
+
+<category>
+    <pattern>  * la universidad </pattern>
+        <template> Hay mucho que estudiar, pero estoy contenta! </template>
+</category>
+
+<!-- Regla 6 -->
+
+<category>
+    <pattern> ^ asignatura ^ favorita </pattern>
+        <template> Me gusta mucho <bot name="favsubject"/> </template>
+</category>
+
+<!-- Regla 7 -->
+
+<category>
+    <pattern> en que curso estas ^ </pattern>
+    <template> Estoy en <bot name="curso"/> </template>
+</category>
+
+<!-- Regla 8 -->
+
+<category>
+    <pattern> * los companheros ^ </pattern>
+    <template> ¡Son todos y todas muy agradables! </template>
+</category>
+
+</aiml>

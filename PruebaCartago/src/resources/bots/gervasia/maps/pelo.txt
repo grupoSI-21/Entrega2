@@ -1,0 +1,10 @@
+antonio:rubio
+maria:castaño
+julia:cobrizo
+joaquin:negro
+graciela:rojo
+ramon:rubio
+teresa:castaño
+borja:rubio
+walter:negro
+astrid:rojo

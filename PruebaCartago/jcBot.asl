@@ -16,7 +16,7 @@ service(Answer, creatingSet):- 			// Creating a set service
 	checkTag("<addset>",Answer)&
 	not checkTag("<new>",Answer).
 service(Answer, addingSet):- 			// Adding a new value to a set service
-	checkTag("<mail>",Answer)&
+	checkTag("<addset>",Answer)&
 	checkTag("<new>",Answer).
 service(Answer, creatingMap):- 			// Creating a map service
 	checkTag("<addmap>",Answer) &
@@ -24,7 +24,7 @@ service(Answer, creatingMap):- 			// Creating a map service
 service(Answer, addingMap):- 			// Adding a new property with value to a map service
 	checkTag("<addmap>",Answer) &
 	checkTag("<new>",Answer).
-service(Answer, addingfile):- 			// Adding content to a file service
+service(Answer, addingFile):- 			// Adding content to a file service
 	checkTag("<addtxt>",Answer).
 service(Answer, creatingFile):- 		// Creating a new file service
 	checkTag("<file>",Answer) &
@@ -67,59 +67,58 @@ filter(Answer, addingBot, [ToWrite,Route]):-
 	.concat(Name,":",Val,ToWrite) &
 	bot(Bot) &
 	.concat("/bots/",Bot,BotName) &
-	.concat(BotName,"/config/properties.txt",Route).
+	.concat(BotName,"/config/properties.txt",Route).	
+
+filter(Answer, addingFile, [Text,Route]) :-
+	//getValTag("<file>", Answer, Route) & 	// Si se decide que la extensión viene dada
+	getValTag("<file>",Answer,Name) & // Si solo se da el nombre sin extensión
+	.concat(Name,".txt",Route) & 		// Adecuar a la requerida
+	getValTag("<txt>", Answer, Text).
 	
-/*
-
-filter(Answer, newset, "He a�adido el set"):- 
-	getValTag("<addset>",Answer,Name) &
-	.concat(Name,".txt",FullName) &
-	botName(BotName) &
-	gui.creatingSetFileFor(FullName,BotName). 
-
-filter(Answer, addtoset, "He a�adido el dato al set"):- 
-	getValTag("<new>",Answer,Val) &
+filter(Answer, addingSet, [Text,Route]):- 
+	getValTag("<new>",Answer,Text) &
 	.substring("</new>",Answer,Inicio) &
 	.length("</new>",N) &
 	.substring("</addset>",Answer,Fin) & 
-	.substring(Answer,Name,Inicio+N,Fin)&
-	.concat(Name,".txt",FullName) &
-	botName(BotName) &
-	gui.addValueOnSetFileFor(Val,FullName,BotName).
+	.substring(Answer,Name,Inicio+N+1,Fin-1)&
+	.concat(Name,".txt",File) &
+	bot(Bot) &
+	.concat("/bots/",Bot,BotName) &
+	.concat(BotName,"/sets/",SetsPath) &
+	.concat(SetsPath,File,Route).
 
-filter(Answer, newmap, "He a�adido el Map"):- 
-	getValTag("<addmap>",Answer,Name) &
-	.concat(Name,".txt",FullName) &
-	botName(BotName) &
-	gui.creatingMapFileFor(FullName,BotName). 
-
-filter(Answer, addtomap, "He a�adido el dato al Map"):- 
-	getValTag("<new>",Answer,Val) &
+filter(Answer, addingMap, [Text,Route]):- 
+	getValTag("<new>",Answer,Text) &
 	.substring("</new>",Answer,Inicio) &
 	.length("</new>",N) &
 	.substring("</addmap>",Answer,Fin) & 
-	.substring(Answer,Name,Inicio+N,Fin)&
-	.concat(Name,".txt",FullName) &
-	botName(BotName) &
-	getClave(Val,Clave) &
-	getValor(Val,Valor) &
-	gui.addRelOnMapFileFor(Clave,Valor,FullName,BotName).
+	.substring(Answer,Name,Inicio+N+1,Fin-1)&
+	.concat(Name,".txt",File) &
+	bot(Bot) &
+	.concat("/bots/",Bot,BotName) &
+	.concat(BotName,"/maps/",MapsPath) &
+	.concat(MapsPath,File,Route).
 
-filter(Answer, newfile, "He creado el fichero"):- 
-	getValTag("<file>",Answer,Name) & 
-	.concat(Name,".txt",FullName) & 
-	botName(BotName) & 
-	.concat("./src/resources/bots/",BotName,"/", FullName , NameToWrite) &
-	gui.creatingFile(NameToWrite).
+filter(Answer, creatingSet, [Route]):- 
+	getValTag("<addset>", Answer, Name) &
+	.concat(Name, ".txt", File) &
+	bot(Bot) &
+	.concat("/bots/", Bot, BotName) &
+	.concat(BotName, "/sets/", SetsPath) &
+	.concat(SetsPath, File, Route).
 
-filter(Answer, addtofile, "He a�adido al fichero la linea"):- 
-	getValTag("<file>",Answer,Name) & 
-	getValTag("<txt>",Answer,Texto) &
-	.concat(Name,".txt",FullName) & 
-	botName(BotName) & 
-	.concat("./src/resources/bots/",BotName,"/", FullName , NameToWrite) &
-	gui.writingOn(Texto,NameToWrite).	
-*/	
+filter(Answer, creatingMap, [Route]):- 
+	getValTag("<addmap>", Answer, Name) &
+	.concat(Name, ".txt", File) &
+	bot(Bot) &
+	.concat("/bots/", Bot, BotName) &
+	.concat(BotName, "/maps/", SetsPath) &
+	.concat(SetsPath, File, Route).
+
+filter(Answer, creatingFile, [Route]):- 
+	getValTag("<file>", Answer, Name) & 	// Si se decide que la extensión no viene dada 
+	.concat(Name, ".txt", Route). 			// e.o.c. esto sobra
+
 
 /* Initial goals */
 
@@ -129,26 +128,10 @@ filter(Answer, addtofile, "He a�adido al fichero la linea"):-
 
 +!checkingBot <-
 	!setupTool("jcBot",BotId);  
-	!check;
-	//!talk;
+	//!check;
+	!talk;
 	!finish(BotId).
 	
-+!check  : 	bot(Name) & 
-			.concat("bots/",Name,BotName) & 
-			.concat(BotName,"/config/properties.txt",Route) 
-	<-
-	.println("El bot en funcionamiento es: ", Name);
-	translate("es", "en", "Como ves lo que haces ? Lo ves bien ?", Translation);
-	.println("La traducción es: ", Translation);
-	writeOnFile("peso:120",Route);
-	.println("Añadida la propiedad peso:120 al fichero: ",Route);
-	mail("igcortegoso@gmail.com", "A ver si hay suerte", "Intento enviar mensajes");
-	.println("He enviado un correo a igcortegoso@gmail.com, con el Subject: Esto es una prueba de envio");
-	createFile("pedete.txt");   
-	.println("He creado el fichero pedete.txt");   
-	writeOnFile("mierda: caca pedo pis putrefacción fetida","pedo.txt");
-	.println("He incluido el contenido mierda: caca pedo pis putrefacción fetida en el fichero: pedo.txt").	
-
 +!finish(Artifact) <-  
 	.println("Quito el foco del artefacto: ", Artifact);
 	stopFocus(Artifact);
@@ -173,6 +156,18 @@ filter(Answer, addtofile, "He a�adido al fichero la linea"):-
 		focus(Id).
 
 +!talk <- 
+	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
+	!waitAnswer;
+	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
+	!waitAnswer;
+	!say("Iván","Incorpora la relacion entre pakistan y islamabad al mapa capital de inmediato");
+	!waitAnswer;
+	!say("Iván","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
+	!waitAnswer;
+	!say("Iván","Conoces a juan carlos ?");
+	!waitAnswer;
+	!say("Iván","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
+	!waitAnswer;
 	!say("Iván","Hola. Me llamo Ivan. Como te llamas tu?");
 	!waitAnswer;
 	!say("Iván","Que edad tienes?");
@@ -221,12 +216,12 @@ filter(Answer, addtofile, "He a�adido al fichero la linea"):-
 +!showQuest(Who,Question) <-
 	.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 	.println(Who," dice: ",Question);
-	talk("Soledad",What); // To listen the question    
+	//talk("Soledad",Question); // To listen the question    
 	.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 	.println.
 
 +!showAnsw(Answer) : numAnswer(N) & bot(Bot) 
-	<-	talk("Carlos", Answer);
+	<-	//talk("Carlos", Answer);
 		.println("==================================================================");
 		.println;
 		.println(Bot, " contesta: ", Answer);
@@ -275,9 +270,9 @@ filter(Answer, addtofile, "He a�adido al fichero la linea"):-
 		filter(Answer, addingMap, [Text,Route]) 
 	<-	writeOnFile(Text,Route);
 		.concat("He insertado la nueva relacion: ", Text, Response).
-+!doService(addingfile, Answer, Response):
++!doService(addingFile, Answer, Response):
 		bot(Name) & 
-		filter(Answer, addingfile, [Text,Route]) 
+		filter(Answer, addingFile, [Text,Route]) 
 	<-	writeOnFile(Text,Route);
 		.concat("He insertado el texto: ", Text, ResponseA);
 		.concat(" en el fichero: ", Route, ResponseB);
@@ -349,6 +344,21 @@ filter(Answer, addtofile, "He a�adido al fichero la linea"):-
 		cine => Eres más de series o de películas?
 */
 
++!check  : 	bot(Name) & 
+			.concat("bots/",Name,BotName) & 
+			.concat(BotName,"/config/properties.txt",Route) 
+	<-
+	//.println("El bot en funcionamiento es: ", Name);
+	//translate("es", "en", "Como ves lo que haces ? Lo ves bien ?", Translation);
+	//.println("La traducción es: ", Translation);
+	//writeOnFile("peso:120",Route);
+	//.println("Añadida la propiedad peso:120 al fichero: ",Route);
+	//mail("igcortegoso@gmail.com", "A ver si hay suerte", "Intento enviar mensajes");
+	//.println("He enviado un correo a igcortegoso@gmail.com, con el Subject: Esto es una prueba de envio");
+	//createFile("pedete.txt");   
+	//.println("He creado el fichero pedete.txt");   
+	writeOnFile("Tengo que rehacer el tag de relaciones","utilidades.txt");
+	.println("He incluido el contenido: Tengo que rehacer el tag de relaciones en el fichero: utilidades.txt").	
 
 
 

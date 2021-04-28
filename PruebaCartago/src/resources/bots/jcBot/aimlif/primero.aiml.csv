@@ -69,11 +69,18 @@
 0,^ TU EMAIL ^,*,*,<srai>EMAIL</srai>,primero.aiml
 0,^ CORREO ELECTRÓNICO ^,*,*,<srai>EMAIL</srai>,primero.aiml
 0,DIALOGDONE,*,*,Este es un histórico del diálogo mantenido hasta la fecha con el bot <bot name="name"/>:#Newline	Human: <request index="5"/>#Newline	<bot name="name"/>: <response index="5"/>#Newline	Human: <request index="4"/>#Newline	<bot name="name"/>: <response index="4"/>#Newline	Human: <request index="3"/>#Newline	<bot name="name"/>: <response index="3"/>#Newline	Human: <request index="2"/>#Newline	<bot name="name"/>: <response index="2"/>#Newline	Human: <request index="1"/>#Newline	<bot name="name"/>: <response index="1"/>#Newline#Newline	Si funciona podemos recuperar cualquier parte del diálogo mantenido#Comma y acceso al resto de ficheros persistentes =&gt;#NewlineMi <get name="wife"/> es encantadora. #Newline#NewlineModifica la propiedad <botprop><name>edad</name><val>34</val></botprop>,primero.aiml
+0,CONOCES A <SET>CONTACTOS</SET>,*,*,Claro que lo conozco. Es un tio genial,primero.aiml
+0,CONOCES A *,*,*,Pues no tengo el gusto de conocerlo. ¿Qué tal persona es?,primero.aiml
 0,TRADUCE AL * LA FRASE *,*,*,Respondo: <translate> <to><map name="idioma"><star/></map></to> <msg><star index="2"/></msg> </translate>,primero.aiml
 0,* CONTESTASTE HACE * ^,*,*,<response> <index><star index="2"/></index></response>,primero.aiml
 0,BEFORE *,*,*,Este es el diálogo que mantuvimos:#Newline====================================================================================================#Newline----------------------------------------------------------------------------------------------------#NewlineHuman: <request> <index><star/></index></request>#Newline<bot name="name"/>: <response> <index><star/></index></response>#Newline----------------------------------------------------------------------------------------------------#Newline====================================================================================================,primero.aiml
 0,LATEST,*,*,Este es el último mensaje <request index="1"/> recibido y contestado por <bot name="name"/>#Newline#NewlineY esta dividido en las siguientes entregas: #NewlineUltima: <input index="2"/> y <br/> Penultima: <input index="3"/>#NewlineEstamos trabajando con la versión <program/>,primero.aiml
-0,CREA COMO PROPIEDAD NUEVA * CON VALOR *,*,*,Añade <botprop> <name><star/></name> <val><star index="2"/></val> </botprop>,primero.aiml
+0,CREA LA PROPIEDAD NUEVA * CON VALOR * ^,*,*,Añade <botprop> <name><star/></name> <val><star index="2"/></val> </botprop>,primero.aiml
+0,INCLUYE EL VALOR * EN EL CONJUNTO * ^,*,*,Incluye <addset> <new><star/></new> <star index="2"/> </addset>,primero.aiml
+0,INCORPORA LA RELACION ENTRE * Y * AL MAPA * ^,*,*,Incorpora <addmap> <new><star/>:<star index="2"/></new> <star index="3"/> </addmap>,primero.aiml
+0,ESCRIBE * EN EL FICHERO * ^,*,*,Escribe <addtxt> <txt><star/></txt> <file><star index="2"/></file> </addtxt>,primero.aiml
+0,^ ENVIA ^ MENSAJE * A <SET>CONTACTOS</SET> CON ASUNTO *,*,*,Envia <mail> <subject> <star index="5"/> </subject> <to><map name="email"><star index="4"/></map></to> <msg> <star index="3"/> </msg></mail>,primero.aiml
+0,^ ENVIA ^ MENSAJE * A * CON ASUNTO *,*,*,Lo siento no tengo la dirección de correo de <star index="4"/>,primero.aiml
 0,FIRST * *,*,*,<star/>,primero.aiml
 0,REST * *,*,*,<star index="2"/>,primero.aiml
 0,APRENDE ALGO,*,*,Vale.#Newline      <learn>#Newline        <category>#Newline          <pattern>Regla aprendida</pattern>#Newline          <template>Sí#Comma he aprendido algo.</template>#Newline        </category>#Newline      </learn>,primero.aiml

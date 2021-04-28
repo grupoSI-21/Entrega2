@@ -7,4 +7,3 @@ dinamarca:copenhague
 bulgaria:sofia
 alemania:berlin
 espagna:madrid
-

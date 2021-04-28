@@ -526,16 +526,6 @@ Modifica la propiedad <botprop><name>edad</name><val>34</val></botprop>
 </category>
 
 <category>
-<pattern>Conoces a <set>contactos</set></pattern>
-<template> Claro que lo conozco. Es un tio genial</template>
-</category>
-
-<category>
-<pattern>Conoces a * </pattern>
-<template> Pues no tengo el gusto de conocerlo. ¿Qué tal persona es?</template>
-</category>
-
-<category>
 <pattern>Traduce al * la frase *</pattern>
 <template> Respondo: <translate> <to><map name="idioma"><star/></map></to> <msg><star index="2"/></msg> </translate> </template>
 </category>
@@ -571,33 +561,8 @@ Estamos trabajando con la versión <program />
 </category>
 
 <category>
-<pattern>Crea la propiedad nueva * con valor * ^</pattern>
+<pattern>Crea como propiedad nueva * con valor *</pattern>
 <template> Añade <botprop> <name><star/></name> <val><star index="2"/></val> </botprop></template>
-</category>
-
-<category>
-<pattern>Incluye el valor * en el conjunto * ^</pattern>
-<template> Incluye <addset> <new><star/></new> <star index="2"/> </addset></template>
-</category>
-
-<category>
-<pattern>Incorpora la relacion entre * y * al mapa * ^</pattern>
-<template> Incorpora <addmap> <new><star/>:<star index="2"/></new> <star index="3"/> </addmap></template>
-</category>
-
-<category>
-<pattern>Escribe * en el fichero * ^</pattern>
-<template> Escribe <addtxt> <txt><star/></txt> <file><star index="2"/></file> </addtxt></template>
-</category>
-
-<category>
-<pattern>^ Envia ^ mensaje * a <set>contactos</set> con asunto * </pattern>
-<template> Envia <mail> <subject> <star index="5"/> </subject> <to><map name="email"><star index="4"/></map></to> <msg> <star index="3"/> </msg></mail></template>
-</category>
-
-<category>
-<pattern>^ Envia ^ mensaje * a * con asunto * </pattern>
-<template> Lo siento no tengo la dirección de correo de <star index="4"/> </template>
 </category>
 
 <category>

@@ -16,8 +16,7 @@ MAS prueba {
 
 	environment: jaca.CartagoEnvironment
 
-    agents: jcBot agentArchClass jaca.CAgentArch;              
-	// gervasia agentArchClass jaca.CAgentArch;
+    agents: jcBot agentArchClass jaca.CAgentArch;                                                                                                
 		
 }
 

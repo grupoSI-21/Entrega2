@@ -90,7 +90,7 @@ public class Services extends Artifact {
 	}
  
 	@OPERATION void talk (String myVoice, String toTalk) {
-		//logger.info(" Voy a hablar: "+ toTalk + " con la voz de: "+ myVoice);     
+		logger.info(" Voy a hablar: "+ toTalk + " con la voz de: "+ myVoice);     
 
 		//StringTerm voiceTerm = new StringTermImpl(myVoice);
 		Boolean isMac = false;
@@ -101,7 +101,7 @@ public class Services extends Artifact {
 			*/
 			if (System.getProperty("os.name").toLowerCase().indexOf("mac") >=0) {
 				isMac = true;
-				//System.out.println("El sistema está ejecutándose en un sistema MacOs X");
+				System.out.println("El sistema está ejecutándose en un sistema MacOs X");
 				String command = new String("say -v ");
 				command = command + myVoice + " " + toTalk;
 				//System.out.println(command);

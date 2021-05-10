@@ -1,3 +1,6 @@
-1:IU
-2:HAE
-3:TALF
+1:Interfaces de Usuario
+2:Hardware de Aplicacion Especifica
+3:Teoria de Automatas y Lenguajes Formales
+4:Logica Computacional
+5:Sistemas Inteligentes
+6:Concurrencia y Distribucion

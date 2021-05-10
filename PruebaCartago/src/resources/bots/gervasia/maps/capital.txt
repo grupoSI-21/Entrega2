@@ -1,0 +1,21 @@
+francia:paris
+italia:roma
+begica:bruselas
+noruega:oslo
+suecia:estocolmo
+dinamarca:copenhague
+bulgaria:sofia
+alemania:berlin
+espagna:madrid
+angola:luanda
+argelia:argel
+argentina:buenos aires
+myanmar:naipyido
+birmania:naipyido
+armenia:erevan
+australia:canberra
+austria:viena
+burundi:buyumbura
+canada:ottawa
+china:pekin
+grecia:atenas

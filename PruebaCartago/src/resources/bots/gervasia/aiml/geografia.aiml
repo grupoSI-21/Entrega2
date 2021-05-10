@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Regla 1 -->
+<category>
+<pattern>^ capital de <set>pais</set> </pattern>
+<template>
+	<think>
+		<set var="capital"><map name="capital"><star index="2"/></map></set>
+	</think>
+	<condition var="capital">
+		<li value="unknown">NO LO SE</li>
+		<li><star index="2"/> tiene como capital <get var="capital"/>. </li>
+	</condition>
+</template>
+</category>
+
+<category>
+	<pattern>^ capital de * </pattern>
+	<template>NO ES UN PAIS</template>
+		<!--No tengo ni idea de cual es la capital <star index="2"/>; de hecho no sé si es un país.-->
+</category>
+
+<!-- Regla 2 -->
+
+<category>
+	<pattern># la capital de * es * ^</pattern> 
+	<template>
+		<think>
+			<set var="cap"><srai>CUAL ES LA CAPITAL DE <star index="2"/></srai></set> 
+		</think>
+		<condition var="cap">
+		<!-- <li> <value>NO LO SE</value> -->
+		<li value="NO LO SE">
+			<learn>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learn>
+			<learnf>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learnf>		  A partir de ahora, recordaré que la capital de <star index="2"/> es <star index="3"/>. 
+		</li>
+		<li value="NO ES UN PAIS">
+			<learn>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learn>
+			<learnf>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star index="2"/></eval></pattern> 
+					<template>La capital de <eval><star index="2"/></eval> es <eval><star index="3"/></eval></template>
+				</category>
+			</learnf>		  A partir de ahora, recordaré que la capital de <star index="2"/> es <star index="3"/>. 
+		</li>
+		<li> Ya sabia que <get var="cap"/> </li>
+		</condition>
+	</template>
+</category>
+
+
+</aiml>

@@ -1,0 +1,16 @@
+Analisis Matematico
+Fundamentos Eticos y Juridicos
+Sistemas Inteligentes
+Programacion I
+Sistemas Digitales
+Algoritmos y Estructuras de Datos I
+Arquitectura de Computadores I
+Algoritmos y Estructuras de Datos II
+Arquitectura de Computadores II
+Ingenieria del Software I
+Estadistica
+Sistemas Operativos I
+Arquitecturas Paralelas
+Bases de Datos I
+Redes de Computadores I
+Sistemas Operativos II

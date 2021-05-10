@@ -1,10 +1,10 @@
-1:SOI
-2:ISI
-3:EST
-4:AEDII
-5:ACII
-6:ISII
-7:SOII
-8:RCI
-9:BDI
-10:AP
+1:Sistemas Operativos I
+2:Ingenieria del Software I
+3:Estadistica
+4:Algoritmos y Estructuras de Datos II
+5:Arquitectura de Computadores II
+6:Ingenieria del Software II
+7:Sistemas Operativos II
+8:Redes de Computadores I
+9:Bases de Datos I
+10:Arquitecturas Paralelas

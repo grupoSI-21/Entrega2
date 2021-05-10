@@ -8,3 +8,16 @@ teresa:castaño
 borja:rubio
 walter:negro
 astrid:rojo
+juan:rubio 
+maria:gris 
+julia:pelirrojo
+marcial:blanco 
+ivan:castaño
+xurxo:rubio
+xose:negro
+ariadna:negro
+ethiel:azul
+lucas:negro
+jimena:gris
+milagros:castanho
+tatiana:castaño

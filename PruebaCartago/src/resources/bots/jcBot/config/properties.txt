@@ -12,4 +12,20 @@ estudios:Informática
 curso:segundo
 procedencia:Edificio Politécnico D-407, As Lagoas s/n, 32004 Ourense, Galiza (Spain)
 address:Edificio Politécnico D-407, As Lagoas s/n, 32004 Ourense, Galiza (Spain)
-date:201402
+date:201402madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines
+madre:ines

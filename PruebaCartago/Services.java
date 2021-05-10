@@ -89,6 +89,18 @@ public class Services extends Artifact {
 
 	}
  
+	@OPERATION void chatSincrono (String request, OpFeedbackParam<String> answer) {
+		//logger.info(" He recibido el request: "+ request);
+		
+		response = chatSession.multisentenceRespond(request);
+			
+		while (response.contains("&lt;")) response = response.replace("&lt;", "<");
+		while (response.contains("&gt;")) response = response.replace("&gt;", ">");
+				
+		answer.set(response);
+
+	}
+ 
 	@OPERATION void talk (String myVoice, String toTalk) {
 		logger.info(" Voy a hablar: "+ toTalk + " con la voz de: "+ myVoice);     
 
@@ -263,8 +275,6 @@ public class Services extends Artifact {
  	private String parseResult(String inputJson) throws Exception {
   
 		// inputJson for word 'hello' translated to language Hindi from English-
-		// [[["नमस्ते","hello",,,1]],,"en"]
-		// We have to get 'नमस्ते ' from this json.
   
 		JSONArray jsonArray = new JSONArray(inputJson);
 		JSONArray jsonArray2 = (JSONArray) jsonArray.get(0);

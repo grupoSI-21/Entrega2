@@ -127,7 +127,7 @@ filter(Answer, creatingFile, [Route]):-
 /* Plans */  
 
 +!checkingBot <-
-	!setupTool("jcBot",BotId);  
+	!setupTool("gervasia",BotId);  
 	//!check;
 	!talk;
 	!finish(BotId).
@@ -153,7 +153,9 @@ filter(Answer, creatingFile, [Route]):-
 +!setupTool(Name, Id): true
 	<- 	makeArtifact("bot0","bot.Services",[Name],Id);
 		.wait(1000);
-		focus(Id).
+		focus(Id);
+		makeArtifact("guiChat","chat.ChatGUI",[],GUI);
+		focus(GUI).
 
 +!talk <- 
 	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
@@ -207,6 +209,12 @@ filter(Answer, creatingFile, [Route]):-
 	chat(What).
 +!say(Who,What) <- 
 	.println("??????????????????????????????????????????????????????????????????").
+	
++say(What) <-
+	println("El Bot Master ha dicho: ", What);
+	chatSincrono(What,Answer);
+	println("El Bot contesta: ",Answer);
+	show(Answer).
 
 +!waitAnswer <-
 	.wait(recibida(_));

@@ -1,0 +1,15 @@
+Maria Jose Lado Touriño:Programacion I
+Carlos Castro Miguens:Sistemas Digitales
+Pedro Cuesta Morales:Programacion II
+Jose Luis Trillo Rodriguez: Arquitectura de Computadores I
+Rosalia Laza Fidalgo: Algoritmos y Estructuras de Datos I
+Maria Encarnacion Gonzalez Rufino: Sistemas Operativos I
+Enrique Barreiro Alonso: Ingenieria del Software I
+Silvana Gomez Meire: Redes de Computadores I
+Juan Francisco Galvez Galvez:Bases de Datos I
+Matias Garcia Rivera: Arquitecturas Paralelas Arquitectura de Computadores II
+Francisco Jose Ribadas Pena:Centros de Datos
+Javier Rodeiro Iglesias:Interfaces de Usuario
+Manuel Vilares Ferro:Logica Computacional Teoria de Automatas y Lenguajes Formales
+Juan Carlos Gonzalez Moreno:Sistemas Inteligentes
+Arno Formella:Concurrencia y Distribucion

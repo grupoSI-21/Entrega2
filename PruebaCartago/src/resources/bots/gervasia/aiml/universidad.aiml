@@ -71,4 +71,75 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
     <template> ¡Son todos y todas muy agradables! </template>
 </category>
 
+<!-- Regla 9 -->
+
+<category>
+<pattern>$Quien * clase en <set>asignaturas</set> </pattern>
+<template> Mi profesor de <star index="2"/> fue <map name="profesorado"><star index="2"/></map>. </template>
+</category>
+
+<!-- Regla 10 -->
+
+<category>
+<pattern>$Quien * clase en * </pattern>
+<template> No he cursado <star index="2"/> todavia.</template>
+</category>
+
+<!-- Regla 11 -->
+
+<category>
+<pattern> * asignatura de <set>asignaturas</set> ^</pattern>
+<template> Te puedo decir que <star index="2"/> la imparte <map name="profesorado"><star index="2"/></map>. </template>
+</category>
+
+<!-- Regla 12 -->
+
+<category>
+<pattern> * asignatura de *</pattern>
+<template> No se nada de <star index="2"/>.</template>
+</category>
+
+<!-- Regla 13 -->
+
+<category>
+<pattern> Conoces * profesor <set>profesores</set> ^</pattern>
+<template>Si, conozco a <star index="2"/></template>
+</category>
+
+<!-- Regla 14 -->
+
+<category>
+<pattern> Conoces * profesora <set>profesores</set> ^</pattern>
+<template>Si, conozco a <star index="2"/></template>
+</category>
+
+<!-- Regla 15 -->
+
+<category>
+<pattern> Conoces * profesor *</pattern>
+<template>No, aun no he tenido el placer de conocerlo</template>
+</category>
+
+<!-- Regla 16 -->
+
+<category>
+<pattern> Conoces * profesora *</pattern>
+<template>No, aun no he tenido el placer de conocerla</template>
+</category>
+
+<!-- Regla 17 -->
+
+<category>
+<pattern> * asignatura * <set>profesores</set> ^</pattern>
+<template> <star index="3"/> imparte <map name="asignaturas"><star index="3"/></map>. </template>
+</category>
+
+<!-- Regla 18 -->
+
+<category>
+<pattern> * asignatura * </pattern>
+<template>Espero no sonar borde, pero ese es un tema que no te importa</template>
+</category>
+
 </aiml>
+

@@ -111,6 +111,26 @@ el comportamiento de Gervasia ante casos genéricos.
     <template> <srai> <star index="1"/> QUE TE DIJE ANTES <star index="2"/> </srai> </template>
 </category>
 
+<!-- Para recordar -->
+
+<category>
+<pattern> * recuerda que * * </pattern>
+<template>
+	<learn>
+		<category>
+			<pattern> <eval><star index="2"/></eval> </pattern>
+			<template> <eval><star index="2"/></eval> <eval><star index="3"/></eval> </template>
+		</category>
+	</learn> 
+	<learnf>
+		<category>
+			<pattern> <eval><star index="2"/></eval> </pattern>
+			<template> <eval><star index="2"/></eval> <eval><star index="3"/></eval> </template>
+		</category>
+	</learnf> A partir de ahora recordaré que <star index="2"/> <star index="3"/>
+</template>
+</category>
+
 <!-- Regla por defecto que se activa cuando Gervasia no encuentra ninguna regla adecuada.
      Contestará que no entiende lo que le estamos diciendo
 -->

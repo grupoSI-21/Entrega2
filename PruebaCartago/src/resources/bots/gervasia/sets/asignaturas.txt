@@ -1,16 +1,29 @@
-Analisis Matematico
-Fundamentos Eticos y Juridicos
-Sistemas Inteligentes
+PROI
 Programacion I
+SD
 Sistemas Digitales
-Algoritmos y Estructuras de Datos I
+PROII
+Programacion II
+ACI
 Arquitectura de Computadores I
-Algoritmos y Estructuras de Datos II
-Arquitectura de Computadores II
-Ingenieria del Software I
-Estadistica
+AEDI
+Algoritmos y Estructuras de Datos I
+SOI
 Sistemas Operativos I
-Arquitecturas Paralelas
-Bases de Datos I
+ISI
+Ingenieria del Software I
+RCI
 Redes de Computadores I
-Sistemas Operativos II
+BDI
+Bases de Datos I
+AP
+Arquitecturas Paralelas
+CDA
+Centros de Datos
+IU
+Interfaces de Usuario:
+LC
+Logica Computacional
+Sistemas Inteligentes
+CDI
+Concurrencia y Distribucion

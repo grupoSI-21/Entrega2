@@ -157,7 +157,8 @@ filter(Answer, creatingFile, [Route]):-
 		makeArtifact("guiChat","chat.ChatGUI",[],GUI);
 		focus(GUI).
 
-+!talk <- 
++!talk <-
+	// Estas no las trabajé porque creo que hay que usar artefactos
 	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
 	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
@@ -168,8 +169,11 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer;
 	!say("Iván","Conoces a juan carlos ?");
 	!waitAnswer;
-	!say("Iván","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
-	!waitAnswer;
+	// Comento esta línea para que no mande el correo y salte una excepción
+	//!say("Iván","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
+	//!waitAnswer;
+	
+	// Estas son las que trabajé, que son las del test que nos pasó en clase
 	!say("Iván","Hola. Me llamo Ivan. Como te llamas tu?");
 	!waitAnswer;
 	!say("Iván","Que edad tienes?");

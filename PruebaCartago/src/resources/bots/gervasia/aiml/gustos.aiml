@@ -175,7 +175,7 @@ Aquí se habla sobre los gustos de Gervasia.
 <!-- Regla 14 -->
 
 <category>
-    <pattern> ^ tu tiempo libre ^ </pattern>
+    <pattern>* tu tiempo libre ^ </pattern>
         <template> 
         <random>
         <li>Me gusta mucho escuchar <bot name="leisure"/></li>

@@ -111,6 +111,26 @@ el comportamiento de Gervasia ante casos genéricos.
     <template> <srai> <star index="1"/> QUE TE DIJE ANTES <star index="2"/> </srai> </template>
 </category>
 
+<category>
+  <pattern> * hace * intervenciones </pattern>
+  <template>
+    <think>
+      <set var="n"><star index="2"/></set>
+      <condition var="n">
+        <li value="1"><set var="resp"><response index="1"/></set></li>
+        <li value="2"><set var="resp"><response index="2"/></set></li>
+        <li value="3"><set var="resp"><response index="3"/></set></li>
+        <li value="4"><set var="resp"><response index="4"/></set></li>
+        <li value="5"><set var="resp"><response index="5"/></set></li>
+      </condition>
+    </think>
+    <condition var="resp">
+      <li value="unknown">Ya no lo recuerdo...</li>
+      <li>Antes te he dicho que <get var="resp"/></li>
+    </condition>
+  </template>
+</category>
+
 <!-- Para recordar -->
 
 <category>

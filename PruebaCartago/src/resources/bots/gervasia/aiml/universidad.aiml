@@ -60,7 +60,7 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
 <!-- Regla 7 -->
 
 <category>
-    <pattern> en que curso estas ^ </pattern>
+    <pattern> ^ en que curso estas ^ </pattern>
     <template> Estoy en <bot name="curso"/> </template>
 </category>
 
@@ -127,6 +127,11 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
 <template>No, aun no he tenido el placer de conocerla</template>
 </category>
 
+<category>
+    <pattern>Conoces a *</pattern>
+    <template><srai>CONOCES AL PROFESOR <star/></srai></template>
+</category>
+
 <!-- Regla 17 -->
 
 <category>
@@ -139,6 +144,16 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
 <category>
 <pattern> * asignatura * </pattern>
 <template>Espero no sonar borde, pero ese es un tema que no te importa</template>
+</category>
+
+<category>
+<pattern> * el ultimo curso ^ </pattern>
+<template>Me fue bastante bien</template>
+</category>
+
+<category>
+<pattern> Aprobaste * </pattern>
+<template>Sí, aunque ha resultado duro</template>
 </category>
 
 </aiml>

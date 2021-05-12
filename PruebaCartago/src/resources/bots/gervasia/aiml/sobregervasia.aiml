@@ -85,6 +85,11 @@ de Gervasia o del propio usuario.
         <template> Vivo en <bot name="residence"/> </template>
 </category>
 
+<category>
+    <pattern> vives * </pattern>
+        <template> Vivo en <bot name="residence"/> </template>
+</category>
+
 
 <!-- Sobre la edad -->
 <category>

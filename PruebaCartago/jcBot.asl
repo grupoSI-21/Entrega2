@@ -132,7 +132,7 @@ filter(Answer, creatingFile, [Route]):-
 
 +!checkingBot <-
 	!setupTool("gervasia",BotId);  
-	!check; //esta regla es la que le mete el contenido al fichero utilidades en este caso pero no es del todo correcta
+	//!check; //regla de prueba,se puede quitar directamente
 	!talk;
 	!finish(BotId).
 	
@@ -166,8 +166,8 @@ filter(Answer, creatingFile, [Route]):-
 	//!waitAnswer;
 	//!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
 	//!waitAnswer;
-	!say("Iván","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
-	!waitAnswer;
+	//!say("Iván","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
+	//!waitAnswer;
 	!say("Iván","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
 	!waitAnswer;
 	!say("Iván","Conoces a juan carlos ?");

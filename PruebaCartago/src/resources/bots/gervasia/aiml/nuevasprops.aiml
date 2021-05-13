@@ -84,4 +84,56 @@
         </template>
     </category>
 
+    <!-- Añadir un nuevo fichero con determinado contenido -->
+
+    <category>
+        <pattern> Escribe ^ en el fichero * ^ </pattern>
+        <template> 
+            <srai> <star index="1"/> escribirfichero <star index="2"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> Pon ^ en el fichero * ^ </pattern>
+        <template> 
+            <srai> <star index="1"/> escribirfichero <star index="2"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> Anhade ^ en el fichero * ^ </pattern>
+        <template> 
+            <srai> <star index="1"/> escribirfichero <star index="2"/> </srai>
+        </template>
+    </category>
+
+     <category>
+        <pattern> Escribe ^ al fichero * ^ </pattern>
+        <template> 
+            <srai> <star index="1"/> escribirfichero <star index="2"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> Pon ^ al fichero * ^ </pattern>
+        <template> 
+            <srai> <star index="1"/> escribirfichero <star index="2"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> Anhade ^ al fichero * ^ </pattern>
+        <template> 
+            <srai> <star index="1"/> escribirfichero <star index="2"/> </srai>
+        </template>
+    </category>
+
+    <!-- "Funcion" para hacer la reducción simbólica más sencilla -->
+    <category>
+        <pattern> ^ escribirfichero * </pattern>
+        <template>  
+            <addtxt><txt><star index="1"/></txt> to <file><star index="2"/></file> </addtxt>
+        </template>
+    </category>
+
 </aiml>

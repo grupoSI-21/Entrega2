@@ -29,4 +29,3 @@ republica dominicana:santo domingo
 burundi:gitega
 myanmar:naipyido
 birmania:naipyido
-pakistan:islamabad

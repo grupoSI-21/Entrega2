@@ -82,8 +82,7 @@ filter(Answer, addingSet, [Text,Route]):-
 	.substring("</new>",Answer,Inicio) &
 	.length("</new>",N) &
 	.substring("</addset>",Answer,Fin) & 
-	.substring(Answer,Name,Inicio+N,Fin)&
-	//.substring(Answer,Name,Inicio+N+1,Fin-1)&
+	.substring(Answer,Name,Inicio+N+1,Fin-1)&
 	.concat(Name,".txt",File) &
 	bot(Bot) &
 	.concat("/bots/",Bot,BotName) &
@@ -132,7 +131,6 @@ filter(Answer, creatingFile, [Route]):-
 
 +!checkingBot <-
 	!setupTool("gervasia",BotId);  
-	//!check; //regla de prueba,se puede quitar directamente
 	!talk;
 	!finish(BotId).
 	
@@ -162,12 +160,12 @@ filter(Answer, creatingFile, [Route]):-
 		focus(GUI).
 
 +!talk <-
-	//!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
-	//!waitAnswer;
-	//!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
-	//!waitAnswer;
-	//!say("Iván","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
-	//!waitAnswer;
+	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
+	!waitAnswer;
+	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
+	!waitAnswer;
+	!say("Iván","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
+	!waitAnswer;
 	!say("Iván","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
 	!waitAnswer;
 	!say("Iván","Conoces a juan carlos ?");
@@ -176,7 +174,6 @@ filter(Answer, creatingFile, [Route]):-
 	//!say("Iván","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
 	//!waitAnswer;
 	
-	// Estas son las que trabajé, que son las del test que nos pasó en clase
 	!say("Iván","Hola. Me llamo Ivan. Como te llamas tu?");
 	!waitAnswer;
 	!say("Iván","Que edad tienes?");
@@ -359,6 +356,7 @@ filter(Answer, creatingFile, [Route]):-
 		cine => Eres más de series o de películas?
 */
 
+/*
 +!check  : 	bot(Name) & 
 			.concat("bots/",Name,BotName) & 
 			.concat(BotName,"/config/properties.txt",Route) 
@@ -374,188 +372,4 @@ filter(Answer, creatingFile, [Route]):-
 	//.println("He creado el fichero pedete.txt");   
 	writeOnFile("Tengo que rehacer el tag de relaciones","utilidades.txt");
 	.println("He incluido el contenido: Tengo que rehacer el tag de relaciones en el fichero: utilidades.txt").	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                                                    
+*/

@@ -356,20 +356,3 @@ filter(Answer, creatingFile, [Route]):-
 		cine => Eres más de series o de películas?
 */
 
-/*
-+!check  : 	bot(Name) & 
-			.concat("bots/",Name,BotName) & 
-			.concat(BotName,"/config/properties.txt",Route) 
-	<-
-	//.println("El bot en funcionamiento es: ", Name);
-	//translate("es", "en", "Como ves lo que haces ? Lo ves bien ?", Translation);
-	//.println("La traducción es: ", Translation);
-	//writeOnFile("peso:120",Route);
-	//.println("Añadida la propiedad peso:120 al fichero: ",Route);
-	//mail("igcortegoso@gmail.com", "A ver si hay suerte", "Intento enviar mensajes");
-	//.println("He enviado un correo a igcortegoso@gmail.com, con el Subject: Esto es una prueba de envio");
-	//createFile("pedete.txt");   
-	//.println("He creado el fichero pedete.txt");   
-	writeOnFile("Tengo que rehacer el tag de relaciones","utilidades.txt");
-	.println("He incluido el contenido: Tengo que rehacer el tag de relaciones en el fichero: utilidades.txt").	
-*/

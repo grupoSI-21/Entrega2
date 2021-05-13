@@ -37,11 +37,51 @@
         </template>
     </category>
 
+    <!-- "Funcion" para hacer la reducción simbólica más sencilla -->
     <category>
         <pattern> * nuevovalorconj * </pattern>
         <template> 
             <addset><new><star index="1"/></new> <star index="2"/> </addset>
          </template>
+    </category>
+
+    <!-- Ahora para añadir relaciones a maps -->
+
+    <!-- Son cuatro reglas basicas pa eso -->
+    <category>
+        <pattern> ^ relacion entre * y * al mapa * ^ </pattern>
+        <template>  
+            <srai> <star index="2"/> nuevarelacion <star index="3"/> enmap <star index="4"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> ^ relacion entre * e * al mapa * ^ </pattern>
+        <template>  
+            <srai> <star index="2"/> nuevarelacion <star index="3"/> enmap <star index="4"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> ^ relacion entre * y * en el mapa * ^ </pattern>
+        <template>  
+            <srai> <star index="2"/> nuevarelacion <star index="3"/> enmap <star index="4"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> ^ relacion entre * e * en el mapa * ^ </pattern>
+        <template>  
+            <srai> <star index="2"/> nuevarelacion <star index="3"/> enmap <star index="4"/> </srai>
+        </template>
+    </category>
+
+    <!-- "Funcion" para hacer la reducción simbólica más sencilla -->
+    <category>
+        <pattern> * nuevarelacion * enmap * </pattern>
+        <template>  
+            <addmap><new><star index="1"/>:<star index="2"/></new><star index="3"/></addmap>
+        </template>
     </category>
 
 </aiml>

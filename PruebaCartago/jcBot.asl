@@ -82,7 +82,8 @@ filter(Answer, addingSet, [Text,Route]):-
 	.substring("</new>",Answer,Inicio) &
 	.length("</new>",N) &
 	.substring("</addset>",Answer,Fin) & 
-	.substring(Answer,Name,Inicio+N+1,Fin-1)&
+	.substring(Answer,Name,Inicio+N,Fin)&
+	//.substring(Answer,Name,Inicio+N+1,Fin-1)&
 	.concat(Name,".txt",File) &
 	bot(Bot) &
 	.concat("/bots/",Bot,BotName) &
@@ -94,7 +95,8 @@ filter(Answer, addingMap, [Text,Route]):-
 	.substring("</new>",Answer,Inicio) &
 	.length("</new>",N) &
 	.substring("</addmap>",Answer,Fin) & 
-	.substring(Answer,Name,Inicio+N+1,Fin-1)&
+	.substring(Answer,Name,Inicio+N,Fin)&
+	//.substring(Answer,Name,Inicio+N+1,Fin-1)&
 	.concat(Name,".txt",File) &
 	bot(Bot) &
 	.concat("/bots/",Bot,BotName) &
@@ -162,9 +164,9 @@ filter(Answer, creatingFile, [Route]):-
 +!talk <-
 	//!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
 	//!waitAnswer;
-	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
-	!waitAnswer;
-	!say("Iván","Incorpora la relacion entre pakistan y islamabad al mapa capital de inmediato");
+	//!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
+	//!waitAnswer;
+	!say("Iván","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
 	!waitAnswer;
 	!say("Iván","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
 	!waitAnswer;

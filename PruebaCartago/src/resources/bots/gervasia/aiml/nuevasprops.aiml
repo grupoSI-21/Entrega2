@@ -23,5 +23,25 @@
 
     <!-- Ahora reglas para añadir a un conjunto o a un set -->
 
+    <category>
+        <pattern> ^ valor * en el conjunto * ^ </pattern>
+        <template>  
+            <srai> <star index="2"/> nuevovalorconj <star index="3"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> ^ valor * en el set * ^ </pattern>
+        <template>  
+            <srai> <star index="2"/> nuevovalorconj <star index="3"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern> * nuevovalorconj * </pattern>
+        <template> 
+            <addset><new><star index="1"/></new> <star index="2"/> </addset>
+         </template>
+    </category>
 
 </aiml>

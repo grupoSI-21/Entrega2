@@ -160,10 +160,8 @@ filter(Answer, creatingFile, [Route]):-
 		focus(GUI).
 
 +!talk <-
-	//!say("Sam","madre nuevaprop ines");
+	//!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
 	//!waitAnswer;
-	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
-	!waitAnswer;
 	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
 	!waitAnswer;
 	!say("Iván","Incorpora la relacion entre pakistan y islamabad al mapa capital de inmediato");

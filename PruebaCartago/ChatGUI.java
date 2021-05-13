@@ -142,7 +142,7 @@ public class ChatGUI extends GUIArtifact {
 			scroll = new JScrollPane(textArea);
 
 			textField = new JTextField(40);
-			textField.setText("Zona de Escritura");
+			textField.setText("");
 			textField.setEditable(true);
 			
 			boton = new JButton("Enviar");

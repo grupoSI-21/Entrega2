@@ -6,6 +6,8 @@
 numAnswer(1).  
 
 // Check if bot answer requires a service
+/*Esto quiere decir que en el template debe ir el tipo de servicio
+Aquí se chequea que está dicho servicio*/
 service(Answer, translating):- 			// Translating service
 	checkTag("<translate>",Answer).
 service(Answer, mailing):- 				// Mailing service
@@ -33,7 +35,7 @@ service(Answer, creatingFile):- 		// Creating a new file service
 // Checking a concrete service required by the bot ia as simple as find the required tag
 // as a substring on the string given by the second parameter
 checkTag(Service,String) :-
-	.substring(Service,String).
+	.substring(Service,String). //devuelve true o false
 
 
 // Gets into Val the first substring contained by a tag Tag into String
@@ -128,7 +130,7 @@ filter(Answer, creatingFile, [Route]):-
 
 +!checkingBot <-
 	!setupTool("gervasia",BotId);  
-	//!check;
+	!check; //esta regla es la que le mete el contenido al fichero utilidades en este caso pero no es del todo correcta
 	!talk;
 	!finish(BotId).
 	

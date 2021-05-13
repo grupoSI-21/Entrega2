@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <category>
+        <pattern> * nuevaprop * </pattern>
+        <template>  
+
+            <botprop><name><star/></name><val><star index="2"/></val></botprop>
+
+        </template>
+    </category>
+
+</aiml>

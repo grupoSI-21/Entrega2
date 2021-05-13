@@ -157,9 +157,12 @@ filter(Answer, creatingFile, [Route]):-
 		.wait(1000);
 		focus(Id);
 		makeArtifact("guiChat","chat.ChatGUI",[],GUI);
-		focus(GUI).
+		focus(GUI);
+		makeArtifact("agenda","agenda.Agenda",[],Agenda);
+		focus(Agenda).
 
 +!talk <-
+	addEventRelativeSeconds("Tutoría con Moreno", 2);
 	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
 	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
@@ -307,7 +310,6 @@ filter(Answer, creatingFile, [Route]):-
 		!showAnsw(Answer);     
 		+recibida(Answer).   // Hace la función de la creencia answer 
 						 	 // => conocimiento sin indexar con posibilidad de tener repetición 
-
 	
 +recibida(Answer) : .substring("música",Answer) <- 
 	//.println("==================================================================");
@@ -349,6 +351,11 @@ filter(Answer, creatingFile, [Route]):-
 	!say("Juan Carlos","Este curso imparte ProgramacionI. Quien dices que te dió clase en ProgramacionI?");
 	!waitAnswer.
 
++evento(Name) <-
+	.println("¡Tengo ", Name, " ahora!").
+	-evento(Name).
+	
+	
 /*
 5) YO: 	música => Tienes algún grupo o artista preferido?
 		literatura => Cual es el último libro que has leido?

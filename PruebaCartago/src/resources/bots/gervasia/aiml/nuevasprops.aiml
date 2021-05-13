@@ -2,6 +2,17 @@
 <aiml version="2.0">
 
     <category>
+        <pattern> ^ propiedad nueva * con valor * ^ </pattern>
+        <template> <srai> <star index="2"/> nuevaprop <star index="3"/> </srai> </template>
+    </category>
+
+    <category>
+        <pattern> ^ nueva propiedad * con valor * ^ </pattern>
+        <template> <srai> <star index="2"/> nuevaprop <star index="3"/> </srai> </template>
+    </category>
+
+    <!-- "Funcion" para hacer la reducción simbólica más sencilla -->
+    <category>
         <pattern> * nuevaprop * </pattern>
         <template>  
 
@@ -9,5 +20,8 @@
 
         </template>
     </category>
+
+    <!-- Ahora reglas para añadir a un conjunto o a un set -->
+
 
 </aiml>

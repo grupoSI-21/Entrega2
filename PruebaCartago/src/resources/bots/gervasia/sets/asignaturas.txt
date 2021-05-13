@@ -1,21 +1,21 @@
 PROI
-Programacion I
+ProgramacionI
 SD
 Sistemas Digitales
 PROII
-Programacion II
+ProgramacionII
 ACI
-Arquitectura de Computadores I
+Arquitectura de ComputadoresI
 AEDI
-Algoritmos y Estructuras de Datos I
+Algoritmos y Estructuras de DatosI
 SOI
-Sistemas Operativos I
+Sistemas OperativosI
 ISI
-Ingenieria del Software I
+Ingenieria del SoftwareI
 RCI
-Redes de Computadores I
+Redes de ComputadoresI
 BDI
-Bases de Datos I
+Bases de DatosI
 AP
 Arquitecturas Paralelas
 CDA

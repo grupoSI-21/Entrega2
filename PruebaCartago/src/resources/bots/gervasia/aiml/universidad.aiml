@@ -102,14 +102,14 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
 <!-- Regla 13 -->
 
 <category>
-<pattern> Conoces * profesor <set>profesores</set> ^</pattern>
+<pattern> Conoces * profesor <set>profesores</set>^</pattern>
 <template>Si, conozco a <star index="2"/></template>
 </category>
 
 <!-- Regla 14 -->
 
 <category>
-<pattern> Conoces * profesora <set>profesores</set> ^</pattern>
+<pattern> Conoces * profesora <set>profesores</set>^</pattern>
 <template>Si, conozco a <star index="2"/></template>
 </category>
 

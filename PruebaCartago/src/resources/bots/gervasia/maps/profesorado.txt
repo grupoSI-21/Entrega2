@@ -1,21 +1,21 @@
-PROI:Maria Jose Lado Touriño
-Programacion I:Maria Jose Lado Touriño
+PROI:Maria Jose Lado
+ProgramacionI:Maria Jose Lado
 SD:Carlos Castro Miguens
 Sistemas Digitales:Carlos Castro Miguens
 PROII:Pedro Cuesta Morales
-Programacion II:Pedro Cuesta Morales
+ProgramacionII:Pedro Cuesta Morales
 ACI:Jose Luis Trillo Rodriguez
-Arquitectura de Computadores I:Jose Luis Trillo Rodriguez
+Arquitectura de ComputadoresI:Jose Luis Trillo Rodriguez
 AEDI:Rosalia Laza Fidalgo
-Algoritmos y Estructuras de Datos I: Rosalia Laza Fidalgo
+Algoritmos y Estructuras de DatosI: Rosalia Laza Fidalgo
 SOI:Maria Encarnacion Gonzalez Rufino
-Sistemas Operativos I:Maria Encarnacion Gonzalez Rufino
+Sistemas OperativosI:Maria Encarnacion Gonzalez Rufino
 ISI:Enrique Barreiro Alonso
-Ingenieria del Software I:Enrique Barreiro Alonso
+Ingenieria del SoftwareI:Enrique Barreiro Alonso
 RCI:Silvana Gomez Meire
-Redes de Computadores I:Silvana Gomez Meire
+Redes de ComputadoresI:Silvana Gomez Meire
 BDI:Juan Francisco Galvez Galvez
-Bases de Datos I:Juan Francisco Galvez Galvez
+Bases de DatosI:Juan Francisco Galvez Galvez
 AP:Matias Garcia Rivera
 Arquitecturas Paralelas:Matias Garcia Rivera
 CDA:Francisco Jose Ribadas Pena

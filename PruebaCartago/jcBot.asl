@@ -162,50 +162,50 @@ filter(Answer, creatingFile, [Route]):-
 		focus(Agenda).
 
 +!talk <-
-	addEventRelativeSeconds("TutorÃ­a con Moreno", 2);
-	!say("IvÃ¡n","Crea la propiedad nueva madre con valor ines, por favor");
+	addEventRelativeSeconds("Tutoría con Moreno", 2);
+	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
-	!say("IvÃ¡n","Incluye el valor pakistan en el conjunto pais sin mÃ¡s demora");
+	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
 	!waitAnswer;
-	!say("IvÃ¡n","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
+	!say("Iván","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
 	!waitAnswer;
-	!say("IvÃ¡n","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
+	!say("Iván","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
 	!waitAnswer;
-	!say("IvÃ¡n","Conoces a juan carlos ?");
+	!say("Iván","Conoces a juan carlos ?");
 	!waitAnswer;
 	// Comento esta lÃ­nea para que no mande el correo y salte una excepciÃ³n
 	//!say("IvÃ¡n","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
 	//!waitAnswer;
 	
-	!say("IvÃ¡n","Hola. Me llamo Ivan. Como te llamas tu?");
+	!say("Iván","Hola. Me llamo Ivan. Como te llamas tu?");
 	!waitAnswer;
-	!say("IvÃ¡n","Que edad tienes?");
+	!say("Iván","Que edad tienes?");
 	!waitAnswer;
-	!say("IvÃ¡n","De donde eres? Vives en Orense?");
+	!say("Iván","De donde eres? Vives en Orense?");
 	!waitAnswer;
-	!say("IvÃ¡n","Que es lo que haces en tu tiempo libre?");
+	!say("Iván","Que es lo que haces en tu tiempo libre?");
 	!waitAnswer;
-	!say("IvÃ¡n","A que te dedicas?");
+	!say("Iván","A que te dedicas?");
 	!waitAnswer;
-	!say("IvÃ¡n","AsÃ­ que estudias informÃ¡tica; en que curso estÃ¡s?");
+	!say("Iván","Así que estudias informática; en que curso estás?");
 	!waitAnswer;
-	!say("IvÃ¡n","QuÃ© tal te fuÃ© el Ãºltimo curso? Aprobaste todas las materias?");
+	!say("Iván","Qué tal te fue el último curso? Aprobaste todas las materias?");
 	!waitAnswer;
-	!say("IvÃ¡n","Quien te dio clase en ProgramacionI?");
+	!say("Iván","Quien te dio clase en ProgramacionI?");
 	!waitAnswer;
-	!say("IvÃ¡n","QuÃ© puedes decirme sobre la asignatura de Sistemas Digitales?");
+	!say("Iván","Qué puedes decirme sobre la asignatura de Sistemas Digitales?");
 	!waitAnswer;
-	!say("IvÃ¡n","Conoces a la profesora Maria Jose Lado?");
+	!say("Iván","Conoces a la profesora Maria Jose Lado?");
 	!waitAnswer;
-	!say("IvÃ¡n","Perdona, te acuerdas que contestaste hace 3 intervenciones?");
+	!say("Iván","Perdona, te acuerdas que contestaste hace 3 intervenciones?");
 	!waitAnswer;
-	!say("IvÃ¡n","Sabes que la capital de Myanmar es NayPyiTaw?");
+	!say("Iván","Sabes que la capital de Myanmar es NayPyiTaw?");
 	!waitAnswer;
-	!say("IvÃ¡n","Por cierto, recuerda que Myanmar tambiÃ©n se conoce como Burma.");
+	!say("Iván","Por cierto, recuerda que Myanmar también se conoce como Burma.");
 	!waitAnswer;
-	!say("IvÃ¡n","Puedes decirme cuantos amigos tienes con el pelo rubio?");
+	!say("Iván","Puedes decirme cuantos amigos tienes con el pelo rubio?");
 	!waitAnswer;
-	!say("IvÃ¡n","Adios.");
+	!say("Iván","Adios.");
 	!waitAnswer;
 	.println("Y este cuento se acaboooooo").
 
@@ -252,7 +252,7 @@ filter(Answer, creatingFile, [Route]):-
 		bot(Name) & 
 		filter(Answer, translating, [To,Msg])
 	<-	translate("es", To, Msg, Translation);
-		.concat("La traducciÃ³n que pediste es: ", Translation, Response).
+		.concat("La traducción que pediste es: ", Translation, Response).
 +!doService(mailing, Answer, Response):
 		bot(Name) & 
 		filter(Answer, mailing, [To,Subject,Msg])
@@ -314,14 +314,14 @@ filter(Answer, creatingFile, [Route]):-
 +recibida(Answer) : .substring("mÃºsica",Answer) <- 
 	//.println("==================================================================");
 	//.println;
-	!say("Juan Carlos","Tienes algÃºn grupo o artista preferido?");
+	!say("Juan Carlos","Tienes algún grupo o artista preferido?");
 	!waitAnswer;
 	.abolish(recibida(_)).
 
 +recibida(Answer) : .substring("literatura",Answer) <- 
 	//.println("==================================================================");
 	//.println;
-	!say("Juan Carlos","Cual es el Ãºltimo libro que has leido?");
+	!say("Juan Carlos","Cual es el último libro que has leido?");
 	!waitAnswer;
 	.abolish(recibida(_)).
 
@@ -335,7 +335,7 @@ filter(Answer, creatingFile, [Route]):-
 +recibida(Answer) : .substring("cine",Answer) <- 
 	//.println("==================================================================");
 	//.println;
-	!say("Juan Carlos","Eres mÃ¡s de series o de pelÃ­culas?");
+	!say("Juan Carlos","Eres más de series o de películas?");
 	!waitAnswer;
 	.abolish(recibida(_)).
 
@@ -348,18 +348,18 @@ filter(Answer, creatingFile, [Route]):-
 +recibida(Answer) : .substring("NO",Answer) <- 
 	//.println("==================================================================");
 	//.println;
-	!say("Juan Carlos","Este curso imparte ProgramacionI. Quien dices que te diÃ³ clase en ProgramacionI?");
+	!say("Juan Carlos","Este curso imparte ProgramacionI. Quien dices que te dio clase en ProgramacionI?");
 	!waitAnswer.
 
 +evento(Name) <-
-	.println("Â¡Tengo ", Name, " ahora!").
+	.println("¡Tengo ", Name, " ahora!").
 	-evento(Name).
 	
 	
 /*
-5) YO: 	mÃºsica => Tienes algÃºn grupo o artista preferido?
-		literatura => Cual es el Ãºltimo libro que has leido?
+5) YO: 	música => Tienes algún grupo o artista preferido?
+		literatura => Cual es el último libro que has leido?
 		deporte => Eres forofo o practicante?
-		cine => Eres mÃ¡s de series o de pelÃ­culas?
+		cine => Eres más de series o de películas?
 */
 

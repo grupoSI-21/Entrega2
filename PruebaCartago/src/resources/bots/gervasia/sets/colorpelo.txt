@@ -2,6 +2,6 @@ rubio
 gris 
 pelirrojo
 blanco 
-castaño
+castaÃ±o
 negro
 azul

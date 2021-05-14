@@ -7,7 +7,7 @@ numAnswer(1).
 
 // Check if bot answer requires a service
 /*Esto quiere decir que en el template debe ir el tipo de servicio
-Aqu√≠ se chequea que est√° dicho servicio*/
+Aqui se chequea que esta dicho servicio*/
 service(Answer, translating):- 			// Translating service
 	checkTag("<translate>",Answer).
 service(Answer, mailing):- 				// Mailing service
@@ -72,8 +72,8 @@ filter(Answer, addingBot, [ToWrite,Route]):-
 	.concat(BotName,"/config/properties.txt",Route).	
 
 filter(Answer, addingFile, [Text,Route]) :-
-	//getValTag("<file>", Answer, Route) & 	// Si se decide que la extensi√≥n viene dada
-	getValTag("<file>",Answer,Name) & // Si solo se da el nombre sin extensi√≥n
+	//getValTag("<file>", Answer, Route) & 	// Si se decide que la extension viene dada
+	getValTag("<file>",Answer,Name) & // Si solo se da el nombre sin extension
 	.concat(Name,".txt",Route) & 		// Adecuar a la requerida
 	getValTag("<txt>", Answer, Text).
 	
@@ -119,7 +119,7 @@ filter(Answer, creatingMap, [Route]):-
 	.concat(SetsPath, File, Route).
 
 filter(Answer, creatingFile, [Route]):- 
-	getValTag("<file>", Answer, Name) & 	// Si se decide que la extensi√≥n no viene dada 
+	getValTag("<file>", Answer, Name) & 	// Si se decide que la extension no viene dada 
 	.concat(Name, ".txt", Route). 			// e.o.c. esto sobra
 
 
@@ -162,50 +162,50 @@ filter(Answer, creatingFile, [Route]):-
 		focus(Agenda).
 
 +!talk <-
-	addEventRelativeSeconds("TutorÌa con Moreno", 2);
-	!say("Iv·n","Crea la propiedad nueva madre con valor ines, por favor");
+	addEventRelativeSeconds("que mandar un mensaje", 2);
+	!say("Ivan","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
-	!say("Iv·n","Incluye el valor pakistan en el conjunto pais sin m·s demora");
+	!say("Ivan","Incluye el valor pakistan en el conjunto pais sin mas demora");
 	!waitAnswer;
-	!say("Iv·n","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
+	!say("Ivan","Incorpora la relacion entre pakistan y islamabad al mapa capital de inmediato");
 	!waitAnswer;
-	!say("Iv·n","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
+	!say("Ivan","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
 	!waitAnswer;
-	!say("Iv·n","Conoces a juan carlos ?");
+	!say("Ivan","Conoces a juan carlos ?");
 	!waitAnswer;
-	// Comento esta l√≠nea para que no mande el correo y salte una excepci√≥n
-	//!say("Iv√°n","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
+	// Comento esta linea para que no mande el correo y salte una excepcion
+	//!say("Ivan","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
 	//!waitAnswer;
 	
-	!say("Iv·n","Hola. Me llamo Ivan. Como te llamas tu?");
+	!say("Ivan","Hola. Me llamo Ivan. Como te llamas tu?");
 	!waitAnswer;
-	!say("Iv·n","Que edad tienes?");
+	!say("Ivan","Que edad tienes?");
 	!waitAnswer;
-	!say("Iv·n","De donde eres? Vives en Orense?");
+	!say("Ivan","De donde eres? Vives en Orense?");
 	!waitAnswer;
-	!say("Iv·n","Que es lo que haces en tu tiempo libre?");
+	!say("Ivan","Que es lo que haces en tu tiempo libre?");
 	!waitAnswer;
-	!say("Iv·n","A que te dedicas?");
+	!say("Ivan","A que te dedicas?");
 	!waitAnswer;
-	!say("Iv·n","AsÌ que estudias inform·tica; en que curso est·s?");
+	!say("Ivan","Asi que estudias informatica; en que curso estas?");
 	!waitAnswer;
-	!say("Iv·n","QuÈ tal te fue el ˙ltimo curso? Aprobaste todas las materias?");
+	!say("Ivan","Que tal te fue el ultimo curso? Aprobaste todas las materias?");
 	!waitAnswer;
-	!say("Iv·n","Quien te dio clase en ProgramacionI?");
+	!say("Ivan","Quien te dio clase en ProgramacionI?");
 	!waitAnswer;
-	!say("Iv·n","QuÈ puedes decirme sobre la asignatura de Sistemas Digitales?");
+	!say("Ivan","Que puedes decirme sobre la asignatura de Sistemas Digitales?");
 	!waitAnswer;
-	!say("Iv·n","Conoces a la profesora Maria Jose Lado?");
+	!say("Ivan","Conoces a la profesora Maria Jose Lado?");
 	!waitAnswer;
-	!say("Iv·n","Perdona, te acuerdas que contestaste hace 3 intervenciones?");
+	!say("Ivan","Perdona, te acuerdas que contestaste hace 3 intervenciones?");
 	!waitAnswer;
-	!say("Iv·n","Sabes que la capital de Myanmar es NayPyiTaw?");
+	!say("Ivan","Sabes que la capital de Myanmar es NayPyiTaw?");
 	!waitAnswer;
-	!say("Iv·n","Por cierto, recuerda que Myanmar tambiÈn se conoce como Burma.");
+	!say("Ivan","Por cierto, recuerda que Myanmar tambien se conoce como Burma.");
 	!waitAnswer;
-	!say("Iv·n","Puedes decirme cuantos amigos tienes con el pelo rubio?");
+	!say("Ivan","Puedes decirme cuantos amigos tienes con el pelo rubio?");
 	!waitAnswer;
-	!say("Iv·n","Adios.");
+	!say("Ivan","Adios.");
 	!waitAnswer;
 	.println("Y este cuento se acaboooooo").
 
@@ -217,11 +217,13 @@ filter(Answer, creatingFile, [Route]):-
 +!say(Who,What) <- 
 	.println("??????????????????????????????????????????????????????????????????").
 	
-+say(What) <-
++say(What) : not in_event <-
 	println("El Bot Master ha dicho: ", What);
 	chatSincrono(What,Answer);
 	println("El Bot contesta: ",Answer);
 	show(Answer).
+	
++say(What) <- +say(What).
 
 +!waitAnswer <-
 	.wait(recibida(_));
@@ -243,7 +245,7 @@ filter(Answer, creatingFile, [Route]):-
 		.println;
 		.println("==================================================================");
 		.wait(3000);
-		+contesta(N,Answer); // Guarda la contestaci√≥n indexada por si queremos usarla m√°s adelante   
+		+contesta(N,Answer); // Guarda la contestacion indexada por si queremos usarla mas adelante   
 		-+numAnswer(N+1);
 		.wait(3000);
 		.println.       
@@ -252,7 +254,7 @@ filter(Answer, creatingFile, [Route]):-
 		bot(Name) & 
 		filter(Answer, translating, [To,Msg])
 	<-	translate("es", To, Msg, Translation);
-		.concat("La traducciÛn que pediste es: ", Translation, Response).
+		.concat("La traduccion que pediste es: ", Translation, Response).
 +!doService(mailing, Answer, Response):
 		bot(Name) & 
 		filter(Answer, mailing, [To,Subject,Msg])
@@ -303,25 +305,25 @@ filter(Answer, creatingFile, [Route]):-
 		!doService(Service, Answer, Response);
 		!showAnsw(Response); 
 		+realizada(Answer, Response);	// Registra los Servicios realizados
-		+recibida(Answer).   			// Hace la funci√≥n de la creencia answer 
-						 	 			// => conocimiento sin indexar con posibilidad de tener repetici√≥n 
+		+recibida(Answer).   			// Hace la funcion de la creencia answer 
+						 	 			// => conocimiento sin indexar con posibilidad de tener repeticion 
 +answer(Answer) 	
 	<- 	//-answer(Answer)[source(percept)];
 		!showAnsw(Answer);     
-		+recibida(Answer).   // Hace la funci√≥n de la creencia answer 
-						 	 // => conocimiento sin indexar con posibilidad de tener repetici√≥n 
+		+recibida(Answer).   // Hace la funcion de la creencia answer 
+						 	 // => conocimiento sin indexar con posibilidad de tener repeticion 
 	
-+recibida(Answer) : .substring("m√∫sica",Answer) <- 
++recibida(Answer) : .substring("musica",Answer) <- 
 	//.println("==================================================================");
 	//.println;
-	!say("Juan Carlos","Tienes alg˙n grupo o artista preferido?");
+	!say("Juan Carlos","Tienes algun grupo o artista preferido?");
 	!waitAnswer;
 	.abolish(recibida(_)).
 
 +recibida(Answer) : .substring("literatura",Answer) <- 
 	//.println("==================================================================");
 	//.println;
-	!say("Juan Carlos","Cual es el ˙ltimo libro que has leido?");
+	!say("Juan Carlos","Cual es el ultimo libro que has leido?");
 	!waitAnswer;
 	.abolish(recibida(_)).
 
@@ -335,7 +337,7 @@ filter(Answer, creatingFile, [Route]):-
 +recibida(Answer) : .substring("cine",Answer) <- 
 	//.println("==================================================================");
 	//.println;
-	!say("Juan Carlos","Eres m·s de series o de pelÌculas?");
+	!say("Juan Carlos","Eres mas de series o de peliculas?");
 	!waitAnswer;
 	.abolish(recibida(_)).
 
@@ -352,14 +354,23 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer.
 
 +evento(Name) <-
-	.println("°Tengo ", Name, " ahora!").
-	-evento(Name).
+	.println("Disculpa un momento, tengo ", Name);
+	+in_event;
+	.wait(5000);
+	-in_event;
+	-evento(Name);
+	!retomarConversacion.
+
++!retomarConversacion : say(What)  <-
+	.println("Ya esta, me estabas comentando que ", What).
 	
++!retomarConversacion <-
+	.println("Ya esta").
 	
 /*
-5) YO: 	m˙sica => Tienes alg˙n grupo o artista preferido?
-		literatura => Cual es el ˙ltimo libro que has leido?
+5) YO: 	musica => Tienes algun grupo o artista preferido?
+		literatura => Cual es el ultimo libro que has leido?
 		deporte => Eres forofo o practicante?
-		cine => Eres m·s de series o de pelÌculas?
+		cine => Eres mas de series o de peliculas?
 */
 

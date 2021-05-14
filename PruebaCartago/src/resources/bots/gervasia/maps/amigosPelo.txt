@@ -2,6 +2,6 @@ rubio: juan xurxo
 gris: maria jimena
 pelirrojo: julia
 blanco: marcial 
-castaño: ivan milagros tatiana
+castaÃ±o: ivan milagros tatiana
 negro: lucas ariadna xose
 azul: ethiel

@@ -133,11 +133,11 @@ public class ChatGUI extends GUIArtifact {
 			textArea = new JTextPane();
 			textArea.setSize(400,200);
 			textArea.setMargin(new Insets(5, 5, 5, 5));
-			appendToPane(textArea, "/*  Aqui se muestra el di·logo desde el GUI con el chatBot */", Color.BLUE);
+			appendToPane(textArea, "/*  Aqui se muestra el dialogo desde el GUI con el chatBot */", Color.BLUE);
 			String salto = System.lineSeparator();
 			appendToPane(textArea, salto, Color.BLUE);
 			appendToPane(textArea, salto, Color.BLUE);
-			//textArea.append("/*  Aqui se muestra el di√°logo desde el GUI con el chatBot */");
+			//textArea.append("/*  Aqui se muestra el dialogo desde el GUI con el chatBot */");
 			
 			scroll = new JScrollPane(textArea);
 

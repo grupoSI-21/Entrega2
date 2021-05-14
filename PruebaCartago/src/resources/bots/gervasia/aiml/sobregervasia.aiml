@@ -98,7 +98,7 @@ de Gervasia o del propio usuario.
 </category>
 
 <category>
-    <pattern> * anhos tienes ^ </pattern>
+    <pattern> * años tienes ^ </pattern>
         <template> 
         <srai> 
         <star index="1"/> EDAD <star index="2"/>
@@ -125,7 +125,7 @@ de Gervasia o del propio usuario.
 
 <!-- Sobre el cumpleaños -->
 <category>
-    <pattern> * tu cumpleanhos </pattern>
+    <pattern> * tu cumpleaños </pattern>
     <template> Mi cumpleanhos es el <bot name="birthday"/></template>
 </category>
 

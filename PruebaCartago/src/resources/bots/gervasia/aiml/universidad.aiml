@@ -67,7 +67,7 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
 <!-- Regla 8 -->
 
 <category>
-    <pattern> * los companheros ^ </pattern>
+    <pattern> * los compañeros ^ </pattern>
     <template> ¡Son todos y todas muy agradables! </template>
 </category>
 

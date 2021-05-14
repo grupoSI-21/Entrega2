@@ -1,5 +1,5 @@
 Queen: es una banda de rock de los 70 formada por Freddie Mercury, Brian May, Roger Taylor y John Deacon
-BDI: es Bases de Datos I y es mi asignatura favorita de segundo curso de Inform√°tica
+BDI: es Bases de DatosI y es mi asignatura favorita de segundo curso de Inform·tica
 pizza: Masa con salsa de tomate y mozarella inventada en Italia
-mate: una infusi√≥n de yerba mate originaria de Latinoamerica
-carpincho: un roedor bastante grande, semiacu√°tico y muy sociable que habita en zonas de Latinoam√©rica
+mate: una infusiÛn de yerba mate originaria de Latinoamerica
+carpincho: un roedor bastante grande, semiacu·tico y muy sociable que habita en zonas de Latinoam√©rica

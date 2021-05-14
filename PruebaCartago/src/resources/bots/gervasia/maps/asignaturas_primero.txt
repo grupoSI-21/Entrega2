@@ -1,5 +1,5 @@
-1:Programacion I
+1:ProgramacionI
 2:Sistemas Digitales
-3:Programacion II
-4:Arquitectura de Computadores I
-5:Algoritmos y Estructuras de Datos I
+3:ProgramacionII
+4:Arquitectura de ComputadoresI
+5:Algoritmos y Estructuras de DatosI

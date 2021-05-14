@@ -6,7 +6,7 @@ suecia:estocolmo
 dinamarca:copenhague
 bulgaria:sofia
 alemania:berlin
-espagna:madrid
+españa:madrid
 argentina:buenos aires
 ruanda:kigali
 australia:canberra
@@ -29,11 +29,5 @@ republica dominicana:santo domingo
 burundi:gitega
 myanmar:naipyido
 birmania:naipyido
-pakistan:islamabad
-pakistan:islamabad
-pakistan:islamabad
-pakistan:islamabad
-pakistan:islamabad
-pakistan:islamabad
 pakistan:islamabad
 pakistan:islamabad

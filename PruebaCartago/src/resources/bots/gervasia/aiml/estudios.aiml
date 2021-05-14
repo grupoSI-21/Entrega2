@@ -23,7 +23,7 @@ y que hable y aprenda sobre lo que estudia.
     <pattern> ^ te dedicas ^ </pattern>
         <template> 
         <random>
-            <li>Estoy cursando el <bot name="curso"/> anho de <set name="topic"><bot name="studies"/></set>
+            <li>Estoy cursando el <bot name="curso"/> año de <set name="topic"><bot name="studies"/></set>
             </li>
             <li>Estoy estudiando en la universidad. <think><set name="topic"><bot name="studies"/></set></think></li>
         </random>
@@ -80,14 +80,14 @@ y que hable y aprenda sobre lo que estudia.
 <!-- Regla 6 -->
 
 <category>
-        <pattern>Que dan en * anho</pattern>
+        <pattern>Que dan en * año</pattern>
     <template>
             
         <think> 
-                <set var="anho"><map name="anhos"><star index="1"/></map></set>
+                <set var="año"><map name="años"><star index="1"/></map></set>
         </think>
 
-        <condition var="anho">
+        <condition var="año">
             <li value="primer">
 
                 <think> 
@@ -172,7 +172,7 @@ y que hable y aprenda sobre lo que estudia.
                     </think>
 
                     <condition var="cont">
-                        <li value="4">De ese anho solo he oido hablar de tres que al parecer llevan mucho trabajo:</li>
+                        <li value="4">De ese año solo he oido hablar de tres que al parecer llevan mucho trabajo:</li>
                         <li>
                             <think> 
                                 <condition var="cont">
@@ -203,13 +203,13 @@ y que hable y aprenda sobre lo que estudia.
                     
                 </li>
                 <li value="cuarto">
-                    Aun no he llegado a ese anho, no tengo ni idea
+                    Aun no he llegado a ese año, no tengo ni idea
                 </li>
                 <li>
                     <random>
-                        <li>Ese anho no esta en la carrera jejeje</li>
+                        <li>Ese año no esta en la carrera jejeje</li>
                         <li>Que dices?! No hay mas de cuatro ahnos en la carrera jajaja</li>
-                        <li>Esperemos que el <star/> anho no exista jajaja</li>
+                        <li>Esperemos que el <star/> año no exista jajaja</li>
                     </random>
                 </li>
             </condition>

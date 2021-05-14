@@ -1,10 +1,10 @@
-1:Sistemas Operativos I
-2:Ingenieria del Software I
+1:Sistemas OperativosI
+2:Ingenieria del SoftwareI
 3:Estadistica
-4:Algoritmos y Estructuras de Datos II
-5:Arquitectura de Computadores II
-6:Ingenieria del Software II
-7:Sistemas Operativos II
-8:Redes de Computadores I
-9:Bases de Datos I
+4:Algoritmos y Estructuras de DatosII
+5:Arquitectura de ComputadoresII
+6:Ingenieria del SoftwareII
+7:Sistemas OperativosII
+8:Redes de ComputadoresI
+9:Bases de DatosI
 10:Arquitecturas Paralelas

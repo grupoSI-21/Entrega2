@@ -82,14 +82,14 @@ preguntas de 'estudios.aiml' cuando el topic 'estudios' no se encuentra activado
 
 <!-- Regla 6 -->
     <category>
-        <pattern>Que dan en * anho</pattern>
+        <pattern>Que dan en * año</pattern>
         <template>
-            En <star/> anho de que exactamente?
+            En <star/> año de que exactamente?
         </template>
     </category>
 <!-- Regla 7 -->
     <category>
-        <pattern>En * anho de lo que estudias </pattern>
+        <pattern>En * año de lo que estudias </pattern>
         <template>
             <random>
                 <li>Ah! hablabas de mi carrera <think><set name="topic"><bot name="studies"/></set></think><srai>QUE DAN EN <star/> ANHO</srai></li>

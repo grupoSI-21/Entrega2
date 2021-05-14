@@ -6,7 +6,7 @@ suecia
 dinamarca
 bulgaria
 alemania
-espagna
+españa
 argentina
 ruanda
 australia
@@ -29,6 +29,10 @@ republica dominicana
 burundi
 myanmar
 birmania
+pakistan
+pakistan
+pakistan
+pakistan
 pakistan
 pakistan
 pakistan

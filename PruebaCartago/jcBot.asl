@@ -162,9 +162,9 @@ filter(Answer, creatingFile, [Route]):-
 		focus(Agenda).
 
 +!talk <-
-	addEventRelativeSeconds("Tutoría con Moreno", 2);
 	!say("Iván","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
+	!eventWait("Reunión importante", 2, 5);
 	!say("Iván","Incluye el valor pakistan en el conjunto pais sin más demora");
 	!waitAnswer;
 	!say("Iván","Incorpora la relacion entre pakistan e islamabad al mapa capital de inmediato");
@@ -297,6 +297,14 @@ filter(Answer, creatingFile, [Route]):-
 		filter(Answer, creatingFile, [Route]) 
 	<-	createFile(Text,Route);
 		.concat("He creado el fichero: ", Route, Response).
+		
++!eventWait(Event, Seconds, Time_To_Wait)
+	<-	.println("Perdona, vuelvo en seguida.");
+		addEventRelativeSeconds(Event, Seconds);
+		.wait(Time_To_Wait * 1000);
+		.concat("Ya he vuelto, tenía ", Event, " que me decias?", Response);
+		.println(Response).
+		
 
 +answer(Answer) : service(Answer, Service)	
 	<- 	//-answer(Answer)[source(percept)];

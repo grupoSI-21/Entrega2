@@ -156,13 +156,20 @@ filter(Answer, creatingFile, [Route]):-
 	<- 	makeArtifact("bot0","bot.Services",[Name],Id);
 		.wait(1000);
 		focus(Id);
-		makeArtifact("guiChat","chat.ChatGUI",[],GUI);
-		focus(GUI);
-		makeArtifact("agenda","agenda.Agenda",[],Agenda);
-		focus(Agenda).
+		.
+		//OJO AQUI, HAY QUE ARREGLAR EL PROBLEMA QUE DA AL CREAR LA AGENDA Y EL CHATGUI
+		//makeArtifact("guiChat","chat.ChatGUI",[],GUI);
+		//focus(GUI);
+		//makeArtifact("agenda","agenda.Agenda",[],Agenda);
+		//focus(Agenda).
 
 +!talk <-
 	//addEventRelativeSeconds("que mandar un mensaje", 2);
+	//en el map contactos estan los correos. Puse a gabriel con el correo de gervasia
+	!say("Ivan","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
+	!waitAnswer;
+	//!say("Ivan","Envia el mensaje: hola a: valentina con asunto: prueba");
+	//!waitAnswer;
 	!say("Ivan","Traduce al ingles la frase me gusta el queso");
 	!waitAnswer;
 	!say("Ivan","Ahora traduce al italiano la frase los carpinchos son los mejores animales del mundo");
@@ -181,8 +188,6 @@ filter(Answer, creatingFile, [Route]):-
 	!say("Ivan","Conoces a juan carlos ?");
 	!waitAnswer;
 	// Comento esta linea para que no mande el correo y salte una excepcion
-	//!say("Ivan","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
-	//!waitAnswer;
 	
 	!say("Ivan","Hola. Me llamo Ivan. Como te llamas tu?");
 	!waitAnswer;

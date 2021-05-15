@@ -136,6 +136,7 @@
         </template>
     </category>
 
+	<!-- Para el servicio de traduccion -->
     <category>
         <pattern> ^ traduce al * la frase * </pattern>
         <template>
@@ -162,8 +163,8 @@
         <template>
             <template>La frase que me has pedido es <translate> <to><map name="idioma"><star index="2"/></map></to> <msg><star index="3"/></msg> </translate> </template>
         </template>
-		
     </category>
+	
 	<category>
         <pattern> ^ traducir al * la frase * </pattern>
         <template>
@@ -171,18 +172,32 @@
         </template>
     </category>
 	
-	</category>
+	
 	<category>
         <pattern> ^ traducir * al * </pattern>
         <template>
             <template>La frase que me has pedido es <translate> <to><map name="idioma"><star index="3"/></map></to> <msg><star index="2"/></msg> </translate> </template>
         </template>
     </category>
-    <!-- 
-
-        Reglas para enviar un correo a un determinado usuario, creo que es la que tiene más chicha
-
-     -->
-
+	
+    <!-- Para el envio de correos electronicos -->
+	<category>
+        <pattern> ^ enviarmail to * subject * msg * </pattern>
+        <template>
+			<mail>
+				<subject><star index="3"/></subject>
+				<to><map name="contactos"><star index="2"/></map></to>
+				<msg><star index="4"/></msg>
+			</mail>
+        </template>
+    </category>
+	
+	<category>
+        <pattern> ^ envia ^ mensaje * a * con asunto * </pattern>
+        <template>
+			<srai>ENVIARMAIL TO <star index="4"/> SUBJECT <star index="5"/> MSG <star index="3"/></srai>
+        </template>
+    </category>
+	
 
 </aiml>

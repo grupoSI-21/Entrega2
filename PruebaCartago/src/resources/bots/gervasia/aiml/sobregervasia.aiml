@@ -86,8 +86,13 @@ de Gervasia o del propio usuario.
 </category>
 
 <category>
-    <pattern> vives * </pattern>
-        <template> Vivo en <bot name="residence"/> </template>
+    <pattern> ^ vives * Ourense </pattern>
+        <template> Así es </template>
+</category>
+
+<category>
+    <pattern> ^ vives * Orense </pattern>
+        <template> Así es </template>
 </category>
 
 

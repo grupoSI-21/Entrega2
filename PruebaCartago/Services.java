@@ -210,9 +210,9 @@ public class Services extends Artifact {
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");   
 		
-		props.put("from", "masterssia@gmail.com");
-		props.put("username", "masterssia@gmail.com");
-		props.put("password", clave);
+		props.put("from", "gervasiaSI21@gmail.com");
+		props.put("username", "gervasiaSI21@gmail.com");
+		props.put("password", "SI_21ESEI");
 		             
 		//get Session   
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {

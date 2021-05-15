@@ -163,6 +163,7 @@ filter(Answer, creatingFile, [Route]):-
 
 +!talk <-
 	addEventRelativeSeconds("que mandar un mensaje", 2);
+	//!eventWait("que mandar un mensaje", 2, 6);
 	!say("Ivan","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
 	!say("Ivan","Incluye el valor pakistan en el conjunto pais sin mas demora");
@@ -299,6 +300,12 @@ filter(Answer, creatingFile, [Route]):-
 		filter(Answer, creatingFile, [Route]) 
 	<-	createFile(Text,Route);
 		.concat("He creado el fichero: ", Route, Response).
+		
+//+!eventWait(Event, Seconds, Time_To_Wait)
+//	<-	.println("Disculpa un momento, tengo ", Event);
+//		addEventRelativeSeconds("que mandar un mensaje", Seconds);
+//		.wait(Time_To_Wait * 1000);
+//		!retomarConversacion.
 
 +answer(Answer) : service(Answer, Service)	
 	<- 	//-answer(Answer)[source(percept)];

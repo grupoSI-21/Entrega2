@@ -136,6 +136,12 @@
         </template>
     </category>
 
+    <category>
+        <pattern> ^ traduce al * la frase * </pattern>
+        <template>
+            <template>La frase que me has pedido es <translate> <to><map name="idioma"><star index="2"/></map></to> <msg><star index="3"/></msg> </translate> </template>
+        </template>
+    </category>
 
     <!-- 
 

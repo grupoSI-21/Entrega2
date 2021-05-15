@@ -1,0 +1,6 @@
+frances:fr
+italiano:it
+ingles:en
+portugues:pt
+gallego:gl
+ruso:ru

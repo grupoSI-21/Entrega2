@@ -237,7 +237,7 @@ public class Services extends Artifact {
 
    	}
                                             
-	@OPERATION void translate (String langFrom, String langTo, String msg, OpFeedbackParam<String> result) {    
+	@OPERATION void translate (String langFrom, String langTo, String msg, OpFeedbackParam<String> result) {
 		try {                
 			result.set(callUrlAndParseResult(langFrom, langTo, msg)); 
 			//System.out.println(result);		

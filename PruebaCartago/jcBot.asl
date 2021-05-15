@@ -163,7 +163,11 @@ filter(Answer, creatingFile, [Route]):-
 
 +!talk <-
 	//addEventRelativeSeconds("que mandar un mensaje", 2);
-    !say("Ivan","Traduce al ingles la frase me gusta el queso");
+	!say("Ivan","Traduce al ingles la frase me gusta el queso");
+	!waitAnswer;
+	!say("Ivan","Ahora traduce al italiano la frase los carpinchos son los mejores animales del mundo");
+	!waitAnswer;
+	!say("Ivan","Y por ultimo, me gustaria que tradujeras lo peor del verano son los mosquitos al euskera");
 	!waitAnswer;
 	!eventWait("que mandar un mensaje", 2, 6);
 	!say("Ivan","Crea la propiedad nueva madre con valor ines, por favor");

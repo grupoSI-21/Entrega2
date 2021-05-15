@@ -3,4 +3,10 @@ italiano:it
 ingles:en
 portugues:pt
 gallego:gl
-ruso:ru
+euskera:eu
+somali:so
+catalan:ca
+esperanto:eo
+suajili:sw
+rumano:ro
+zulu:zu

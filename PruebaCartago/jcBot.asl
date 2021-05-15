@@ -163,9 +163,9 @@ filter(Answer, creatingFile, [Route]):-
 
 +!talk <-
 	//addEventRelativeSeconds("que mandar un mensaje", 2);
-    !say("Ivan","Traduce al ingles la frase me gusta el queso");
+    !say("Ivan","Traduce al ruso la frase me gusta el queso");
 	!waitAnswer;
-	!eventWait("que mandar un mensaje", 2, 6);
+	!eventWait("que mandar un mensaje", 2, 10);
 	!say("Ivan","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
 	!say("Ivan","Incluye el valor pakistan en el conjunto pais sin mas demora");
@@ -363,12 +363,12 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer.
 
 +evento(Name) <-
-	.println("Disculpa un momento, tengo ", Name);
+	//.println("Disculpa un momento, tengo ", Name);
 	+in_event;
 	.wait(5000);
 	-in_event;
-	-evento(Name);
-	!retomarConversacion.
+	-evento(Name).
+	//!retomarConversacion.
 
 +!retomarConversacion : say(What)  <-
 	.println("Ya esta, me estabas comentando que ", What).

@@ -169,7 +169,7 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer;
 	!say("Ivan","Y por ultimo, me gustaria que tradujeras lo peor del verano son los mosquitos al euskera");
 	!waitAnswer;
-	!eventWait("que mandar un mensaje", 2, 6);
+	!eventWait("que mandar un mensaje", 2, 10);
 	!say("Ivan","Crea la propiedad nueva madre con valor ines, por favor");
 	!waitAnswer;
 	!say("Ivan","Incluye el valor pakistan en el conjunto pais sin mas demora");
@@ -367,12 +367,12 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer.
 
 +evento(Name) <-
-	.println("Disculpa un momento, tengo ", Name);
+	//.println("Disculpa un momento, tengo ", Name);
 	+in_event;
 	.wait(5000);
 	-in_event;
-	-evento(Name);
-	!retomarConversacion.
+	-evento(Name).
+	//!retomarConversacion.
 
 +!retomarConversacion : say(What)  <-
 	.println("Ya esta, me estabas comentando que ", What).

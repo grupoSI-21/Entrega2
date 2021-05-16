@@ -156,18 +156,18 @@ filter(Answer, creatingFile, [Route]):-
 	<- 	makeArtifact("bot0","bot.Services",[Name],Id);
 		.wait(1000);
 		focus(Id);
-		.
+		
 		//OJO AQUI, HAY QUE ARREGLAR EL PROBLEMA QUE DA AL CREAR LA AGENDA Y EL CHATGUI
-		//makeArtifact("guiChat","chat.ChatGUI",[],GUI);
-		//focus(GUI);
-		//makeArtifact("agenda","agenda.Agenda",[],Agenda);
-		//focus(Agenda).
+		makeArtifact("guiChat","chat.ChatGUI",[],GUI);
+		focus(GUI);
+		makeArtifact("agenda","agenda.Agenda",[],Agenda);
+		focus(Agenda).
 
 +!talk <-
 	//addEventRelativeSeconds("que mandar un mensaje", 2);
 	//en el map contactos estan los correos. Puse a gabriel con el correo de gervasia
-	!say("Ivan","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
-	!waitAnswer;
+	//!say("Ivan","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
+	//!waitAnswer;
 	//!say("Ivan","Envia el mensaje: hola a: valentina con asunto: prueba");
 	//!waitAnswer;
 	!say("Ivan","Traduce al ingles la frase me gusta el queso");
@@ -185,16 +185,16 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer;
 	!say("Ivan","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
 	!waitAnswer;
+	!eventWait("que vigilar la olla de lentejas que si no se me queman", 2, 10);
 	!say("Ivan","Conoces a juan carlos ?");
 	!waitAnswer;
-	// Comento esta linea para que no mande el correo y salte una excepcion
-	
 	!say("Ivan","Hola. Me llamo Ivan. Como te llamas tu?");
 	!waitAnswer;
 	!say("Ivan","Que edad tienes?");
 	!waitAnswer;
 	!say("Ivan","De donde eres? Vives en Orense?");
 	!waitAnswer;
+	!eventWait("que atender una llamada de mi profesor, es importante", 2, 10);
 	!say("Ivan","Que es lo que haces en tu tiempo libre?");
 	!waitAnswer;
 	!say("Ivan","A que te dedicas?");
@@ -209,6 +209,7 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer;
 	!say("Ivan","Conoces a la profesora Maria Jose Lado?");
 	!waitAnswer;
+	!eventWait("que ir al baño", 2, 10);
 	!say("Ivan","Perdona, te acuerdas que contestaste hace 3 intervenciones?");
 	!waitAnswer;
 	!say("Ivan","Sabes que la capital de Myanmar es NayPyiTaw?");
@@ -315,6 +316,24 @@ filter(Answer, creatingFile, [Route]):-
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
 		addEventRelativeSeconds("que mandar un mensaje", Seconds);
+		.wait(Time_To_Wait * 1000);
+		!retomarConversacion.
+		
++!eventWait(Event, Seconds, Time_To_Wait)
+	<-	.println("Disculpa un momento, tengo ", Event);
+		addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", Seconds);
+		.wait(Time_To_Wait * 1000);
+		!retomarConversacion.
+
++!eventWait(Event, Seconds, Time_To_Wait)
+	<-	.println("Disculpa un momento, tengo ", Event);
+		addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", Seconds);
+		.wait(Time_To_Wait * 1000);
+		!retomarConversacion.
+		
++!eventWait(Event, Seconds, Time_To_Wait)
+	<-	.println("Disculpa un momento, tengo ", Event);
+		addEventRelativeSeconds("que ir al baño", Seconds);
 		.wait(Time_To_Wait * 1000);
 		!retomarConversacion.
 

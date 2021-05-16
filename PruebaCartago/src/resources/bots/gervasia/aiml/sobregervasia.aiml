@@ -66,14 +66,14 @@ de Gervasia o del propio usuario.
 
 <category>
 	<pattern>^ tu lugar de nacimiento ^</pattern>
-	<template> 
+	<template>
         Mi lugar de nacimiento es <bot name="birthplace"/>
 	</template>
 </category>
 
 <category>
 	<pattern>* donde eres ^</pattern>
-	<template>  
+	<template>
 		Soy de <bot name="birthplace"/>
 	</template>
 </category>
@@ -104,10 +104,10 @@ de Gervasia o del propio usuario.
 
 <category>
     <pattern> * años tienes ^ </pattern>
-        <template> 
-        <srai> 
+        <template>
+        <srai>
         <star index="1"/> EDAD <star index="2"/>
-        </srai> 
+        </srai>
         </template>
 </category>
 
@@ -121,8 +121,8 @@ de Gervasia o del propio usuario.
 
 <category>
     <pattern> ^ hombre ^ mujer </pattern>
-        <template> 
-        <srai> 
+        <template>
+        <srai>
             <star/> GENERO <star index="2"/>
         </srai>
          </template>
@@ -138,4 +138,29 @@ de Gervasia o del propio usuario.
     <pattern> ^ cuando naciste </pattern>
         <template> <srai> <star/> TU CUMPLEANHOS </srai> </template>
 </category>
+
+<category>
+	<pattern> Que es lo que haces en tu tiempo libre </pattern>
+	<template>
+		<srai> TIEMPO LIBRE </srai>
+	</template>
+</category>
+
+<category>
+	<pattern> * haces * tiempo libre </pattern>
+	<template>
+		<srai> TIEMPO LIBRE </srai>
+	</template>
+</category>
+
+<category>
+	<pattern> tiempo libre </pattern>
+	<template>
+		<random>
+			<li>Mi hobbie favorito es la <bot name="leisure"/></li>
+			<li>Me encanta la <bot name="leisure"/>!</li>
+		</random>
+	</template>
+</category>
+
 </aiml>

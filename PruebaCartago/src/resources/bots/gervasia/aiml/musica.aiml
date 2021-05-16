@@ -118,12 +118,12 @@ En este fichero hay reglas sobre el tema de la música.
 </topic>
 
 <!-- Regla 14 -->
-<!-- esta regla es para cuando preguntan a Gervasia por una banda o artista musical 
+<!-- esta regla es para cuando preguntan a Gervasia por una banda o artista musical
 que no conoce -->
 <category>
   <pattern> Escuchas a * </pattern>
     <template> <think><set name="topic">musica</set></think>
-          <think> 
+          <think>
           <!-- recurre por reduccion simbolica a la regla 11 -->
           <!-- va a responder: No ; si conoce responde lo de la regla 10 -->
           <set var="music"><srai> CONOCES A <star/></srai></set>
@@ -190,5 +190,34 @@ y va a aprender al respecto de ellos -->
     </random>
   </template>
 </category>
+
+<category>
+  <pattern> * grupo ^ artista ^ </pattern>
+  <template>
+    <srai> GRUPOOARTISTA </srai>
+  </template>
+</category>
+
+<category>
+  <pattern> * banda ^ </pattern>
+  <template>
+    <srai> GRUPOOARTISTA </srai>
+  </template>
+</category>
+
+<category>
+  <pattern> * artista ^ </pattern>
+  <template>
+    <srai> GRUPOOARTISTA </srai>
+  </template>
+</category>
+
+<category>
+  <pattern> grupooartista </pattern>
+  <template>
+    Mi banda favorita es <bot name="favband"/>
+  </template>
+</category>
+
 
 </aiml>

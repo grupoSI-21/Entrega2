@@ -127,10 +127,12 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
 <template>No, aun no he tenido el placer de conocerla</template>
 </category>
 
+<!--
 <category>
     <pattern>Conoces a *</pattern>
-    <template><srai>CONOCES AL PROFESOR <star/></srai></template>
+    <template><srai> CONOCES AL PROFESOR <star/></srai></template>
 </category>
+-->
 
 <!-- Regla 17 -->
 
@@ -157,4 +159,3 @@ sobre los estudios, ver el archivo 'estudios.aiml'.
 </category>
 
 </aiml>
-

@@ -158,7 +158,7 @@ de Gervasia o del propio usuario.
 	<template>
 		<random>
 			<li>Mi hobbie favorito es la <bot name="leisure"/></li>
-			<li>Me encanta la <bot name="leisure"/>!</li>
+			<li>Me encanta escuchar <bot name="leisure"/> en mi tiempo libre</li>
 		</random>
 	</template>
 </category>

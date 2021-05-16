@@ -1,4 +1,4 @@
-java -cp lib/Ab.jar Main bot=super action=chat trace=false
+java -cp lib/Ab.jar Main bot=gervasia action=chat trace=false
 
 
 

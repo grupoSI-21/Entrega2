@@ -98,6 +98,7 @@ public class Services extends Artifact {
 		while (response.contains("&gt;")) response = response.replace("&gt;", ">");
 				
 		answer.set(response);
+		signal("answer", response);
 
 	}
  

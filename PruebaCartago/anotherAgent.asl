@@ -58,7 +58,4 @@
 
 +!say(Ag, Resp) <-
 	.println("< \"", Resp, "\"", " -  me responde ", Ag).
-	
-+say(Msg) <-
-	.println("Me repsonden", Msg).
 

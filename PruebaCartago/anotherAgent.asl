@@ -1,7 +1,7 @@
 !start.
 
 +!start <-
-	.wait(2000); // Para que de tiempo a inicializarse
+	.wait(5000); // Para que de tiempo a inicializarse
 	!sendQuestion("Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
 	.wait(8000);
 	//!sendQuestion("Envia el mensaje: hola a: valentina con asunto: prueba");

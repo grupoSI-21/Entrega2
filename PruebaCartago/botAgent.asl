@@ -131,7 +131,11 @@ filter(Answer, creatingFile, [Route]):-
 
 +!checkingBot <-
 	!setupTool("gervasia",BotId);
-	addEventRelativeSeconds("que mandar un mensaje", 2).
+	addEventRelativeSeconds("que mandar un mensaje", 2);
+	addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", 20);
+	addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", 31);
+	addEventRelativeSeconds("que tengo que ir al banho", 31).
+	
 	
 +!finish(Artifact) <-  
 	.println("Quito el foco del artefacto: ", Artifact);
@@ -150,71 +154,6 @@ filter(Answer, creatingFile, [Route]):-
 	.wait(200);
 	.drop_all_intentions;
 	.println("Elimino las intenciones.").
-/*
-+!talk <-
-	//addEventRelativeSeconds("que mandar un mensaje", 2);
-	//en el map contactos estan los correos. Puse a gabriel con el correo de gervasia
-	//!say("Ivan","Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
-	//!waitAnswer;
-	//!say("Ivan","Envia el mensaje: hola a: valentina con asunto: prueba");
-	//!waitAnswer;
-	!say("Ivan","Traduce al ingles la frase me gusta el queso");
-	!waitAnswer;
-	!say("Ivan","Ahora traduce al italiano la frase los carpinchos son los mejores animales del mundo");
-	!waitAnswer;
-	!say("Ivan","Y por ultimo, me gustaria que tradujeras lo peor del verano son los mosquitos al euskera");
-	!waitAnswer;
-	!eventWait("que mandar un mensaje", 2, 10);
-	!say("Ivan","Crea la propiedad nueva madre con valor ines, por favor");
-	!waitAnswer;
-	!say("Ivan","Incluye el valor pakistan en el conjunto pais sin mas demora");
-	!waitAnswer;
-	!say("Ivan","Incorpora la relacion entre pakistan y islamabad al mapa capital de inmediato");
-	!waitAnswer;
-	!say("Ivan","Escribe tengo que rehacer el tag de relaciones en el fichero utilidades");
-	!waitAnswer;
-	!eventWait("que vigilar la olla de lentejas que si no se me queman", 2, 10);
-	!say("Ivan","Conoces a juan carlos ?");
-	!waitAnswer;
-	!say("Ivan","Hola. Me llamo Ivan. Como te llamas tu?");
-	!waitAnswer;
-	!say("Ivan","Que edad tienes?");
-	!waitAnswer;
-	!say("Ivan","De donde eres? Vives en Orense?");
-	!waitAnswer;
-	!eventWait("que atender una llamada de mi profesor, es importante", 2, 10);
-	!say("Ivan","Que es lo que haces en tu tiempo libre?");
-	!waitAnswer;
-	!say("Ivan","A que te dedicas?");
-	!waitAnswer;
-	!say("Ivan","Asi que estudias informatica; en que curso estas?");
-	!waitAnswer;
-	!say("Ivan","Que tal te fue el ultimo curso? Aprobaste todas las materias?");
-	!waitAnswer;
-	!say("Ivan","Quien te dio clase en ProgramacionI?");
-	!waitAnswer;
-	!say("Ivan","Que puedes decirme sobre la asignatura de Sistemas Digitales?");
-	!waitAnswer;
-	!say("Ivan","Conoces a la profesora Maria Jose Lado?");
-	!waitAnswer;
-	!eventWait("que ir al ba�o", 2, 10);
-	!say("Ivan","Perdona, te acuerdas que contestaste hace 3 intervenciones?");
-	!waitAnswer;
-	!say("Ivan","Sabes que la capital de Myanmar es NayPyiTaw?");
-	!waitAnswer;
-	!say("Ivan","Por cierto, recuerda que Myanmar tambien se conoce como Burma.");
-	!waitAnswer;
-	!say("Ivan","Puedes decirme cuantos amigos tienes con el pelo rubio?");
-	!waitAnswer;
-	!say("Ivan","Adios.");
-	!waitAnswer;
-	.println("Y este cuento se acaboooooo").
-*/
-/*
-+!say(Who,What) <-
-	!showQuest(Who, What);
-	.wait(1000);
-	chatSincrono(What, Resp);*/
 	
 +!setupTool(Name, Id): true
 	<- 	makeArtifact("bot0","bot.Services",[Name],Id);
@@ -279,28 +218,7 @@ filter(Answer, creatingFile, [Route]):-
 -inEvent <-
 	!showAnsw(botAgent, "Ya esta");
 	show("Ya esta").
-	/*
-	
-+!say(Who,What) : numAnswer(N) <-
-	!showQuest(Who,What);
-	+pregunta(N,What);
-	.wait(6000);                      
-	chat(What).
-+!say(Who,What) <- 
-	.println("??????????????????????????????????????????????????????????????????").
-	
-+say(What) : not in_event <-
-	println("El Bot Master ha dicho: ", What);
-	chatSincrono(What,Answer);
-	println("El Bot contesta: ",Answer);
-	show(Answer).
-	
-+say(What) <- +say(What).
-*/
-+!waitAnswer <-
-	.wait(recibida(_));
-	.wait(6000);
-	.abolish(recibida(_)).
+
 
 +!showQuest(Who,Question) <-
 	.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
@@ -392,78 +310,3 @@ filter(Answer, creatingFile, [Route]):-
 		addEventRelativeSeconds("que ir al ba�o", Seconds);
 		.wait(Time_To_Wait * 1000);
 		!retomarConversacion.
-/*
-+answer(Answer) : service(Answer, Service)	
-	<- 	//-answer(Answer)[source(percept)];
-		!doService(Service, Answer, Response);
-		!showAnsw(Response); 
-		+realizada(Answer, Response);	// Registra los Servicios realizados
-		+recibida(Answer).   			// Hace la funcion de la creencia answer 
-						 	 			// => conocimiento sin indexar con posibilidad de tener repeticion 
-+answer(Answer) 	
-	<- 	//-answer(Answer)[source(percept)];
-		!showAnsw(Answer);     
-		+recibida(Answer).   // Hace la funcion de la creencia answer 
-						 	 // => conocimiento sin indexar con posibilidad de tener repeticion 
-	
-+recibida(Answer) : .substring("musica",Answer) <- 
-	//.println("==================================================================");
-	//.println;
-	!say("Juan Carlos","Tienes algun grupo o artista preferido?");
-	!waitAnswer;
-	.abolish(recibida(_)).
-
-+recibida(Answer) : .substring("literatura",Answer) <- 
-	//.println("==================================================================");
-	//.println;
-	!say("Juan Carlos","Cual es el ultimo libro que has leido?");
-	!waitAnswer;
-	.abolish(recibida(_)).
-
-+recibida(Answer) : .substring("deporte",Answer) <- 
-	//.println("==================================================================");
-	//.println;
-	!say("Juan Carlos","Eres forofo o practicante?");
-	!waitAnswer;
-	.abolish(recibida(_)).
-
-+recibida(Answer) : .substring("cine",Answer) <- 
-	//.println("==================================================================");
-	//.println;
-	!say("Juan Carlos","Eres mas de series o de peliculas?");
-	!waitAnswer;
-	.abolish(recibida(_)).
-
-+recibida(Answer) : .substring("SI",Answer) <- 
-	//.println("==================================================================");
-	//.println;
-	!say("Juan Carlos","Que asignatura te ha dado Maria Jose Lado?");
-	!waitAnswer.
-	
-+recibida(Answer) : .substring("NO",Answer) <- 
-	//.println("==================================================================");
-	//.println;
-	!say("Juan Carlos","Este curso imparte ProgramacionI. Quien dices que te dio clase en ProgramacionI?");
-	!waitAnswer.
-
-+evento(Name) <-
-	//.println("Disculpa un momento, tengo ", Name);
-	+in_event;
-	.wait(5000);
-	-in_event;
-	-evento(Name).
-	//!retomarConversacion.
-*/
-+!retomarConversacion : say(What)  <-
-	.println("Ya esta, me estabas comentando que ", What).
-	
-+!retomarConversacion <-
-	.println("Ya esta").
-	
-/*
-5) YO: 	musica => Tienes algun grupo o artista preferido?
-		literatura => Cual es el ultimo libro que has leido?
-		deporte => Eres forofo o practicante?
-		cine => Eres mas de series o de peliculas?
-*/
-

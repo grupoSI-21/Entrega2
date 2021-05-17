@@ -131,10 +131,10 @@ filter(Answer, creatingFile, [Route]):-
 
 +!checkingBot <-
 	!setupTool("gervasia",BotId);
-	addEventRelativeSeconds("que mandar un mensaje", 9);
+	addEventRelativeSeconds("que mandar un mensaje", 5);
 	addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", 20);
-	addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", 31);
-	addEventRelativeSeconds("que tengo que ir al banho", 40).
+	addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", 40);
+	addEventRelativeSeconds("que tengo que ir al banho", 60).
 	
 	
 +!finish(Artifact) <-  
@@ -197,24 +197,31 @@ filter(Answer, creatingFile, [Route]):-
 	show(Ans);
 	.wait(5000);
 	-inEvent.
-
+//caso 1: Human y AnotherAgent le hablan mientras está ocupado
 -inEvent : sayChat(Msg1) & sayAgent(Ag, Msg2) <-
 	.concat("Ya esta, me estabas comentando que ", Msg1, Ans1);
 	.concat("Ya esta, me estabas comentando que ", Msg2, Ans2);
 	show(Ans1);
 	!showAnsw(botAgent, Ans1);
-	!showAnsw(botAgent, Ans2).
+	!sayFromChat(Msg1); //responde a lo que se le habia preguntado en su ausencia
+	!showAnsw(botAgent, Ans2);
+	!sayFromChat(Msg2). //responde a lo que se le habia preguntado en su ausencia
 
+//caso 2: le habla AnotherAgent mientras está ausente
 -inEvent : sayAgent(Ag, Msg) <-
 	.concat("Ya esta, me estabas comentando que ", Msg, Ans);
 	show("Ya esta");
-	!showAnsw(botAgent, "Ya esta").
+	!showAnsw(botAgent, "Ya esta");
+	!sayFromChat(Msg). //responde a lo que se le habia preguntado en su ausencia
 
+//caso 3: le habla Human mientras está ausente
 -inEvent : sayChat(Msg)<-
 	.concat("Ya esta, me estabas comentando que ", Msg, Ans);
 	!showAnsw(botAgent, "Ya esta");
-	show(Ans).
+	show(Ans);
+	!sayFromChat(Msg).  //responde a lo que se le habia preguntado en su ausencia
 
+//caso 4: no le hablan mientras está ausente
 -inEvent <-
 	!showAnsw(botAgent, "Ya esta");
 	show("Ya esta").
@@ -223,7 +230,7 @@ filter(Answer, creatingFile, [Route]):-
 +!showQuest(Who,Question) <-
 	.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 	.println(Who," dice: ",Question);
-	//talk("Soledad",Question); // To listen the question    
+	//talk(botAgent,Question); // To listen the question    
 	.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 	.println.
 
@@ -307,6 +314,9 @@ filter(Answer, creatingFile, [Route]):-
 		
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
-		addEventRelativeSeconds("que ir al baï¿½o", Seconds);
+		addEventRelativeSeconds("que ir al baño", Seconds);
 		.wait(Time_To_Wait * 1000);
 		!retomarConversacion.
+		
+//+!retomarConversacion(Msg) <- 
+//								.println().

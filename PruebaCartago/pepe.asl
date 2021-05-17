@@ -53,8 +53,8 @@
 	!sendQuestion("Adios.").
 
 +!sendQuestion(Q) <-
-	.println("> \"", Q, "\"", " -  pregunto");
-	.send(botAgent, achieve, say(anotherAgent, Q)).
+	//.println("> \"", Q, "\"", " -  pregunto");
+	.send(botAgent, achieve, say(pepe, Q)).
 
 +!say(Ag, Resp) <-
 	.println("< \"", Resp, "\"", " -  me responde ", Ag).

@@ -4,8 +4,8 @@
 	.wait(2000); // Para que de tiempo a inicializarse
 	!sendQuestion("Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
 	.wait(8000);
-	!sendQuestion("Envia el mensaje: hola a: valentina con asunto: prueba");
-	.wait(8000);
+	//!sendQuestion("Envia el mensaje: hola a: valentina con asunto: prueba");
+	//.wait(8000);
 	!sendQuestion("Traduce al ingles la frase me gusta el queso");
 	.wait(8000);
 	!sendQuestion("Ahora traduce al italiano la frase los carpinchos son los mejores animales del mundo");

@@ -2,8 +2,8 @@
 
 /* Initial beliefs and rules */
 
-// To take the account of bot answers
-numAnswer(1).  
+// NOT inEvent
+~inEvent.
 
 // Check if bot answer requires a service
 /*Esto quiere decir que en el template debe ir el tipo de servicio
@@ -130,9 +130,8 @@ filter(Answer, creatingFile, [Route]):-
 /* Plans */  
 
 +!checkingBot <-
-	!setupTool("gervasia",BotId);  
-	!talk;
-	!finish(BotId).
+	!setupTool("gervasia",BotId);
+	addEventRelativeSeconds("que mandar un mensaje", 2).
 	
 +!finish(Artifact) <-  
 	.println("Quito el foco del artefacto: ", Artifact);
@@ -150,19 +149,8 @@ filter(Answer, creatingFile, [Route]):-
 	.println("Elimino los eventos.");            
 	.wait(200);
 	.drop_all_intentions;
-	.println("Elimino las intenciones."). // Just at this moment we can kill the agent if we wish.      
-	
-+!setupTool(Name, Id): true
-	<- 	makeArtifact("bot0","bot.Services",[Name],Id);
-		.wait(1000);
-		focus(Id);
-		
-		//OJO AQUI, HAY QUE ARREGLAR EL PROBLEMA QUE DA AL CREAR LA AGENDA Y EL CHATGUI
-		makeArtifact("guiChat","chat.ChatGUI",[],GUI);
-		focus(GUI);
-		makeArtifact("agenda","agenda.Agenda",[],Agenda);
-		focus(Agenda).
-
+	.println("Elimino las intenciones.").
+/*
 +!talk <-
 	//addEventRelativeSeconds("que mandar un mensaje", 2);
 	//en el map contactos estan los correos. Puse a gabriel con el correo de gervasia
@@ -209,7 +197,7 @@ filter(Answer, creatingFile, [Route]):-
 	!waitAnswer;
 	!say("Ivan","Conoces a la profesora Maria Jose Lado?");
 	!waitAnswer;
-	!eventWait("que ir al baño", 2, 10);
+	!eventWait("que ir al baï¿½o", 2, 10);
 	!say("Ivan","Perdona, te acuerdas que contestaste hace 3 intervenciones?");
 	!waitAnswer;
 	!say("Ivan","Sabes que la capital de Myanmar es NayPyiTaw?");
@@ -221,7 +209,78 @@ filter(Answer, creatingFile, [Route]):-
 	!say("Ivan","Adios.");
 	!waitAnswer;
 	.println("Y este cuento se acaboooooo").
+*/
+/*
++!say(Who,What) <-
+	!showQuest(Who, What);
+	.wait(1000);
+	chatSincrono(What, Resp);*/
+	
++!setupTool(Name, Id): true
+	<- 	makeArtifact("bot0","bot.Services",[Name],Id);
+		.wait(1000);
+		focus(Id);
+		makeArtifact("guiChat","chat.ChatGUI",[],GUI);
+		focus(GUI);
+		.wait(1000);
+		makeArtifact("agenda","agenda.Agenda",[],Agenda);
+		focus(Agenda).
 
++!say(Ag, Q) : not inEvent <-
+	!showQuest(Ag, Q);
+	chatSincrono(Q, Resp);
+	!processResponse(Resp, Processed);
+	!showAnsw(botAgent, Processed);
+	.send(Ag, achieve, say(botAgent, Processed)).
+
++!say(Ag, Q) <- +sayAgent(Ag, Q).
+	
++!processResponse(Resp, Processed) : service(Resp, Service) <-
+	!doService(Service, Resp, Processed).
+	
++!processResponse(Resp, Resp).
+
++say(Msg) <- !sayFromChat(Msg).
+
++!sayFromChat(Msg) : not inEvent <-
+	!showQuest(human, Msg);
+	chatSincrono(Msg,Resp);
+	!processResponse(Resp, Processed);
+	!showAnsw(botAgent, Processed);
+	show(Processed).
+	
++!sayFromChat(Msg) <- +sayChat(Msg).
+
++evento(Ev) <-
+	.concat("Disculpa, tengo ", Ev, Ans);
+	+inEvent;
+	!showAnsw(botAgent, Ans);
+	show(Ans);
+	.wait(5000);
+	-inEvent.
+
+-inEvent : sayChat(Msg1) & sayAgent(Ag, Msg2) <-
+	.concat("Ya esta, me estabas comentando que ", Msg1, Ans1);
+	.concat("Ya esta, me estabas comentando que ", Msg2, Ans2);
+	show(Ans1);
+	!showAnsw(botAgent, Ans1);
+	!showAnsw(botAgent, Ans2).
+
+-inEvent : sayAgent(Ag, Msg) <-
+	.concat("Ya esta, me estabas comentando que ", Msg, Ans);
+	show("Ya esta");
+	!showAnsw(botAgent, "Ya esta").
+
+-inEvent : sayChat(Msg)<-
+	.concat("Ya esta, me estabas comentando que ", Msg, Ans);
+	!showAnsw(botAgent, "Ya esta");
+	show(Ans).
+
+-inEvent <-
+	!showAnsw(botAgent, "Ya esta");
+	show("Ya esta").
+	/*
+	
 +!say(Who,What) : numAnswer(N) <-
 	!showQuest(Who,What);
 	+pregunta(N,What);
@@ -237,7 +296,7 @@ filter(Answer, creatingFile, [Route]):-
 	show(Answer).
 	
 +say(What) <- +say(What).
-
+*/
 +!waitAnswer <-
 	.wait(recibida(_));
 	.wait(6000);
@@ -250,17 +309,14 @@ filter(Answer, creatingFile, [Route]):-
 	.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 	.println.
 
-+!showAnsw(Answer) : numAnswer(N) & bot(Bot) 
-	<-	//talk("Carlos", Answer);
++!showAnsw(Who, Answer) <-
 		.println("==================================================================");
 		.println;
-		.println(Bot, " contesta: ", Answer);
+		.println(Who, " contesta: ", Answer);
 		.println;
 		.println("==================================================================");
-		.wait(3000);
 		+contesta(N,Answer); // Guarda la contestacion indexada por si queremos usarla mas adelante   
 		-+numAnswer(N+1);
-		.wait(3000);
 		.println.       
 		
 +!doService(translating, Answer, Response): 
@@ -333,10 +389,10 @@ filter(Answer, creatingFile, [Route]):-
 		
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
-		addEventRelativeSeconds("que ir al baño", Seconds);
+		addEventRelativeSeconds("que ir al baï¿½o", Seconds);
 		.wait(Time_To_Wait * 1000);
 		!retomarConversacion.
-
+/*
 +answer(Answer) : service(Answer, Service)	
 	<- 	//-answer(Answer)[source(percept)];
 		!doService(Service, Answer, Response);
@@ -397,7 +453,7 @@ filter(Answer, creatingFile, [Route]):-
 	-in_event;
 	-evento(Name).
 	//!retomarConversacion.
-
+*/
 +!retomarConversacion : say(What)  <-
 	.println("Ya esta, me estabas comentando que ", What).
 	

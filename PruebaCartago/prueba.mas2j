@@ -16,7 +16,9 @@ MAS prueba {
 
 	environment: jaca.CartagoEnvironment
 
-    agents: jcBot agentArchClass jaca.CAgentArch;                                                                                                
+    agents:
+		botAgent agentArchClass jaca.CAgentArch;
+		anotherAgent agentArchClass jaca.CAgentArch;
 		
 }
 

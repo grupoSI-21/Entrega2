@@ -131,10 +131,10 @@ filter(Answer, creatingFile, [Route]):-
 
 +!checkingBot <-
 	!setupTool("gervasia",BotId);
-	addEventRelativeSeconds("que mandar un mensaje", 2);
+	addEventRelativeSeconds("que mandar un mensaje", 9);
 	addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", 20);
 	addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", 31);
-	addEventRelativeSeconds("que tengo que ir al banho", 31).
+	addEventRelativeSeconds("que tengo que ir al banho", 40).
 	
 	
 +!finish(Artifact) <-  

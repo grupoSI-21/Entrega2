@@ -28,4 +28,7 @@ mexico:ciudad de mexico
 republica dominicana:santo domingo
 burundi:gitega
 myanmar:naipyido
-birmania:naipyido
+birmania:naipyidopakistan:islamabad
+pakistan:islamabad
+pakistan:islamabad
+pakistan:islamabad

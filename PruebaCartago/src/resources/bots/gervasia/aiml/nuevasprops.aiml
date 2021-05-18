@@ -198,6 +198,13 @@
 			<srai>ENVIARMAIL TO <star index="4"/> SUBJECT <star index="5"/> MSG <star index="3"/></srai>
         </template>
     </category>
-	
+
+	<category>
+        <pattern> ^ recuerdame *</pattern>
+        <template>
+            Vale, te recordare <reminder><person2><star index="2"/></person2></reminder>
+        </template>
+    </category>
+
 
 </aiml>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<aiml version="2.0">
-<category> 
-	<pattern> ^ que ^ comer ^ </pattern> 
-	<template>Me gusta comer almejas de vez en cuando</template> 
-</category>
-</aiml>

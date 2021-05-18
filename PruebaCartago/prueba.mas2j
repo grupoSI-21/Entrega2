@@ -18,7 +18,6 @@ MAS prueba {
 
     agents:
 		botAgent agentArchClass jaca.CAgentArch;
-		pepe agentArchClass jaca.CAgentArch;
 		
 }
 

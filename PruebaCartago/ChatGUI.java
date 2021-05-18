@@ -12,9 +12,6 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Insets;
-//import java.awt.event.ActionListener;
-
-//import java.awt.Container;
 
 import cartago.*;
 import cartago.tools.*;

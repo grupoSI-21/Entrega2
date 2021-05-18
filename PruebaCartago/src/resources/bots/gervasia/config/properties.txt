@@ -20,20 +20,4 @@ favdrink:mate
 favfood:pizza
 favplace:las islas Cies
 pet:tortuga
-madre:inesmadre:ines
-madre:ines
-madre:ines
-madre:ines
-madre:ines
-madre:ines
-madre:ines
-madre:ines
-<<<<<<< HEAD
-=======
-madre:ines
->>>>>>> 78fcc55cb0976279e05341a438b1321ea206fe6e
-madre:ines
-madre:ines
-madre:ines
-madre:ines
 madre:ines

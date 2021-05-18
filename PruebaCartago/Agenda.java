@@ -4,7 +4,6 @@ import cartago.*;
 import cartago.tools.*;
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.time.format.DateTimeFormatter;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -36,6 +35,8 @@ class Event {
 public class Agenda extends Artifact {
 	private boolean monitoring;
 	private LinkedList<Event> events = new LinkedList<>();
+	
+	// Tiempo que tardarán en notificarse los recordatorios, en segundos
 	public final static int secondsToTriggerReminder = 15;
 	
 	void init() {
@@ -48,6 +49,7 @@ public class Agenda extends Artifact {
 		events.add(new Event(name, LocalDateTime.now().plus(Duration.ofSeconds(s)), false));
 	}
 	
+	// Añade un recordatorio
 	@OPERATION void addReminder(String name) {
 		events.add(new Event(name, LocalDateTime.now().plus(Duration.ofSeconds(secondsToTriggerReminder)), true));
 	}

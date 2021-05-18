@@ -134,7 +134,7 @@ filter(Answer, creatingFile, [Route]):-
 	addEventRelativeSeconds("que mandar un mensaje", 5);
 	addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", 20);
 	addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", 40);
-	addEventRelativeSeconds("que tengo que ir al banho", 60).
+	addEventRelativeSeconds("que tengo que ir al baño", 60).
 	
 	
 +!finish(Artifact) <-  
@@ -297,26 +297,19 @@ filter(Answer, creatingFile, [Route]):-
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
 		addEventRelativeSeconds("que mandar un mensaje", Seconds);
-		.wait(Time_To_Wait * 1000);
-		!retomarConversacion.
+		.wait(Time_To_Wait * 1000).
 		
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
 		addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", Seconds);
-		.wait(Time_To_Wait * 1000);
-		!retomarConversacion.
+		.wait(Time_To_Wait * 1000).
 
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
 		addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", Seconds);
-		.wait(Time_To_Wait * 1000);
-		!retomarConversacion.
+		.wait(Time_To_Wait * 1000).
 		
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
 		addEventRelativeSeconds("que ir al baño", Seconds);
-		.wait(Time_To_Wait * 1000);
-		!retomarConversacion.
-		
-//+!retomarConversacion(Msg) <- 
-//								.println().
+		.wait(Time_To_Wait * 1000).

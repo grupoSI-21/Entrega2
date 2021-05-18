@@ -28,3 +28,7 @@
 " te2 "," te "
 " llamo2 "," llamo "
 " llamas2 "," llamas "
+" tengo "," tienes2 "
+" tienes2 "," tienes "
+" tienes "," tengo2 "
+" tengo2 "," tengo "

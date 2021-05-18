@@ -2,7 +2,6 @@
 
 +!start <-
 	.wait(5000); // Para que de tiempo a inicializarse
-<<<<<<< HEAD
 	!sendQuestion("Traduce al ingles la frase me gusta el queso");
 	.wait(8000);
 	!sendQuestion("Ahora traduce al italiano la frase los carpinchos son los mejores animales del mundo");
@@ -14,20 +13,15 @@
 	!sendQuestion("Me gustaria que tradujeras odio los dias de lluvia al suajili");
 	.wait(8000);
 	!sendQuestion("Por favor traduce al esperanto la frase la pizza es lo mejor");
-=======
-	!sendQuestion("Recuerdame que es mi cumpleaÃ±os");
->>>>>>> 78fcc55cb0976279e05341a438b1321ea206fe6e
+	.wait(8000);
+	!sendQuestion("Recuerdame que es mi cumpleaños");
+	.wait(8000);
+	!sendQuestion("Quiero que recuerdes que tengo dentista a las 8 p.m");
 	.wait(8000);
 	!sendQuestion("Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
 	.wait(8000);
 	//!sendQuestion("Envia el mensaje: hola a: valentina con asunto: prueba");
 	//.wait(8000);
-	!sendQuestion("Traduce al ingles la frase me gusta el queso");
-	.wait(8000);
-	!sendQuestion("Ahora traduce al italiano la frase los carpinchos son los mejores animales del mundo");
-	.wait(8000);
-	!sendQuestion("Y por ultimo, me gustaria que tradujeras lo peor del verano son los mosquitos al euskera");
-	.wait(8000);
 	!sendQuestion("Crea la propiedad nueva madre con valor ines, por favor");
 	.wait(8000);
 	!sendQuestion("Incluye el valor pakistan en el conjunto pais sin mas demora");

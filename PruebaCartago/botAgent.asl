@@ -5,6 +5,8 @@
 // NOT inEvent
 ~inEvent.
 
+numPregunta(1).
+
 // Check if bot answer requires a service
 /*Esto quiere decir que en el template debe ir el tipo de servicio
 Aqui se chequea que esta dicho servicio*/
@@ -31,6 +33,8 @@ service(Answer, addingFile):- 			// Adding content to a file service
 service(Answer, creatingFile):- 		// Creating a new file service
 	checkTag("<file>",Answer) &
 	not service(Answer, addingfile).
+service (Answer, addingReminder) :-
+	checkTag("<reminder>", Answer).
 	
 // Checking a concrete service required by the bot ia as simple as find the required tag
 // as a substring on the string given by the second parameter
@@ -122,6 +126,8 @@ filter(Answer, creatingFile, [Route]):-
 	getValTag("<file>", Answer, Name) & 	// Si se decide que la extension no viene dada 
 	.concat(Name, ".txt", Route). 			// e.o.c. esto sobra
 
+filter(Answer, addingReminder, [Reminder]) :-
+	getValTag("<reminder>", Answer, Reminder).
 
 /* Initial goals */
 
@@ -135,25 +141,6 @@ filter(Answer, creatingFile, [Route]):-
 	addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", 20);
 	addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", 40);
 	addEventRelativeSeconds("que tengo que ir al ba�o", 60).
-	
-	
-+!finish(Artifact) <-  
-	.println("Quito el foco del artefacto: ", Artifact);
-	stopFocus(Artifact);
-	.println("Elimino el artefacto: ", Artifact);
-	disposeArtifact(Artifact);
-	.wait(200);               
-	.abolish(All);
-	.println("Elimino las creencias.");
-	.wait(200);
-	.drop_all_desires;
-	.println("Elimino los deseos.");
-	.wait(200);
-	.drop_all_events;
-	.println("Elimino los eventos.");            
-	.wait(200);
-	.drop_all_intentions;
-	.println("Elimino las intenciones.").
 	
 +!setupTool(Name, Id): true
 	<- 	makeArtifact("bot0","bot.Services",[Name],Id);
@@ -169,25 +156,34 @@ filter(Answer, creatingFile, [Route]):-
 	!showQuest(Ag, Q);
 	!say2(Ag, Q).
 
-// Esta versión no imprime la pregunta por la consola
-+!say2(Ag, Q) <-
+// Esta versión no imprime la pregunta por la consola, solo la respuesta
++!say2(Ag, Q) : numPregunta(N) <-
+	+question(N, Ag, Q); // Guarda la pregunta del agente Ag
+	+numPregunta(N+1);
 	chatSincrono(Q, Resp);
+	+response(N, Resp); // Guarda la respuesta (sin procesar los tags)
 	!processResponse(Resp, Processed);
+	+processed(N, Resp); // Guarda la respuesta (procesando los tags)
 	!showAnsw(botAgent, Processed);
 	.send(Ag, achieve, say(botAgent, Processed)).
 
-+!say(Ag, Q) <- +sayAgent(Ag, Q).
++!say(Ag, Q) <- !showQuest(Ag, Q);
+				+sayAgent(Ag, Q).
 	
 +!processResponse(Resp, Processed) : service(Resp, Service) <-
 	!doService(Service, Resp, Processed).
 	
 +!processResponse(Resp, Resp).
 
-+say(Msg) <- !sayFromChat(Msg).
++say(Q) <- !sayFromChat(Q).
 
-+!sayFromChat(Msg) : not inEvent <-
-	chatSincrono(Msg,Resp);
++!sayFromChat(Q) : not inEvent & numPregunta(N) <-
+	+question(N, human, Q); // Guarda la pregunta del agente Ag
+	+numPregunta(N+1);
+	chatSincrono(Q,Resp);
+	+response(N, Resp); // Guarda la respuesta (sin procesar los tags)
 	!processResponse(Resp, Processed);
+	+processed(N, Resp); // Guarda la respuesta (procesando los tags)
 	show(Processed).
 	
 +!sayFromChat(Msg) <- +sayChat(Msg).
@@ -199,6 +195,16 @@ filter(Answer, creatingFile, [Route]):-
 	show(Ans);
 	.wait(10000);
 	-inEvent.
+
++recordatorio(Rem) : remByAgent(Rem, human) <-
+	.concat("Hey, recuerda ", Rem, Ans);
+	show(Ans).
+	
++recordatorio(Rem) : remByAgent(Rem, Ag) <-
+	.concat("Hey, recuerda ", Rem, Ans);
+	!showAnsw(botAgent, Ans);
+	.send(Ag, achieve, say(botAgent, Ans)).
+	
 
 //caso 1: Human y AnotherAgent le hablan mientras est� ocupado
 -inEvent : sayChat(Msg1) & sayAgent(Ag, Msg2) <-
@@ -295,23 +301,9 @@ filter(Answer, creatingFile, [Route]):-
 		filter(Answer, creatingFile, [Route]) 
 	<-	createFile(Text,Route);
 		.concat("He creado el fichero: ", Route, Response).
-		
-+!eventWait(Event, Seconds, Time_To_Wait)
-	<-	.println("Disculpa un momento, tengo ", Event);
-		addEventRelativeSeconds("que mandar un mensaje", Seconds);
-		.wait(Time_To_Wait * 1000).
-		
-+!eventWait(Event, Seconds, Time_To_Wait)
-	<-	.println("Disculpa un momento, tengo ", Event);
-		addEventRelativeSeconds("que vigilar la olla de lentejas que si no se me queman", Seconds);
-		.wait(Time_To_Wait * 1000).
-
-+!eventWait(Event, Seconds, Time_To_Wait)
-	<-	.println("Disculpa un momento, tengo ", Event);
-		addEventRelativeSeconds("que atender una llamada de mi profesor, es importante", Seconds);
-		.wait(Time_To_Wait * 1000).
-		
-+!eventWait(Event, Seconds, Time_To_Wait)
-	<-	.println("Disculpa un momento, tengo ", Event);
-		addEventRelativeSeconds("que ir al baño", Seconds);
-		.wait(Time_To_Wait * 1000).
++!doService(addingReminder, Answer, Response) :
+	question(N, Ag, _) & response(N, Answer) & // Con esto vemos qué agente pidio el recordatorio
+	filter(Answer, addingReminder, [Reminder]) <-
+		addReminder(Reminder);
+		+remByAgent(Reminder, Ag);
+		.concat("De acuerdo, te recordare ", Reminder, Response).

@@ -166,7 +166,7 @@
     </category>
 	
 	<category>
-        <pattern> ^ traducir al * la frase * </pattern>
+        <pattern> ^ traducir al * la frase * ^</pattern>
         <template>
             <template>La frase que me has pedido es <translate> <to><map name="idioma"><star index="2"/></map></to> <msg><star index="3"/></msg> </translate> </template>
         </template>
@@ -174,7 +174,7 @@
 	
 	
 	<category>
-        <pattern> ^ traducir * al * </pattern>
+        <pattern> ^ traducir * al * ^</pattern>
         <template>
             <template>La frase que me has pedido es <translate> <to><map name="idioma"><star index="3"/></map></to> <msg><star index="2"/></msg> </translate> </template>
         </template>

@@ -2,6 +2,18 @@
 
 +!start <-
 	.wait(5000); // Para que de tiempo a inicializarse
+	!sendQuestion("Traduce al ingles la frase me gusta el queso");
+	.wait(8000);
+	!sendQuestion("Ahora traduce al italiano la frase los carpinchos son los mejores animales del mundo");
+	.wait(8000);
+	!sendQuestion("Y por ultimo, me gustaria que tradujeras lo peor del verano son los mosquitos al euskera");
+	.wait(8000);
+	!sendQuestion("Quiero que traduzcas al rumano la frase a quien madruga dios no lo ayuda");
+	.wait(8000);
+	!sendQuestion("Me gustaria que tradujeras odio los dias de lluvia al suajili");
+	.wait(8000);
+	!sendQuestion("Por favor traduce al esperanto la frase la pizza es lo mejor");
+	.wait(8000);
 	!sendQuestion("Envia el mensaje: debemos tratar el tema en persona lo antes posible a: gabriel con asunto: proyecto");
 	.wait(8000);
 	//!sendQuestion("Envia el mensaje: hola a: valentina con asunto: prueba");

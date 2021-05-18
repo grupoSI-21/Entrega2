@@ -31,7 +31,7 @@
 		<set var="sufijo"><star index="2"/></set>
 	</think>
 	<condition var="sufijo">
-		<li value="unknown"> Lo siento no conozco a nadie de nombre <star/> </li>
+		<li value="unknown"> Lo siento, no conozco a nadie de nombre <star/> </li>
 		<li> <srai> PELO <star index="2"/> </srai> </li>
 	</condition>
 </template>
@@ -82,7 +82,7 @@
 		<set var="sufijo"><star index="2"/></set>
 	</think>
 	<condition var="sufijo">
-		<li value="unknown"> Lo siento no conozco a nadie de nombre <star/> </li>
+		<li value="unknown"> Lo siento, no conozco a nadie de nombre <star/> </li>
 		<li> <srai> OJOS <star index="2"/> </srai> </li>
 	</condition>
 </template>
@@ -96,7 +96,7 @@
 		<set var="sufijo"><star index="3"/></set>
 	</think>
 	<condition var="sufijo">
-		<li value="unknown"> Lo siento no conozco a nadie de nombre <star index="2"/> </li>
+		<li value="unknown"> Lo siento, no conozco a nadie de nombre <star index="2"/> </li>
 		<li> <srai> OJOS <star index="3"/> </srai> </li>
 	</condition>
 </template>

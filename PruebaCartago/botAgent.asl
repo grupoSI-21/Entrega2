@@ -167,6 +167,10 @@ filter(Answer, creatingFile, [Route]):-
 
 +!say(Ag, Q) : not inEvent <-
 	!showQuest(Ag, Q);
+	!say2(Ag, Q).
+
+// Esta versiÃ³n no imprime la pregunta por la consola
++!say2(Ag, Q) <-
 	chatSincrono(Q, Resp);
 	!processResponse(Resp, Processed);
 	!showAnsw(botAgent, Processed);
@@ -182,10 +186,8 @@ filter(Answer, creatingFile, [Route]):-
 +say(Msg) <- !sayFromChat(Msg).
 
 +!sayFromChat(Msg) : not inEvent <-
-	!showQuest(human, Msg);
 	chatSincrono(Msg,Resp);
 	!processResponse(Resp, Processed);
-	!showAnsw(botAgent, Processed);
 	show(Processed).
 	
 +!sayFromChat(Msg) <- +sayChat(Msg).
@@ -195,33 +197,33 @@ filter(Answer, creatingFile, [Route]):-
 	+inEvent;
 	!showAnsw(botAgent, Ans);
 	show(Ans);
-	.wait(5000);
+	.wait(10000);
 	-inEvent.
-//caso 1: Human y AnotherAgent le hablan mientras está ocupado
+
+//caso 1: Human y AnotherAgent le hablan mientras estï¿½ ocupado
 -inEvent : sayChat(Msg1) & sayAgent(Ag, Msg2) <-
 	.concat("Ya esta, me estabas comentando que ", Msg1, Ans1);
 	.concat("Ya esta, me estabas comentando que ", Msg2, Ans2);
 	show(Ans1);
-	!showAnsw(botAgent, Ans1);
-	!sayFromChat(Msg1); //responde a lo que se le habia preguntado en su ausencia
-	!showAnsw(botAgent, Ans2);
-	!sayFromChat(Msg2). //responde a lo que se le habia preguntado en su ausencia
+	!sayFromChat(Msg1);
+	!showAnsw(Ag, Ans2);
+	!say2(Ag, Msg2).
 
-//caso 2: le habla AnotherAgent mientras está ausente
+//caso 2: le habla AnotherAgent mientras estï¿½ ausente
 -inEvent : sayAgent(Ag, Msg) <-
 	.concat("Ya esta, me estabas comentando que ", Msg, Ans);
 	show("Ya esta");
-	!showAnsw(botAgent, "Ya esta");
-	!sayFromChat(Msg). //responde a lo que se le habia preguntado en su ausencia
+	!showAnsw(botAgent, Ans);
+	!say2(Ag, Msg).
 
-//caso 3: le habla Human mientras está ausente
+//caso 3: le habla Human mientras estï¿½ ausente
 -inEvent : sayChat(Msg)<-
 	.concat("Ya esta, me estabas comentando que ", Msg, Ans);
-	!showAnsw(botAgent, "Ya esta");
 	show(Ans);
-	!sayFromChat(Msg).  //responde a lo que se le habia preguntado en su ausencia
+	!sayFromChat(Msg);
+	!showAnsw(botAgent, "Ya esta").
 
-//caso 4: no le hablan mientras está ausente
+//caso 4: no le hablan mientras estï¿½ ausente
 -inEvent <-
 	!showAnsw(botAgent, "Ya esta");
 	show("Ya esta").
@@ -314,9 +316,6 @@ filter(Answer, creatingFile, [Route]):-
 		
 +!eventWait(Event, Seconds, Time_To_Wait)
 	<-	.println("Disculpa un momento, tengo ", Event);
-		addEventRelativeSeconds("que ir al baño", Seconds);
+		addEventRelativeSeconds("que ir al baï¿½o", Seconds);
 		.wait(Time_To_Wait * 1000);
 		!retomarConversacion.
-		
-//+!retomarConversacion(Msg) <- 
-//								.println().
